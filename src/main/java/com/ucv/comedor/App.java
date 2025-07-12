@@ -1,13 +1,13 @@
 package com.ucv.comedor;
+import javax.swing.SwingUtilities;
+import views.home.Home;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+         SwingUtilities.invokeLater(() -> {
+        new Home().setVisible(true);
+    });
     }
 }

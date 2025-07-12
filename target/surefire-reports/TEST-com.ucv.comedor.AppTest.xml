@@ -1,58 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.ucv.comedor.AppTest" time="0.04" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.ucv.comedor.AppTest" time="0.029" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
-    <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/home/adrian/dev/java/comedor-app/target/test-classes:/home/adrian/dev/java/comedor-app/target/classes:/home/adrian/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:"/>
-    <property name="java.vm.vendor" value="Red Hat, Inc."/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\target\test-classes;C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\target\classes;C:\Users\carlo\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;"/>
+    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="java.vendor.url" value="https://www.redhat.com/"/>
-    <property name="os.name" value="Linux"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="user.timezone" value="America/Caracas"/>
+    <property name="os.name" value="Windows 10"/>
     <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="user.country" value="ES"/>
-    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-21.0.4.0.7-2.fc40.x86_64/lib"/>
-    <property name="sun.java.command" value="/home/adrian/dev/java/comedor-app/target/surefire/surefirebooter-20250709202209948_3.jar /home/adrian/dev/java/comedor-app/target/surefire 2025-07-09T20-22-09_797-jvmRun1 surefire-20250709202209948_1tmp surefire_0-20250709202209948_2tmp"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-21.0.7.6-hotspot\bin"/>
+    <property name="sun.java.command" value="C:\Users\carlo\AppData\Local\Temp\surefire924962542413643778\surefirebooter-20250712152630372_3.jar C:\Users\carlo\AppData\Local\Temp\surefire924962542413643778 2025-07-12T15-26-28_032-jvmRun1 surefire-20250712152630372_1tmp surefire_0-20250712152630372_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/home/adrian/dev/java/comedor-app/target/test-classes:/home/adrian/dev/java/comedor-app/target/classes:/home/adrian/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:"/>
+    <property name="surefire.test.class.path" value="C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\target\test-classes;C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\target\classes;C:\Users\carlo\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="/home/adrian"/>
+    <property name="user.home" value="C:\Users\carlo"/>
     <property name="user.language" value="es"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.version.date" value="2024-07-16"/>
-    <property name="java.home" value="/usr/lib/jvm/java-21-openjdk-21.0.4.0.7-2.fc40.x86_64"/>
-    <property name="file.separator" value="/"/>
-    <property name="basedir" value="/home/adrian/dev/java/comedor-app"/>
+    <property name="java.version.date" value="2025-04-15"/>
+    <property name="java.home" value="C:\Program Files\Eclipse Adoptium\jdk-21.0.7.6-hotspot"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app"/>
     <property name="java.vm.compressedOopsMode" value="32-bit"/>
     <property name="line.separator" value="&#10;"/>
-    <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/adrian/dev/java/comedor-app/target/surefire/surefirebooter-20250709202209948_3.jar"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\carlo\AppData\Local\Temp\surefire924962542413643778\surefirebooter-20250712152630372_3.jar"/>
+    <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="21.0.4+7"/>
-    <property name="user.name" value="adrian"/>
-    <property name="stdout.encoding" value="UTF-8"/>
-    <property name="path.separator" value=":"/>
-    <property name="os.version" value="6.9.5-200.fc40.x86_64"/>
+    <property name="java.runtime.version" value="21.0.7+6-LTS"/>
+    <property name="user.name" value="carlo"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
-    <property name="java.vendor.version" value="(Red_Hat-21.0.4.0.7-2)"/>
-    <property name="localRepository" value="/home/adrian/.m2/repository"/>
-    <property name="java.vendor.url.bug" value="https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora&amp;component=java-21-openjdk&amp;version=39"/>
-    <property name="java.io.tmpdir" value="/tmp"/>
-    <property name="java.version" value="21.0.4"/>
-    <property name="user.dir" value="/home/adrian/dev/java/comedor-app"/>
+    <property name="java.vendor.version" value="Temurin-21.0.7+6"/>
+    <property name="localRepository" value="C:\Users\carlo\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="C:\Users\carlo\AppData\Local\Temp\"/>
+    <property name="java.version" value="21.0.7"/>
+    <property name="user.dir" value="C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="native.encoding" value="UTF-8"/>
-    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-21.0.7.6-hotspot\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Eclipse Adoptium\jdk-21.0.7.6-hotspot\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\carlo\AppData\Roaming\nvm;C:\nvm4w\nodejs;C:\Program Files\dotnet\;C:\Program Files\Docker\Docker\resources\bin;C:\MinGW\bin;C:\Users\carlo\AppData\Local\Programs\Python\Python313\Scripts;C:\Program Files\Eclipse Adoptium\jdk-21.0.7.6-hotspot\\bin;C:\Users\carlo\OneDrive\Documentos\Maven\apache-maven-3.9.10\bin;C:\Program Files\nodejs\;C:\Users\carlo\AppData\Local\Programs\Python\Python313\Scripts\;C:\Users\carlo\AppData\Local\Programs\Python\Python313\;C:\Users\carlo\AppData\Local\Programs\Python\Launcher\;C:\Users\carlo\AppData\Local\pnpm;C:\Users\carlo\AppData\Local\Microsoft\WindowsApps;C:\Users\carlo\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Git\cmd;C:\Users\carlo\AppData\Roaming\nvm;C:\nvm4w\nodejs;C:\Users\carlo\AppData\Roaming\npm;c:\Users\carlo\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
-    <property name="stderr.encoding" value="UTF-8"/>
-    <property name="java.vendor" value="Red Hat, Inc."/>
-    <property name="java.vm.version" value="21.0.4+7"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="21.0.7+6-LTS"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testApp" classname="com.ucv.comedor.AppTest" time="0.007"/>
+  <testcase name="testApp" classname="com.ucv.comedor.AppTest" time="0.004"/>
 </testsuite>

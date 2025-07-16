@@ -1,10 +1,10 @@
 package views.home;
-
 import javax.swing.border.*;
 import javax.swing.*;
 import java.awt.*;
 import components.Button.RoundedButton;
 import components.TextInput.TextInput;
+
 
 public class Home extends JFrame {
     private JPanel panel;
@@ -19,6 +19,7 @@ public class Home extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Centrar la ventana
         agregarPanel();
+        
     }
 
     private void agregarLogo() {

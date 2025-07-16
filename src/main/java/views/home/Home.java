@@ -48,7 +48,6 @@ public class Home extends JFrame {
         olvideContraseña.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         panel.add(Box.createVerticalStrut(100));
         panel.add(olvideContraseña);
-        agregarTextInput();
     }
 
     private void agregarBtnRegistrarse() {
@@ -71,16 +70,6 @@ public class Home extends JFrame {
         panel.add(Box.createVerticalStrut(20)); // Espacio vertical entre componentes.
         panel.add(btnIngresar);
         agregarBtnRegistrarse();
-    }
-
-    //agregar textInput component
-    private void agregarTextInput() {
-        TextInput textInput = new TextInput(3, 30);
-        textInput.setAlignmentX(Component.CENTER_ALIGNMENT);
-        textInput.setMaximumSize(new Dimension(400, 100));
-        textInput.setFont(new Font("Inter", Font.PLAIN, 16));
-        panel.add(Box.createVerticalStrut(20)); // Espacio vertical entre componentes.
-        panel.add(textInput);
     }
 
 

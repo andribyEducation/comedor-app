@@ -2,8 +2,10 @@ controllers\HomeController.class
 listeners\StyledButtonMouseListener.class
 components\TextInput\TextInput.class
 views\home\Home.class
+components\TextInput\TextInput$RoundedCornerBorder.class
 controllers\HomeController$1.class
 models\Usuario.class
 services\AuthService.class
+components\TextInput\TextInput$1.class
 com\ucv\comedor\App.class
 components\Button\RoundedButton.class

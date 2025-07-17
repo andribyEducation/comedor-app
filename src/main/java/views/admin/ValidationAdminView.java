@@ -33,7 +33,7 @@ public class ValidationAdminView extends JFrame {
         add(Box.createVerticalStrut(50)); // Espacio vertical
 
         // 2. TextInput para las credenciales
-        credencialesInput = new TextInput("Ingrese Credenciales");
+        //credencialesInput = new TextInput("Ingrese Credenciales");
         credencialesInput.setMaximumSize(new Dimension(400, 70)); // Ajustar tamaño máximo
         credencialesInput.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(credencialesInput);

@@ -1,4 +1,4 @@
-package views.admin;
+package views.admin.Validation;
 
 import components.Button.RoundedButton;
 import components.TextInput.TextInput;

@@ -1,6 +1,6 @@
 package com.ucv.comedor;
 import views.admin.dashboards.AdminDashboardView;
-import controllers.admin.AdminDashboardController;
+import controllers.AdminDashboardController;
 import javax.swing.*;
 
 public class App {

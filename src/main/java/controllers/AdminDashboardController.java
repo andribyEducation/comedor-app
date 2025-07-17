@@ -1,5 +1,5 @@
 // Nombre del archivo: AdminDashboardController.java
-package controllers.admin;
+package controllers;
 
 import views.admin.dashboards.AdminDashboardView;
 import javax.swing.*;

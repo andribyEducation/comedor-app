@@ -1,18 +1,13 @@
 package com.ucv.comedor;
+import views.admin.dashboards.AdminDashboard;
 
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
-import views.home.Home;
-import controllers.HomeController;
-
-public class App 
-{
-    public static void main( String[] args )
-    {
-         SwingUtilities.invokeLater(() -> {
-            Home homeView = new Home();
-            new HomeController(homeView);
-            homeView.setVisible(true);
+public class App {
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            AdminDashboard view = new AdminDashboard();
+            view.setVisible(true);
         });
     }
 }

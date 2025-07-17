@@ -1,8 +1,14 @@
 C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\com\ucv\comedor\App.java
+C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\components\Backgrounds\DarkBackground.java
 C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\components\Button\RoundedButton.java
+C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\components\CheckBox\CheckBox.java
 C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\components\TextInput\TextInput.java
+C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\controllers\AdminDashboardController.java
 C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\controllers\HomeController.java
 C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\listeners\StyledButtonMouseListener.java
 C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\models\Usuario.java
 C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\services\AuthService.java
+C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\views\admin\dashboards\AdminDashboard.java
+C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\views\admin\Validation\ValidationAdminView.java
+C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\views\comensal\consultaMenu\ConsultaMenu.java
 C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\views\home\Home.java

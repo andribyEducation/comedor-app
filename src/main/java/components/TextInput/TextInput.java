@@ -1,53 +1,101 @@
 package components.TextInput;
 
-import javax.swing.JTextArea;
-import javax.swing.BorderFactory;
-import java.awt.Dimension;
+import javax.swing.*;
+import javax.swing.border.AbstractBorder;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
+import java.awt.*;
+import java.awt.geom.Area;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
 
-public class TextInput extends JTextArea {
+public class TextInput extends JPanel {
 
+    private JTextPane textPane;
+    private JLabel label;
     private String validationRegex;
 
-    public TextInput() {
-        this(1, 20); // 1 Fila y 20 Columnas por defecto
+    public TextInput(String description) {
+        this(description, 1, 20);
     }
 
-    public TextInput(int rows, int columns) {
-        super(rows, columns);
-        //agrega texto arriba del input
+    public TextInput(String description, int rows, int columns) {
+        super(new BorderLayout(0, 5));
+        setOpaque(false);
 
-        initialize();
+        label = new JLabel(description);
+        label.setFont(new Font("Inter", Font.PLAIN, 18));
+        label.setBorder(BorderFactory.createEmptyBorder(0, 8, 0, 0));
+
+        textPane = new JTextPane();
+        initializeTextPane();
+
+        add(label, BorderLayout.NORTH);
+        add(textPane, BorderLayout.CENTER);
     }
-    
-    private void initialize() {
-        // Configura el tamaño preferido del área de texto.
-        setPreferredSize(new Dimension(200, 30));
-        // Agrega un borde simple.
-        setBorder(BorderFactory.createEtchedBorder());
+
+    private void initializeTextPane() {
+        textPane.setBorder(new RoundedCornerBorder());
+       
     }
+
+    public String getText() {
+        return textPane.getText();
+    }
+
+    public void setText(String text) {
+        textPane.setText(text);
     
-    /**
-     * Configura una expresión regular para validar el contenido del área de texto.
-     */
+    }
+
     public void setValidationRegex(String regex) {
         this.validationRegex = regex;
     }
-    
-    /**
-     * Valida el contenido actual del área de texto.
-     * Si se ha establecido una expresión regular, la validación se hará contra ella.
-     * De lo contrario, se verificará que el campo no esté vacío.
-     * 
-     * @return true si el contenido es válido; false de lo contrario.
-     */
+
     public boolean isValidInput() {
         String input = getText();
         if (validationRegex != null) {
             return input.matches(validationRegex);
         }
-        // Validación simple: no debe estar vacío (puedes ampliar esta lógica según tus necesidades).
         return input != null && !input.trim().isEmpty();
     }
-    
-    // Métodos adicionales reutilizables pueden agregarse aquí.
+
+    // Clase interna para un borde redondeado más robusto que maneja el fondo.
+    private static class RoundedCornerBorder extends AbstractBorder {
+        private static final Color ALPHA_ZERO = new Color(0x0, true);
+        private final int cornerRadius = 50;
+        private final Insets insets = new Insets(13, 12, 13, 12); // Top, Left, Bottom, Right padding
+
+        @Override
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            
+            Shape border = new RoundRectangle2D.Double(x, y, width - 1, height - 1, cornerRadius, cornerRadius);
+            
+            Container parent = c.getParent();
+            if (parent != null) {
+                g2.setColor(parent.getBackground());
+                Area corner = new Area(new Rectangle2D.Double(x, y, width, height));
+                corner.subtract(new Area(border));
+                g2.fill(corner);
+            }
+
+            g2.setColor(Color.GRAY);
+            g2.draw(border);
+            g2.dispose();
+        }
+
+        @Override
+        public Insets getBorderInsets(Component c) {
+            return insets;
+        }
+
+        @Override
+        public Insets getBorderInsets(Component c, Insets insets) {
+            insets.set(this.insets.top, this.insets.left, this.insets.bottom, this.insets.right);
+            return insets;
+        }
+    }
 }

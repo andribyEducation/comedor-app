@@ -1,4 +1,4 @@
-package views.home.consultaMenu;
+package views.comensal.ConsultaMenu;
 
 import components.Button.RoundedButton;
 // import components.CheckBox.CheckBox;
@@ -6,9 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class consultaMenu extends JFrame {
+public class ConsultaMenu extends JFrame {
 
-    public consultaMenu() {
+    public ConsultaMenu() {
 
         setTitle("Turnos disponibles");
         setSize(1920, 1080);
@@ -74,7 +74,7 @@ public class consultaMenu extends JFrame {
         });
 
         JLabel titulo = new JLabel("Turnos disponibles");
-        titulo.setFont(new Font("Inter", Font.BOLD, 35));
+        titulo.setFont(new Font("Inter", Font.BOLD, 38));
         titulo.setForeground(Color.WHITE);
         titulo.setBounds(80, 30, 400, 40);
         add(titulo);
@@ -181,7 +181,7 @@ public class consultaMenu extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new consultaMenu().setVisible(true);
+            new ConsultaMenu().setVisible(true);
         });
     }
 }

@@ -22,7 +22,7 @@ public class Home extends JFrame {
     }
 
     private void agregarLogo() {
-        java.net.URL logoUrl = getClass().getResource("/assets/logos/Logo_Universidad_Central_de_Venezuela.svg.png");
+        java.net.URL logoUrl = getClass().getResource("/assets/logos/logoucv.png");
         if (logoUrl != null) {
             ImageIcon originalIcon = new ImageIcon(logoUrl);
         // Define el nuevo ancho y alto según necesites.

@@ -11,7 +11,7 @@ public class consultaMenu extends JFrame {
     public consultaMenu() {
 
         setTitle("Turnos disponibles");
-        setSize(1000, 550);
+        setSize(1920, 1080);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(null);

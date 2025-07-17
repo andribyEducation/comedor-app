@@ -1,7 +1,7 @@
 package views.home.consultaMenu;
 
 import components.Button.RoundedButton;
-//import components.CheckBox.CheckBox;
+// import components.CheckBox.CheckBox;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -9,6 +9,7 @@ import java.awt.event.*;
 public class consultaMenu extends JFrame {
 
     public consultaMenu() {
+
         setTitle("Turnos disponibles");
         setSize(1000, 550);
         setLocationRelativeTo(null);
@@ -16,14 +17,20 @@ public class consultaMenu extends JFrame {
         setLayout(null);
         getContentPane().setBackground(Color.BLACK);
 
-        // Icono de usuario en esquina superior derecha
+        ImageIcon iconoLogo = new ImageIcon(getClass().getResource("/assets/logos/logoucv.png"));
+        Image imagenEscalada = iconoLogo.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+        JLabel logoLabel = new JLabel(new ImageIcon(imagenEscalada));
+        logoLabel.setBounds(800, 20, 40, 40);
+        add(logoLabel);
+
         JLabel iconoUsuario = new JLabel();
-        iconoUsuario.setBounds(930, 20, 40, 40);
+        iconoUsuario.setBounds(850, 20, 40, 40);
         iconoUsuario.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        iconoUsuario.setIcon(UIManager.getIcon("FileView.directoryIcon"));
+        ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/assets/logos/usericon.png"));
+        Image iconoEscalado = iconoOriginal.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+        iconoUsuario.setIcon(new ImageIcon(iconoEscalado));
         add(iconoUsuario);
 
-        // Menú desplegable personalizado
         JPopupMenu menuUsuario = new JPopupMenu() {
             @Override
             public void paintComponent(Graphics g) {
@@ -37,7 +44,7 @@ public class consultaMenu extends JFrame {
         menuUsuario.setOpaque(false);
 
         JLabel nombreUsuario = new JLabel("Usuario: Juan Pérez");
-        nombreUsuario.setFont(new Font("SansSerif", Font.BOLD, 14));
+        nombreUsuario.setFont(new Font("Inter", Font.BOLD, 15));
         nombreUsuario.setForeground(Color.WHITE);
         nombreUsuario.setOpaque(false);
         menuUsuario.add(nombreUsuario);
@@ -66,20 +73,17 @@ public class consultaMenu extends JFrame {
             }
         });
 
-        // Título principal
         JLabel titulo = new JLabel("Turnos disponibles");
-        titulo.setFont(new Font("SansSerif", Font.BOLD, 32));
+        titulo.setFont(new Font("Inter", Font.BOLD, 35));
         titulo.setForeground(Color.WHITE);
         titulo.setBounds(80, 30, 400, 40);
         add(titulo);
 
-        // Línea decorativa
         JPanel linea = new JPanel();
         linea.setBackground(new Color(255, 204, 0));
-        linea.setBounds(80, 75, 300, 2);
+        linea.setBounds(80, 75, 330, 2);
         add(linea);
 
-        // Días de la semana
         String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes"};
         int[][] posiciones = {
             {250, 120},
@@ -93,30 +97,48 @@ public class consultaMenu extends JFrame {
             agregarDia(dias[i], posiciones[i][0], posiciones[i][1]);
         }
 
-        // Ejemplo Uso CheckBox"
-        // CheckBox checkNotificaciones = new CheckBox(" CheckBox");
-        // checkNotificaciones.setBounds(80, 430, 300, 30);
-        // add(checkNotificaciones);
+        // Botón "Saldo Disponible" con menú emergente
+        JButton btnSaldo = new JButton("Saldo Disponible");
+        btnSaldo.setBounds(700, 430, 200, 30);
+        btnSaldo.setForeground(Color.BLACK);
+        btnSaldo.setFont(new Font("Inter", Font.BOLD, 20));
+        btnSaldo.setFocusPainted(false);
+        btnSaldo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnSaldo.setBackground(new Color(255, 204, 0));
+        add(btnSaldo);
 
-        // Botón "Saldo Disponible"
-        JButton reportar = new JButton("Saldo Disponible");
-        reportar.setBounds(700, 430, 200, 20);
-        reportar.setForeground(Color.YELLOW);
-        reportar.setFont(new Font("SansSerif", Font.PLAIN, 14));
-        reportar.setFocusPainted(false);
-        reportar.setBorderPainted(false);
-        reportar.setContentAreaFilled(false);
-        reportar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        reportar.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Aquí va la lógica para ver el saldo.");
+        // Menú emergente de saldo
+        JPopupMenu popupSaldo = new JPopupMenu() {
+            @Override
+            public void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g;
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(new Color(30, 30, 30));
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
+            }
+        };
+        popupSaldo.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        popupSaldo.setOpaque(false);
+
+        // Contenido del menú de saldo
+        JLabel saldoLabel = new JLabel("250 Bs");
+        saldoLabel.setFont(new Font("Inter", Font.BOLD, 20));
+        saldoLabel.setForeground(Color.WHITE);
+        saldoLabel.setOpaque(false);
+        popupSaldo.add(saldoLabel);
+
+        // Acción al hacer clic en el botón
+        btnSaldo.addActionListener(e -> {
+            int x = 0; // Puedes ajustar si quieres desplazarlo a la izquierda o derecha
+            int y = btnSaldo.getHeight();
+            popupSaldo.show(btnSaldo, x, y);
         });
-        add(reportar);
     }
 
     private void personalizarItem(JMenuItem item) {
         item.setBackground(new Color(50, 50, 50));
         item.setForeground(Color.WHITE);
-        item.setFont(new Font("SansSerif", Font.PLAIN, 13));
+        item.setFont(new Font("Inter", Font.BOLD, 15));
         item.setOpaque(true);
         item.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         item.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -138,24 +160,24 @@ public class consultaMenu extends JFrame {
         int botonAncho = 160;
         int etiquetaAncho = 200;
 
-        // Centrado horizontal de la etiqueta
         JLabel lblDia = new JLabel(dia, SwingConstants.CENTER);
         lblDia.setForeground(Color.WHITE);
-        lblDia.setFont(new Font("SansSerif", Font.BOLD, 20));
+        lblDia.setFont(new Font("Inter", Font.BOLD, 25));
         lblDia.setBounds(x - (etiquetaAncho - botonAncho) / 2, y, etiquetaAncho, 30);
         add(lblDia);
 
-        // Botón centrado respecto a la misma coordenada X
-        RoundedButton verMenu = new RoundedButton("Ver Menú", true);
-        verMenu.setBounds(x, y + 30, botonAncho, 30);
+        RoundedButton verMenu = new RoundedButton("Consultar", true);
+        verMenu.setBounds(x, y + 35, 160, 30);
+        verMenu.setFont(new Font("Inter", Font.BOLD, 18));
+        verMenu.setForeground(Color.BLACK);  // ← Color del texto
         verMenu.setBackground(new Color(255, 204, 0));
         verMenu.setFocusPainted(false);
         verMenu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         verMenu.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Mostrar menú del día: " + dia);
-    });
-    add(verMenu);
-}
+        JOptionPane.showMessageDialog(this, "Mostrar menú del día: " + dia);
+        });
+        add(verMenu);
+    }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {

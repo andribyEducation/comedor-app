@@ -2,13 +2,15 @@ controllers\HomeController.class
 listeners\StyledButtonMouseListener.class
 components\TextInput\TextInput.class
 views\home\Home.class
-components\TextInput\TextInput$RoundedCornerBorder.class
-components\Backgrounds\DarkBackground.class
+controllers\HomeController$1.class
 models\Usuario.class
-components\TextInput\TextInput$1.class
+services\AuthService.class
 com\ucv\comedor\App.class
 components\Button\RoundedButton.class
+<<<<<<< HEAD
 views\admin\dashboards\AdminDashboard.class
 views\admin\ValidationAdminView.class
 controllers\HomeController$1.class
 services\AuthService.class
+=======
+>>>>>>> main

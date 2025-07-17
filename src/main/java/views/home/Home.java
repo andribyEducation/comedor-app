@@ -1,10 +1,10 @@
 package views.home;
+
 import javax.swing.border.*;
 import javax.swing.*;
 import java.awt.*;
 import components.Button.RoundedButton;
 import components.TextInput.TextInput;
-
 
 public class Home extends JFrame {
     private JPanel panel;
@@ -19,11 +19,10 @@ public class Home extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Centrar la ventana
         agregarPanel();
-        
     }
 
     private void agregarLogo() {
-        java.net.URL logoUrl = getClass().getResource("/assets/logos/Logo_Universidad_Central_de_Venezuela.svg.png");
+        java.net.URL logoUrl = getClass().getResource("/assets/logos/logoucv.png");
         if (logoUrl != null) {
             ImageIcon originalIcon = new ImageIcon(logoUrl);
         // Define el nuevo ancho y alto según necesites.

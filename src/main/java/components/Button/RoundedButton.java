@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -22,6 +23,7 @@ public class RoundedButton extends JButton {
     private final Color pressedBackgroundColor;
     private final Color pressedDarkBackgroundColor;
     private int cornerRadius = 50;
+    private boolean drawTextOutline = false;
 
     public RoundedButton(String text, boolean bgDark) {
         super(text);
@@ -35,20 +37,21 @@ public class RoundedButton extends JButton {
         pressedDarkBackgroundColor = new Color(255, 170, 0);
 
         // Estilos base del botón
-        setFont(loadCustomFont()); // <-- AQUÍ SE APLICA LA FUENTE
-        setForeground(Color.WHITE);
-        //ajustar tamaño del boton
+        setFont(loadCustomFont());
         setPreferredSize(new java.awt.Dimension(200, 50));
         setFocusPainted(false);
         setBorderPainted(false);
         setContentAreaFilled(false);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        // Asigna el color de fondo inicial
+        // Asigna el color de fondo y de fuente inicial
         if (bgDark) {
             setBackground(darkBackgroundColor);
+            setForeground(Color.WHITE); // Texto blanco
+            drawTextOutline = true; // Activar borde de texto
         } else {
             setBackground(normalBackgroundColor);
+            setForeground(Color.WHITE); // Texto blanco para fondo azul
         }
 
         // Listener para efectos de hover y click
@@ -61,9 +64,30 @@ public class RoundedButton extends JButton {
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        // Dibujar fondo
         g2.setColor(getBackground());
-        g2.fillRoundRect(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius);
-        super.paintComponent(g2);
+        g2.fill(new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius));
+
+        // Dibujar texto
+        FontMetrics fm = g2.getFontMetrics();
+        String text = getText();
+        int x = (getWidth() - fm.stringWidth(text)) / 2;
+        int y = (getHeight() - fm.getHeight()) / 2 + fm.getAscent();
+
+        if (drawTextOutline) {
+            // Dibujar borde del texto
+            g2.setColor(Color.BLACK);
+            g2.drawString(text, x - 1, y - 1);
+            g2.drawString(text, x - 1, y + 1);
+            g2.drawString(text, x + 1, y - 1);
+            g2.drawString(text, x + 1, y + 1);
+        }
+
+        // Dibujar texto principal
+        g2.setColor(getForeground());
+        g2.drawString(text, x, y);
+
         g2.dispose();
     }
 

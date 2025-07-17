@@ -4,6 +4,7 @@ import javax.swing.SwingUtilities;
 import views.home.Home;
 import controllers.HomeController;
 import views.admin.ValidationAdminView;
+import views.admin.dashboards.AdminDashboard;
 
 public class App 
 {
@@ -14,8 +15,8 @@ public class App
             new HomeController(homeView);
             homeView.setVisible(true);*/
 
-            ValidationAdminView validationAdminView = new ValidationAdminView();
-            validationAdminView.setVisible(true);
+            AdminDashboard adminDashboard = new AdminDashboard();
+            adminDashboard.setVisible(true);
 
             
         });

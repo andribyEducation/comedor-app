@@ -8,6 +8,7 @@ models\Usuario.class
 components\TextInput\TextInput$1.class
 com\ucv\comedor\App.class
 components\Button\RoundedButton.class
+views\admin\dashboards\AdminDashboard.class
 views\admin\ValidationAdminView.class
 controllers\HomeController$1.class
 services\AuthService.class

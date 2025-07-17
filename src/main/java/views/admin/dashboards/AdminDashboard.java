@@ -31,14 +31,19 @@ public class AdminDashboard extends JFrame {
     private JPanel createHeaderPanel() {
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setOpaque(false); // Hacer transparente para que se vea el fondo
-        headerPanel.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
+        headerPanel.setBorder(BorderFactory.createEmptyBorder(20, 75, 20, 30));
 
         // Título
         JLabel titleLabel = new JLabel("Dashboard");
         titleLabel.setFont(new Font("Inter", Font.BOLD, 38));
         titleLabel.setForeground(Color.WHITE);
+        titleLabel.setBounds(80, 30, 400, 40);
         headerPanel.add(titleLabel, BorderLayout.WEST);
 
+         JPanel linea = new JPanel();
+        linea.setBackground(new Color(255, 204, 0));
+        linea.setBounds(80, 75, 330, 2);
+        add(linea);
         // Logo
         try {
             ImageIcon logo = new ImageIcon(getClass().getResource("/assets/logos/Logo_Universidad_Central_de_Venezuela.svg.png"));

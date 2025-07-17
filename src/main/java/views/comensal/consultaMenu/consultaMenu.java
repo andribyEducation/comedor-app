@@ -74,7 +74,7 @@ public class consultaMenu extends JFrame {
         });
 
         JLabel titulo = new JLabel("Turnos disponibles");
-        titulo.setFont(new Font("Inter", Font.BOLD, 35));
+        titulo.setFont(new Font("Inter", Font.BOLD, 38));
         titulo.setForeground(Color.WHITE);
         titulo.setBounds(80, 30, 400, 40);
         add(titulo);

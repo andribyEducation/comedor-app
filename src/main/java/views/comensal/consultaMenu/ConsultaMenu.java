@@ -59,7 +59,7 @@ public class ConsultaMenu extends JFrame {
         menuUsuario.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         menuUsuario.setOpaque(false);
 
-        JLabel nombreUsuario = new JLabel("Usuario: Juan Pérez");
+        JLabel nombreUsuario = new JLabel("Usuario: Nombre");
         nombreUsuario.setFont(new Font("Inter", Font.BOLD, 22));
         nombreUsuario.setForeground(Color.WHITE);
         nombreUsuario.setOpaque(false);

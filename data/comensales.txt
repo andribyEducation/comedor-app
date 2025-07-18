@@ -1,3 +1,4 @@
 correo	|123|123|comensal|0
 321@321.com|321321|1234|administrador|0
 a@b.com|123456|111|comensal|0
+123@correo.com|ejemplo|12345|comensal|0

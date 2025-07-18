@@ -8,8 +8,12 @@ import components.TextInput.TextInput;
 public class LoginView extends JFrame {
 
     private RoundedButton loginButton;
+    private JLabel backLabel;
+    private TextInput cedulaInput;
+    private TextInput passwordInput;
 
     public LoginView() {
+
         setTitle("Ingreso al Comedor Universitario");
         setSize(1920, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,7 +29,8 @@ public class LoginView extends JFrame {
         // Icono de flecha
         ImageIcon backIcon = new ImageIcon(getClass().getResource("/assets/Iconos/FlechaIzquierda.png"));
         Image scaledBackImage = backIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-        JLabel backLabel = new JLabel(new ImageIcon(scaledBackImage));
+        backLabel = new JLabel(new ImageIcon(scaledBackImage));
+
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.NORTHWEST;
@@ -52,6 +57,9 @@ public class LoginView extends JFrame {
         JLabel titleLabel = new JLabel("Ingresar");
         titleLabel.setFont(new Font("Inter", Font.BOLD, 38));
         titleLabel.setForeground(Color.BLACK);
+
+        
+
         mainGbc.gridx = 0;
         mainGbc.gridy = 0;
         mainGbc.gridwidth = 2;
@@ -63,13 +71,13 @@ public class LoginView extends JFrame {
         mainGbc.fill = GridBagConstraints.HORIZONTAL;
         mainGbc.weightx = 1;
 
-        TextInput cedulaInput = new TextInput("Ingrese su cédula");
+        cedulaInput = new TextInput("Ingrese su cédula");
         cedulaInput.setTextPaneOpaque(false);
         cedulaInput.setPreferredSize(new Dimension(300, 70));
         mainGbc.gridy++;
         mainPanel.add(cedulaInput, mainGbc);
 
-        TextInput passwordInput = new TextInput("Ingrese su contraseña");
+        passwordInput = new TextInput("Ingrese su contraseña");
         passwordInput.setTextPaneOpaque(false);
         passwordInput.setPreferredSize(new Dimension(300, 70));
         mainGbc.gridy++;
@@ -99,5 +107,21 @@ public class LoginView extends JFrame {
         gbc.gridy = 2;
         gbc.weighty = 1; // Darle todo el peso vertical
         backgroundPanel.add(spacer, gbc);
+    }
+
+    public String getCedula() {
+        return cedulaInput.getText();
+    }
+
+    public String getContrasena() {
+        return passwordInput.getText();
+    }
+
+    public RoundedButton getLoginButton() {
+        return loginButton;
+    }
+
+    public JLabel getBackLabel() {
+        return backLabel;
     }
 }

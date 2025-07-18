@@ -1,33 +1,61 @@
 package controllers;
 
+import views.admin.dashboards.AdminDashboardView;
+import views.comensal.consultaMenu.ConsultaMenu;
+import views.home.Home;
 import views.login.LoginView;
 import services.AuthService;
 import javax.swing.JOptionPane;
 
+import controllers.home.HomeController;
+
 public class LoginController {
 
     private LoginView view;
-    private AuthService authService;
+    protected AuthService authService;
 
     public LoginController(LoginView view) {
         this.view = view;
-        this.authService = new AuthService(); // Asume que AuthService es tu servicio de autenticación
+        this.authService = new AuthService();
+
+        // Listener para el botón de login
+        this.view.getLoginButton().addActionListener(e -> {
+            String cedula = view.getCedula();
+            String contrasena = view.getContrasena();
+            handleLogin(cedula, contrasena);
+        });
+
+        this.view.getBackLabel().addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                handleBack();
+            }
+        });
     }
 
     public void handleLogin(String cedula, String contrasena) {
-        // Aquí iría la lógica de autenticación
-        // Por ejemplo, llamar a un servicio de autenticación
-        if (authService.autenticar(cedula, contrasena)) {
-            JOptionPane.showMessageDialog(view, "Inicio de sesión exitoso!");
-            // Aquí podrías navegar a la siguiente vista
-            
+        String tipo = authService.autenticarYObtenerTipo(cedula, contrasena);
+        if (tipo != null) {
+            JOptionPane.showMessageDialog(view, "Inicio de sesión exitoso! Tipo: " + tipo);
+            if ("administrador".equalsIgnoreCase(tipo)) {
+                AdminDashboardView adminDashboard = new AdminDashboardView();
+                new AdminDashboardController(adminDashboard);
+                adminDashboard.setVisible(true);
+            } else if ("comensal".equalsIgnoreCase(tipo)) {
+                ConsultaMenu consultaMenu = new ConsultaMenu();
+                // new ConsultaMenuController(consultaMenu);
+                consultaMenu.setVisible(true);
+            }
+            view.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(view, "Cédula o contraseña incorrectos.", "Error de inicio de sesión", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     public void handleBack() {
-        // Lógica para volver a la pantalla anterior, si aplica
-        JOptionPane.showMessageDialog(view, "Volver a la pantalla anterior.");
+        Home homeView = new Home();
+        new HomeController(homeView);
+        view.setVisible(false);
+        homeView.setVisible(true);
     }
 }

@@ -128,7 +128,6 @@ public class AdminDashboardView extends JFrame {
             "Registrar consumo",
             "Gestionar Menú",
             "Gestionar disponibilidad",
-            "CCB"
         };
 
         String[] buttonTexts = {

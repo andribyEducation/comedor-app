@@ -1,4 +1,6 @@
-package controllers;
+package controllers.login;
+
+import controllers.login.LoginController;
 
 import org.junit.jupiter.api.*;
 

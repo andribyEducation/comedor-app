@@ -1,4 +1,4 @@
-package views.registroComensalView;
+package views.registroView;
 
 import components.Button.RoundedButton;
 import components.CheckBox.CheckBox;
@@ -6,7 +6,7 @@ import components.TextInput.TextInput;
 import javax.swing.*;
 import java.awt.*;
 
-public class RegistroComensalView extends JFrame {
+public class RegistroView extends JFrame {
 
     private JLabel backLabel;
     private TextInput emailInput;
@@ -16,7 +16,7 @@ public class RegistroComensalView extends JFrame {
     private CheckBox adminCheck;
     private RoundedButton registerButton;
 
-    public RegistroComensalView() {
+    public RegistroView() {
         setTitle("Registro");
         setSize(1920, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

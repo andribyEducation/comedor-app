@@ -1,8 +1,10 @@
 package controllers;
 
 import views.registroComensalView.RegistroComensalView;
+import views.registroComensalView.RegistroExitosoView;
 import views.home.Home;
 import controllers.home.HomeController;
+import controllers.registroExitoso.RegistroExitosoController;
 
 import javax.swing.*;
 import java.io.*;
@@ -65,7 +67,10 @@ public class RegistroComensalController {
                 FileWriter writer = new FileWriter(dataPath, true);
                 writer.write(registro);
                 writer.close();
-                JOptionPane.showMessageDialog(view, "Registro exitoso.");
+                view.setVisible(false);
+                RegistroExitosoView registroExitosoView = new RegistroExitosoView();
+                new RegistroExitosoController(registroExitosoView);
+                registroExitosoView.setVisible(true);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(view, "Error al registrar: " + ex.getMessage());
             }

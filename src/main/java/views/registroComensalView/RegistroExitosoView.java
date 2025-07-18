@@ -13,6 +13,7 @@ public class RegistroExitosoView extends JFrame {
     private Font interBold28;
     private Font interRegular18;
     private Font interBold18;
+    private RoundedButton ingresarButton; // Exponer el botón "Ingresar"
 
     public RegistroExitosoView() {
         setTitle("Registro Exitoso");
@@ -67,7 +68,7 @@ public class RegistroExitosoView extends JFrame {
 
         // Botón "Ingresar"
         gbc.gridy++;
-        RoundedButton ingresarButton = new RoundedButton("Ingresar", false); // Usar RoundedButton, false para fondo azul
+        ingresarButton = new RoundedButton("Ingresar", false); // Usar RoundedButton, false para fondo azul
         ingresarButton.setBackground(new Color(52, 152, 219)); // Azul
         ingresarButton.setForeground(Color.WHITE);
         ingresarButton.setFont(interBold18); // Establecer la fuente
@@ -85,6 +86,10 @@ public class RegistroExitosoView extends JFrame {
         add(logoPanel, BorderLayout.NORTH);
 
         add(mainPanel, BorderLayout.CENTER);
+    }
+
+    public RoundedButton getIngresarButton() {
+        return ingresarButton;
     }
 
     public static void main(String[] args) {

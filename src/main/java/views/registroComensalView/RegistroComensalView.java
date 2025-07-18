@@ -10,7 +10,7 @@ import java.awt.*;
 public class RegistroComensalView extends JFrame {
 
     public RegistroComensalView() {
-        setTitle("Registro de Comensal");
+        setTitle("Registro ");
         setSize(1920, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -49,7 +49,7 @@ public class RegistroComensalView extends JFrame {
         mainGbc.insets = new Insets(10, 10, 10, 10);
 
         // Título
-        JLabel titleLabel = new JLabel("Registro de Comensal");
+        JLabel titleLabel = new JLabel("Registro");
         titleLabel.setFont(new Font("Inter", Font.BOLD, 38));
         titleLabel.setForeground(Color.BLACK); // Texto negro
         mainGbc.gridx = 0;

@@ -29,6 +29,5 @@ views\admin\dashboards\AdminDashboardView$1.class
 views\admin\dashboards\AdminDashboardView$VentanaCCB.class
 components\Button\RoundedButton.class
 views\admin\dashboards\BackgroundPanel.class
-views\comensal\consultaMenu\registro_comensal\RegistroComensal.class
 controllers\AdminDashboardController.class
 controllers\HomeController$1.class

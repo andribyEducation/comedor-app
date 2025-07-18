@@ -78,8 +78,10 @@ public class Home extends JFrame {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); // Layout vertical
         this.getContentPane().add(panel);
 
-        panel.add(Box.createVerticalGlue());
+        panel.add(Box.createVerticalStrut(20)); // Add some padding from the top
         agregarLogo();
+        // Placeholder for the arrow. You might need to create a separate method for this.
+        // For example: agregarArrow();
         panel.add(Box.createVerticalStrut(50));
 
         JLabel titulo = new JLabel("Bienvenido al Comedor UCV", SwingConstants.CENTER);

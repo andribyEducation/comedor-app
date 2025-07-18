@@ -74,6 +74,7 @@ public class Home extends JFrame {
     private void agregarPanel() {
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); // Layout vertical
+        panel.setBackground(Color.WHITE); // Set background to white
         this.getContentPane().add(panel);
 
         panel.add(Box.createVerticalStrut(20)); // Add some padding from the top

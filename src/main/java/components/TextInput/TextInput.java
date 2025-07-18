@@ -2,12 +2,7 @@ package components.TextInput;
 
 import javax.swing.*;
 import javax.swing.border.AbstractBorder;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
 import java.awt.*;
-import java.awt.geom.Area;
-import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 
 public class TextInput extends JPanel {
@@ -69,7 +64,6 @@ public class TextInput extends JPanel {
 
     // Clase interna para un borde redondeado más robusto que maneja el fondo.
     private static class RoundedCornerBorder extends AbstractBorder {
-        private static final Color ALPHA_ZERO = new Color(0x0, true);
         private final int cornerRadius = 50;
         private final Insets insets = new Insets(13, 12, 13, 12); // Top, Left, Bottom, Right padding
 

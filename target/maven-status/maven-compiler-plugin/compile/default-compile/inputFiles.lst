@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\com\ucv\comedor\App.java
 C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\components\Backgrounds\DarkBackground.java
 C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\components\Button\RoundedButton.java
@@ -18,3 +19,21 @@ C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\views\ho
 C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\views\login\LoginView.java
 C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\views\registroComensalView\RegistroComensalView.java
 C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\main\java\views\registroComensalView\RegistroExitosoView.java
+=======
+/home/adrian/dev/java/comedor-app/src/main/java/listeners/StyledButtonMouseListener.java
+/home/adrian/dev/java/comedor-app/src/main/java/views/home/Home.java
+/home/adrian/dev/java/comedor-app/src/main/java/com/ucv/comedor/App.java
+/home/adrian/dev/java/comedor-app/src/main/java/components/CheckBox/CheckBox.java
+/home/adrian/dev/java/comedor-app/src/main/java/services/AuthService.java
+/home/adrian/dev/java/comedor-app/src/main/java/views/comensal/saldo/SaldoView.java
+/home/adrian/dev/java/comedor-app/src/main/java/views/admin/Validation/ValidationAdminView.java
+/home/adrian/dev/java/comedor-app/src/main/java/views/home/menuDelDia/menuDelDia.java
+/home/adrian/dev/java/comedor-app/src/main/java/components/Button/RoundedButton.java
+/home/adrian/dev/java/comedor-app/src/main/java/models/Usuario.java
+/home/adrian/dev/java/comedor-app/src/main/java/controllers/HomeController.java
+/home/adrian/dev/java/comedor-app/src/main/java/views/comensal/consultaMenu/ConsultaMenu.java
+/home/adrian/dev/java/comedor-app/src/main/java/controllers/AdminDashboardController.java
+/home/adrian/dev/java/comedor-app/src/main/java/components/Backgrounds/DarkBackground.java
+/home/adrian/dev/java/comedor-app/src/main/java/views/admin/dashboards/AdminDashboardView.java
+/home/adrian/dev/java/comedor-app/src/main/java/components/TextInput/TextInput.java
+>>>>>>> main

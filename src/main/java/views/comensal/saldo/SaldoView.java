@@ -1,14 +1,22 @@
 package views.comensal.saldo;
 
 import javax.swing.*;
-
-import views.comensal.consultaMenu.ConsultaMenu;
-
 import java.awt.*;
 
 public class SaldoView extends JFrame {
 
     private Image backgroundImage;
+    private JLabel iconoUsuario;
+    private JPopupMenu menuUsuario;
+    private JMenuItem cambiarContrasena;
+    private JMenuItem reportarProblema;
+    private JLabel saldoLabel;
+    private JPanel panelRecarga;
+    private JTextField txtMonto;
+    private JButton btnConfirmar;
+    private JButton btnCancelar;
+    private JButton btnVolver;
+    private JButton btnRecargar;
 
     public SaldoView() {
         setTitle("Saldo");
@@ -19,16 +27,19 @@ public class SaldoView extends JFrame {
         getContentPane().setBackground(Color.BLACK);
 
         backgroundImage = new ImageIcon(getClass().getResource("/assets/Background/Gradient Background #2.png"))
-                .getImage()
-                .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
-        setContentPane(new JPanel() {
+        .getImage()
+        .getScaledInstance(1366, 768, Image.SCALE_SMOOTH);
+
+        JPanel fondoPanel = new JPanel() {
+            @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(backgroundImage, 0, 0, null);
+                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
             }
-        });
-        getContentPane().setLayout(null);
-
+        };
+        fondoPanel.setLayout(null);
+        
+        setContentPane(fondoPanel);
         JLabel titulo = new JLabel("Saldo", SwingConstants.LEFT);
         titulo.setFont(new Font("Inter", Font.BOLD, 38));
         titulo.setForeground(Color.WHITE);
@@ -43,7 +54,7 @@ public class SaldoView extends JFrame {
         add(logoLabel);
 
         // Icono de usuario (perfil)
-        JLabel iconoUsuario = new JLabel();
+        iconoUsuario = new JLabel();
         iconoUsuario.setBounds(850, 20, 40, 40);
         iconoUsuario.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/assets/logos/usericon.png"));
@@ -52,7 +63,7 @@ public class SaldoView extends JFrame {
         add(iconoUsuario);
 
         // Menú emergente de usuario
-        JPopupMenu menuUsuario = new JPopupMenu() {
+        menuUsuario = new JPopupMenu() {
             @Override
             public void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g;
@@ -71,38 +82,23 @@ public class SaldoView extends JFrame {
         menuUsuario.add(nombreUsuario);
         menuUsuario.add(Box.createVerticalStrut(8));
 
-        JMenuItem cambiarContrasena = new JMenuItem("Cambiar contraseña");
+        cambiarContrasena = new JMenuItem("Cambiar contraseña");
         cambiarContrasena.setBackground(new Color(50, 50, 50));
         cambiarContrasena.setForeground(Color.WHITE);
         cambiarContrasena.setFont(new Font("Inter", Font.BOLD, 15));
         cambiarContrasena.setOpaque(true);
         cambiarContrasena.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         cambiarContrasena.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        cambiarContrasena.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Lógica para cambiar contraseña.");
-        });
         menuUsuario.add(cambiarContrasena);
 
-        JMenuItem reportarProblema = new JMenuItem("Reportar problema");
+        reportarProblema = new JMenuItem("Reportar problema");
         reportarProblema.setBackground(new Color(50, 50, 50));
         reportarProblema.setForeground(Color.WHITE);
         reportarProblema.setFont(new Font("Inter", Font.BOLD, 15));
         reportarProblema.setOpaque(true);
         reportarProblema.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         reportarProblema.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        reportarProblema.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Aquí va la lógica para reportar un problema.");
-        });
         menuUsuario.add(reportarProblema);
-
-        iconoUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mousePressed(java.awt.event.MouseEvent e) {
-                int x = -menuUsuario.getPreferredSize().width + iconoUsuario.getWidth();
-                int y = iconoUsuario.getHeight();
-                menuUsuario.show(iconoUsuario, x, y);
-            }
-        });
 
         // Etiqueta "saldo disponible:"
         JLabel saldoDisponibleLabel = new JLabel("saldo disponible:", SwingConstants.LEFT);
@@ -112,7 +108,7 @@ public class SaldoView extends JFrame {
         add(saldoDisponibleLabel);
 
         // Saldo al lado del título, más pequeño
-        JLabel saldoLabel = new JLabel("250 Bs", SwingConstants.LEFT);
+        saldoLabel = new JLabel("250 Bs", SwingConstants.LEFT);
         saldoLabel.setFont(new Font("Inter", Font.BOLD, 26));
         saldoLabel.setForeground(new Color(255, 204, 0));
         saldoLabel.setBounds(440, 38, 120, 30);
@@ -128,7 +124,7 @@ public class SaldoView extends JFrame {
         add(linea);
 
         // Panel/formulario para recargar saldo (campo y botones abajo)
-        JPanel panelRecarga = new JPanel(null);
+        panelRecarga = new JPanel(null);
         panelRecarga.setBounds(80, 120, 370, 120); // Más cerca del título y más alto
         panelRecarga.setBackground(new Color(40, 40, 40));
         panelRecarga.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 0), 2));
@@ -140,19 +136,19 @@ public class SaldoView extends JFrame {
         lblMonto.setBounds(20, 15, 160, 30);
         panelRecarga.add(lblMonto);
 
-        JTextField txtMonto = new JTextField();
+        txtMonto = new JTextField();
         txtMonto.setFont(new Font("Inter", Font.PLAIN, 18));
         txtMonto.setBounds(180, 15, 150, 30);
         panelRecarga.add(txtMonto);
 
-        JButton btnConfirmar = new JButton("Confirmar");
+        btnConfirmar = new JButton("Confirmar");
         btnConfirmar.setFont(new Font("Inter", Font.BOLD, 18));
         btnConfirmar.setBackground(new Color(255, 204, 0));
         btnConfirmar.setForeground(Color.BLACK);
         btnConfirmar.setBounds(20, 65, 140, 35);
         panelRecarga.add(btnConfirmar);
 
-        JButton btnCancelar = new JButton("Cancelar");
+        btnCancelar = new JButton("Cancelar");
         btnCancelar.setFont(new Font("Inter", Font.BOLD, 18));
         btnCancelar.setBackground(Color.GRAY);
         btnCancelar.setForeground(Color.WHITE);
@@ -162,20 +158,16 @@ public class SaldoView extends JFrame {
         add(panelRecarga);
 
         // Botones Volver y Recargar saldo abajo del formulario
-        JButton btnVolver = new JButton("Volver");
+        btnVolver = new JButton("Volver");
         btnVolver.setBounds(80, 260, 200, 40);
         btnVolver.setFont(new Font("Inter", Font.BOLD, 20));
         btnVolver.setBackground(new Color(255, 204, 0));
         btnVolver.setForeground(Color.BLACK);
         btnVolver.setFocusPainted(false);
         btnVolver.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        btnVolver.addActionListener(e -> {
-            new ConsultaMenu().setVisible(true);
-            this.dispose();
-        });
         add(btnVolver);
 
-        JButton btnRecargar = new JButton("Recargar saldo");
+        btnRecargar = new JButton("Recargar saldo");
         btnRecargar.setBounds(300, 260, 200, 40);
         btnRecargar.setFont(new Font("Inter", Font.BOLD, 20));
         btnRecargar.setBackground(new Color(255, 204, 0));
@@ -183,27 +175,18 @@ public class SaldoView extends JFrame {
         btnRecargar.setFocusPainted(false);
         btnRecargar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         add(btnRecargar);
-
-        btnRecargar.addActionListener(e -> {
-            panelRecarga.setVisible(true);
-            txtMonto.setText("");
-        });
-
-        btnCancelar.addActionListener(e -> {
-            panelRecarga.setVisible(false);
-            txtMonto.setText("");
-        });
-
-        btnConfirmar.addActionListener(e -> {
-            String monto = txtMonto.getText().trim();
-            if (monto.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Ingrese un monto válido.");
-                return;
-            }
-            // Aquí puedes agregar la lógica real de recarga
-            JOptionPane.showMessageDialog(this, "Recarga exitosa de " + monto + " Bs.");
-            panelRecarga.setVisible(false);
-            txtMonto.setText("");
-        });
     }
+
+    // Métodos para el controlador
+    public JLabel getIconoUsuario() { return iconoUsuario; }
+    public JPopupMenu getMenuUsuario() { return menuUsuario; }
+    public JMenuItem getCambiarContrasenaItem() { return cambiarContrasena; }
+    public JMenuItem getReportarProblemaItem() { return reportarProblema; }
+    public JLabel getSaldoLabel() { return saldoLabel; }
+    public JPanel getPanelRecarga() { return panelRecarga; }
+    public JTextField getTxtMonto() { return txtMonto; }
+    public JButton getBtnConfirmar() { return btnConfirmar; }
+    public JButton getBtnCancelar() { return btnCancelar; }
+    public JButton getBtnVolver() { return btnVolver; }
+    public JButton getBtnRecargar() { return btnRecargar; }
 }

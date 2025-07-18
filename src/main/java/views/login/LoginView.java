@@ -14,6 +14,7 @@ public class LoginView extends JFrame {
     private RoundedButton loginButton;
     private LoginController controller;
     private JLabel logo;
+    private JLabel backArrow;
 
     public LoginView() {
         setupUI();
@@ -58,10 +59,9 @@ public class LoginView extends JFrame {
         logo.setAlignmentX(Component.CENTER_ALIGNMENT);
        mainPanel.add(logo);
         } else {
-            System.err.println("Couldn't find resource: /assets/logos/Logo_Universidad_Central_de_Venezuela.svg.png");
-            JLabel logo = new JLabel("Logo not found");
+            System.err.println("Couldn't find resource: /assets/logos/logoucv.png");
+            logo = new JLabel("Logo not found");
             logo.setAlignmentX(Component.CENTER_ALIGNMENT);
-           mainPanel.add(logo);
         }
 
         //topBar.add(backArrow, BorderLayout.WEST);

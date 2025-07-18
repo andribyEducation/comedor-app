@@ -14,8 +14,8 @@ public class CheckBox extends JCheckBox {
         setFont(new Font("SansSerif", Font.PLAIN, 14));
 
         // Personaliza el ícono seleccionado/no seleccionado
-        setIcon(new CustomIcon(false));
-        setSelectedIcon(new CustomIcon(true));
+        setIcon(new CustomIcon(false, Color.BLACK));
+        setSelectedIcon(new CustomIcon(true, Color.BLACK));
     }
 
     public CheckBox(String text, Color checkColor) {

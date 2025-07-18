@@ -1,4 +1,4 @@
-package controllers.registroComensal;
+package controllers.registroExitoso;
 
 import views.registroComensalView.RegistroExitosoView;
 import views.login.LoginView;

@@ -4,7 +4,7 @@ import views.registroComensalView.RegistroComensalView;
 import views.registroComensalView.RegistroExitosoView;
 import views.home.Home;
 import controllers.home.HomeController;
-import controllers.registroComensal.RegistroExitosoController;
+import controllers.registroExitoso.RegistroExitosoController;
 
 import javax.swing.*;
 import java.io.*;

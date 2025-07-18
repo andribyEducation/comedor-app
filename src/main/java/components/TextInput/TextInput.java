@@ -37,7 +37,13 @@ public class TextInput extends JPanel {
 
     private void initializeTextPane() {
         textPane.setBorder(new RoundedCornerBorder());
-       
+        // Hacemos el JTextPane transparente para que no pinte un fondo gris.
+        textPane.setOpaque(false);
+        textPane.setBackground(new Color(0,0,0,0));
+    }
+
+    public void setTextPaneOpaque(boolean isOpaque) {
+        textPane.setOpaque(isOpaque);
     }
 
     public String getText() {
@@ -72,16 +78,9 @@ public class TextInput extends JPanel {
             Graphics2D g2 = (Graphics2D) g.create();
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             
+            // Dibuja solo el borde, sin rellenar el fondo.
             Shape border = new RoundRectangle2D.Double(x, y, width - 1, height - 1, cornerRadius, cornerRadius);
             
-            Container parent = c.getParent();
-            if (parent != null) {
-                g2.setColor(parent.getBackground());
-                Area corner = new Area(new Rectangle2D.Double(x, y, width, height));
-                corner.subtract(new Area(border));
-                g2.fill(corner);
-            }
-
             g2.setColor(Color.GRAY);
             g2.draw(border);
             g2.dispose();

@@ -1,7 +1,7 @@
 package views.comensal.consultaMenu;
 
 import components.Button.RoundedButton;
-import views.home.menuDelDia.menuDelDia;
+import views.comensal.menuDelDia.menuDelDia;
 import views.comensal.saldo.SaldoView;
 
 import javax.swing.*;

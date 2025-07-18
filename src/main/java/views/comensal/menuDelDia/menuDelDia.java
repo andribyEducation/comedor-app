@@ -1,4 +1,4 @@
-package views.home.menuDelDia;
+package views.comensal.menuDelDia;
 
 import javax.swing.*;
 import java.awt.*;

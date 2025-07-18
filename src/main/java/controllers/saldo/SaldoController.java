@@ -64,7 +64,7 @@ public class SaldoController {
                 return;
             }
             // Aquí puedes agregar la lógica real de recarga
-            JOptionPane.showMessageDialog(view, "Recarga exitosa de " + monto + " Bs.");
+            JOptionPane.showMessageDialog(view, "Aun en desarrollo la lógica de recarga.");
             view.getPanelRecarga().setVisible(false);
             view.getTxtMonto().setText("");
         });

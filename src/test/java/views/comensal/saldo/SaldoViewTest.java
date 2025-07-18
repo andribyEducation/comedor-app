@@ -87,24 +87,3 @@ public class SaldoViewTest {
         assertFalse(panelRecarga.isVisible(), "El panel de recarga debe ocultarse tras cancelar");
     }
 }
-
-// Las pruebas ya están escritas usando JUnit Jupiter (JUnit 5).
-// Si tienes errores, asegúrate de tener la dependencia de JUnit Jupiter en tu proyecto:
-// Ejemplo para Maven:
-/*
-<dependency>
-    <groupId>org.junit.jupiter</groupId>
-    <artifactId>junit-jupiter</artifactId>
-    <version>5.9.3</version>
-    <scope>test</scope>
-</dependency>
-*/
-// Para Gradle:
-/*
-testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
-*/
-// Ejecuta tus pruebas con el runner de JUnit Jupiter.
-/*
-testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
-*/
-// Ejecuta tus pruebas con el runner de JUnit Jupiter.

@@ -36,7 +36,6 @@ public class LoginController {
     public void handleLogin(String cedula, String contrasena) {
         String tipo = authService.autenticarYObtenerTipo(cedula, contrasena);
         if (tipo != null) {
-            JOptionPane.showMessageDialog(view, "Inicio de sesión exitoso! Tipo: " + tipo);
             if ("administrador".equalsIgnoreCase(tipo)) {
                 AdminDashboardView adminDashboard = new AdminDashboardView();
                 new AdminDashboardController(adminDashboard);

@@ -17,7 +17,7 @@ public class RegistroComensalView extends JFrame {
     private RoundedButton registerButton;
 
     public RegistroComensalView() {
-        setTitle("Registro ");
+        setTitle("Registro");
         setSize(1920, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);

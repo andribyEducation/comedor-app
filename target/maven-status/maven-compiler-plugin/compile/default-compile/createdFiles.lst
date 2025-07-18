@@ -2,6 +2,7 @@ controllers\HomeController.class
 views\comensal\ConsultaMenu\ConsultaMenu$4.class
 components\TextInput\TextInput$1.class
 components\CheckBox\CheckBox$CustomIcon.class
+controllers\LoginController.class
 views\comensal\ConsultaMenu\ConsultaMenu.class
 listeners\StyledButtonMouseListener.class
 components\TextInput\TextInput.class
@@ -9,6 +10,7 @@ components\TextInput\TextInput$RoundedCornerBorder.class
 models\Usuario.class
 views\comensal\ConsultaMenu\ConsultaMenu$3.class
 com\ucv\comedor\App.class
+views\login\LoginView.class
 views\admin\ValidationAdminView.class
 controllers\admin\AdminDashboardController$1.class
 components\CheckBox\CheckBox.class

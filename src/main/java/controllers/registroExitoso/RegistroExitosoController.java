@@ -2,7 +2,7 @@ package controllers.registroExitoso;
 
 import views.registroComensalView.RegistroExitosoView;
 import views.login.LoginView;
-import controllers.LoginController;
+import controllers.login.LoginController;
 
 public class RegistroExitosoController {
 

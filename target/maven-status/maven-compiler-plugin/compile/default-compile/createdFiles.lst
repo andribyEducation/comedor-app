@@ -6,7 +6,6 @@ controllers\login\LoginController.class
 listeners\StyledButtonMouseListener.class
 controllers\adminDashboard\AdminDashboardController.class
 com\ucv\comedor\App.class
-views\home\menuDelDia\menuDelDia.class
 views\comensal\saldo\SaldoView$1.class
 components\CheckBox\CheckBox.class
 views\admin\Validation\ValidationAdminView.class
@@ -15,7 +14,6 @@ views\registroView\RegistroView.class
 components\Backgrounds\DarkBackground.class
 controllers\register\RegisterController.class
 views\comensal\saldo\SaldoView.class
-views\comensal\saldo\SaldoView$3.class
 views\admin\dashboards\AdminDashboardView$1.class
 views\comensal\consultaMenu\ConsultaMenu$5.class
 views\comensal\saldo\SaldoView$2.class

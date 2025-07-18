@@ -124,7 +124,6 @@ public class ConsultaMenu extends JFrame {
         RoundedButton btnSaldo = new RoundedButton("Saldo Disponible", true);
         btnSaldo.setBounds(1060, 650, 250, 40); // Ajustado para 1366x768
         btnSaldo.setFont(new Font("Inter", Font.BOLD, 18)); // Ajustado tamaño de fuente
-        btnSaldo.setForeground(Color.BLACK);
         btnSaldo.setBackground(new Color(255, 204, 0));
         btnSaldo.setFocusPainted(false);
         btnSaldo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -171,7 +170,6 @@ public class ConsultaMenu extends JFrame {
         RoundedButton verMenu = new RoundedButton("Consultar", true);
         verMenu.setBounds(x, y + 40, botonAncho, 35); // Ajustado para 1366x768
         verMenu.setFont(new Font("Inter", Font.BOLD, 16)); // Ajustado tamaño de fuente
-        verMenu.setForeground(Color.BLACK);
         verMenu.setBackground(new Color(255, 204, 0));
         verMenu.setFocusPainted(false);
         verMenu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

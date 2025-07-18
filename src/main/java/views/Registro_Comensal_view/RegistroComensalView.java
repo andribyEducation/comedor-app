@@ -3,6 +3,7 @@ package views.Registro_Comensal_view;
 import components.Button.RoundedButton;
 import components.CheckBox.CheckBox;
 import components.TextInput.TextInput;
+import controllers.RegistroComensalController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -115,6 +116,31 @@ public class RegistroComensalView extends JFrame {
         mainGbc.gridy++;
         mainGbc.fill = GridBagConstraints.HORIZONTAL;
         mainPanel.add(registerButton, mainGbc);
+
+        // Acción del botón de registro
+        registerButton.addActionListener(e -> {
+            String correo = emailInput.getText().trim();
+            String contrasena = passwordInput.getText().trim();
+            String cedula = cedulaInput.getText().trim();
+            String tipo = comensalCheck.isSelected() ? "comensal" : (adminCheck.isSelected() ? "administrador" : "");
+            if (correo.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "El campo correo es obligatorio.");
+                return;
+            }
+            if (contrasena.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "El campo contraseña es obligatorio.");
+                return;
+            }
+            if (cedula.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "El campo cédula es obligatorio.");
+                return;
+            }
+            if (tipo.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar un rol.");
+                return;
+            }
+            RegistroComensalController.registrarComensal(correo, contrasena, cedula, tipo);
+        });
 
         // Añadir el panel principal al panel de fondo
         gbc.gridx = 0;

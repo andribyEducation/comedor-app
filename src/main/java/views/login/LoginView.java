@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import components.Button.RoundedButton;
 import components.TextInput.TextInput;
-import controllers.LoginController;
 
 public class LoginView extends JFrame {
 

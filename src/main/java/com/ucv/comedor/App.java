@@ -4,6 +4,7 @@ package com.ucv.comedor;
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import views.Registro_Comensal_view.RegistroComensalView;
 
 >>>>>>> 197ea30 (Merge)
@@ -53,18 +54,27 @@ import controllers.AdminDashboardController;
 =======
 =======
 =======
+=======
+>>>>>>> fda6cbb (app)
 import views.Registro_Comensal_view.RegistroComensalView;
 import views.admin.dashboards.AdminDashboardView;
 import views.home.Home;
 import controllers.AdminDashboardController;
+<<<<<<< HEAD
 >>>>>>> d47aa93 (App.java)
 >>>>>>> 885072b (Merge)
+<<<<<<< HEAD
 >>>>>>> 197ea30 (Merge)
+=======
+=======
+>>>>>>> fda6cbb (app)
+>>>>>>> baad5c0 (app)
 import javax.swing.*;
 
 public class App {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -82,6 +92,8 @@ public class App {
 >>>>>>> 2d91c84 (Merge)
 =======
 >>>>>>> 197ea30 (Merge)
+=======
+>>>>>>> baad5c0 (app)
 <<<<<<< HEAD
             RegistroComensalView view = new RegistroComensalView();
 =======
@@ -134,7 +146,14 @@ public class App {
             // new AdminDashboardController(view);
 >>>>>>> d47aa93 (App.java)
 >>>>>>> 885072b (Merge)
+<<<<<<< HEAD
 >>>>>>> 197ea30 (Merge)
+=======
+=======
+            Home view = new Home();
+            // new AdminDashboardController(view);
+>>>>>>> fda6cbb (app)
+>>>>>>> baad5c0 (app)
             view.setVisible(true);
         });
     }

@@ -1,7 +1,14 @@
-package controllers;
+package controllers.home;
 
 import views.home.Home;
-import javax.swing.JOptionPane;
+import views.login.LoginView;
+import views.registroComensalView.RegistroComensalView;
+
+import javax.swing.*;
+
+import controllers.LoginController;
+import controllers.RegistroComensalController;
+
 import java.awt.event.*;
 
 
@@ -25,13 +32,25 @@ public class HomeController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == homeView.getBtnIngresar()) {
-            // Lógica para el botón Ingresar
-            JOptionPane.showMessageDialog(homeView, "Botón Ingresar presionado (desde el controlador)");
+            redirigirALogin();
         } else if (e.getSource() == homeView.getBtnRegistrarse()) {
-            // Lógica para el botón Registrarse
-            JOptionPane.showMessageDialog(homeView, "Botón Registrarse presionado (desde el controlador)");
+            redirigirARegistro();
         }
     }
 
+    // Nueva función para redirigir al login
+    private void redirigirALogin() {
+        homeView.setVisible(false);
+        LoginView ingresarView = new LoginView();
+        new LoginController(ingresarView);
+        ingresarView.setVisible(true);
+    }
 
+    // Nueva función para redirigir al registro
+    private void redirigirARegistro() {
+        homeView.setVisible(false);
+        RegistroComensalView registroView = new RegistroComensalView();
+        new RegistroComensalController(registroView);
+        registroView.setVisible(true);
+    }
 }

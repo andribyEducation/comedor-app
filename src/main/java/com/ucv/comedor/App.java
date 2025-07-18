@@ -4,8 +4,10 @@ import javax.swing.SwingUtilities;
 public class App {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-         Home home = new Home();
-        home.setVisible(true);
+            Home view = new Home();
+            new HomeController(view);
+            // new AdminDashboardController(view);
+            view.setVisible(true);
         });
     }
 }

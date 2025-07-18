@@ -1,61 +1,108 @@
 package controllers;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.File;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import javax.swing.JOptionPane;
-import java.util.regex.Pattern;
+import views.registroComensalView.RegistroComensalView;
+import views.home.Home;
+import controllers.home.HomeController;
+
+import javax.swing.*;
+import java.io.*;
 
 public class RegistroComensalController {
-    private static final String DATA_PATH = "data/comensales.txt";
+    private String dataPath;
+    private RegistroComensalView view;
 
-    public static void registrarComensal(String correo, String contrasena, String cedula, String tipo) {
-        // Validaciones
-        if (!validarCorreo(correo)) {
-            JOptionPane.showMessageDialog(null, "El correo electrónico no es válido.");
-            return;
-        }
-        if (contrasena.length() < 6) {
-            JOptionPane.showMessageDialog(null, "La contraseña debe tener al menos 6 caracteres.");
-            return;
-        }
-        if (!cedula.matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "La cédula debe ser numérica.");
-            return;
-        }
-        if (existeCorreoOCedula(correo, cedula)) {
-            JOptionPane.showMessageDialog(null, "El correo o la cédula ya están registrados.");
-            return;
-        }
+    public RegistroComensalController(RegistroComensalView view) {
+        this.view = view;
+        this.dataPath = "data/comensales.txt";
 
-        // Saldo inicial
-        String saldo = "0";
-        // Formato: correo|contrasena|cedula|tipo|saldo
-        String registro = correo + "|" + contrasena + "|" + cedula + "|" + tipo + "|" + saldo + "\n";
-        try {
-            // Crear carpeta data si no existe
-            File dataDir = new File("data");
-            if (!dataDir.exists()) {
-                dataDir.mkdirs();
+        // Listener para botón de registro
+        this.view.getRegisterButton().addActionListener(e -> {
+            String correo = view.getCorreo();
+            String contrasena = view.getContrasena();
+            String cedula = view.getCedula();
+            String tipo = view.getTipo();
+
+            if (correo.isEmpty()) {
+                JOptionPane.showMessageDialog(view, "El campo correo es obligatorio.");
+                return;
             }
-            FileWriter writer = new FileWriter(DATA_PATH, true);
-            writer.write(registro);
-            writer.close();
-            JOptionPane.showMessageDialog(null, "Registro exitoso.");
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Error al registrar: " + e.getMessage());
-        }
+            if (!validarCorreo(correo)) {
+                JOptionPane.showMessageDialog(view, "El correo electrónico no es válido.");
+                return;
+            }
+            if (contrasena.isEmpty()) {
+                JOptionPane.showMessageDialog(view, "El campo contraseña es obligatorio.");
+                return;
+            }
+            if (contrasena.length() < 6) {
+                JOptionPane.showMessageDialog(view, "La contraseña debe tener al menos 6 caracteres.");
+                return;
+            }
+            if (cedula.isEmpty()) {
+                JOptionPane.showMessageDialog(view, "El campo cédula es obligatorio.");
+                return;
+            }
+            if (!cedula.matches("\\d+")) {
+                JOptionPane.showMessageDialog(view, "La cédula debe ser numérica.");
+                return;
+            }
+            if (tipo.isEmpty()) {
+                JOptionPane.showMessageDialog(view, "Debe seleccionar un rol.");
+                return;
+            }
+            if (existeCorreoOCedula(correo, cedula)) {
+                JOptionPane.showMessageDialog(view, "El correo o la cédula ya están registrados.");
+                return;
+            }
+
+            String saldo = "0";
+            String registro = correo + "|" + contrasena + "|" + cedula + "|" + tipo + "|" + saldo + "\n";
+            try {
+                File dataDir = new File("data");
+                if (!dataDir.exists()) {
+                    dataDir.mkdirs();
+                }
+                FileWriter writer = new FileWriter(dataPath, true);
+                writer.write(registro);
+                writer.close();
+                JOptionPane.showMessageDialog(view, "Registro exitoso.");
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(view, "Error al registrar: " + ex.getMessage());
+            }
+        });
+
+        // Listener para volver (icono de flecha)
+        this.view.getBackLabel().addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                Home homeView = new Home();
+                new HomeController(homeView);
+                view.setVisible(false);
+                homeView.setVisible(true);
+            }
+        });
     }
 
-    private static boolean validarCorreo(String correo) {
+    // Constructor para test
+    public RegistroComensalController(String dataPath) {
+        this.dataPath = dataPath;
+    }
+
+    public boolean validarCorreo(String correo) {
         String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
-        return Pattern.matches(regex, correo);
+        return java.util.regex.Pattern.matches(regex, correo);
     }
 
-    private static boolean existeCorreoOCedula(String correo, String cedula) {
-        File file = new File(DATA_PATH);
+    public boolean validarCedula(String cedula) {
+        return cedula.matches("\\d+");
+    }
+
+    public boolean validarContrasena(String contrasena) {
+        return contrasena.length() >= 6;
+    }
+
+    public boolean existeCorreoOCedula(String correo, String cedula) {
+        File file = new File(dataPath);
         if (!file.exists()) return false;
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String linea;
@@ -71,5 +118,21 @@ public class RegistroComensalController {
             // Si hay error leyendo, no bloquea el registro
         }
         return false;
+    }
+
+    public void registrarComensal(String correo, String contrasena, String cedula, String tipo) {
+        String saldo = "0";
+        String registro = correo + "|" + contrasena + "|" + cedula + "|" + tipo + "|" + saldo + "\n";
+        try {
+            File dataDir = new File("data");
+            if (!dataDir.exists()) {
+                dataDir.mkdirs();
+            }
+            FileWriter writer = new FileWriter(dataPath, true);
+            writer.write(registro);
+            writer.close();
+        } catch (IOException ex) {
+            // Manejo simple para test
+        }
     }
 }

@@ -1,14 +1,20 @@
-package views.Registro_Comensal_view;
+package views.registroComensalView;
 
 import components.Button.RoundedButton;
 import components.CheckBox.CheckBox;
 import components.TextInput.TextInput;
-import controllers.RegistroComensalController;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class RegistroComensalView extends JFrame {
+
+    private JLabel backLabel;
+    private TextInput emailInput;
+    private TextInput passwordInput;
+    private TextInput cedulaInput;
+    private CheckBox comensalCheck;
+    private CheckBox adminCheck;
+    private RoundedButton registerButton;
 
     public RegistroComensalView() {
         setTitle("Registro");
@@ -26,7 +32,9 @@ public class RegistroComensalView extends JFrame {
         // Icono de flecha
         ImageIcon backIcon = new ImageIcon(getClass().getResource("/assets/Iconos/FlechaIzquierda.png"));
         Image scaledBackImage = backIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-        JLabel backLabel = new JLabel(new ImageIcon(scaledBackImage));
+        backLabel = new JLabel(new ImageIcon(scaledBackImage));
+
+        // Elimina el listener aquí, el controlador lo agregará
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.NORTHWEST;
@@ -65,17 +73,17 @@ public class RegistroComensalView extends JFrame {
         mainGbc.weightx = 1;
 
         // Campos de texto
-        TextInput emailInput = new TextInput("Ingrese su correo electrónico");
+        emailInput = new TextInput("Ingrese su correo electrónico");
         emailInput.setTextPaneOpaque(false);
         mainGbc.gridy++;
         mainPanel.add(emailInput, mainGbc);
 
-        TextInput passwordInput = new TextInput("Ingrese su contraseña");
+        passwordInput = new TextInput("Ingrese su contraseña");
         passwordInput.setTextPaneOpaque(false);
         mainGbc.gridy++;
         mainPanel.add(passwordInput, mainGbc);
 
-        TextInput cedulaInput = new TextInput("Ingrese su cédula");
+        cedulaInput = new TextInput("Ingrese su cédula");
         cedulaInput.setTextPaneOpaque(false);
         mainGbc.gridy++;
         mainPanel.add(cedulaInput, mainGbc);
@@ -96,9 +104,9 @@ public class RegistroComensalView extends JFrame {
         // Checkboxes
         JPanel checkBoxPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
         checkBoxPanel.setOpaque(false);
-        CheckBox comensalCheck = new CheckBox("Comensal", new Color(0, 102, 204));
+        comensalCheck = new CheckBox("Comensal", new Color(0, 102, 204));
         comensalCheck.setForeground(Color.BLACK);
-        CheckBox adminCheck = new CheckBox("Administrador", new Color(0, 102, 204));
+        adminCheck = new CheckBox("Administrador", new Color(0, 102, 204));
         adminCheck.setForeground(Color.BLACK);
 
         ButtonGroup roleGroup = new ButtonGroup();
@@ -111,36 +119,13 @@ public class RegistroComensalView extends JFrame {
         mainPanel.add(checkBoxPanel, mainGbc);
 
         // Botón de registro
-        RoundedButton registerButton = new RoundedButton("Registrarse", false); // false para fondo azul
+        registerButton = new RoundedButton("Registrarse", false); // false para fondo azul
         registerButton.setFont(new Font("Inter", Font.BOLD, 18));
         mainGbc.gridy++;
         mainGbc.fill = GridBagConstraints.HORIZONTAL;
         mainPanel.add(registerButton, mainGbc);
 
-        // Acción del botón de registro
-        registerButton.addActionListener(e -> {
-            String correo = emailInput.getText().trim();
-            String contrasena = passwordInput.getText().trim();
-            String cedula = cedulaInput.getText().trim();
-            String tipo = comensalCheck.isSelected() ? "comensal" : (adminCheck.isSelected() ? "administrador" : "");
-            if (correo.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "El campo correo es obligatorio.");
-                return;
-            }
-            if (contrasena.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "El campo contraseña es obligatorio.");
-                return;
-            }
-            if (cedula.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "El campo cédula es obligatorio.");
-                return;
-            }
-            if (tipo.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Debe seleccionar un rol.");
-                return;
-            }
-            RegistroComensalController.registrarComensal(correo, contrasena, cedula, tipo);
-        });
+        // Elimina la lógica del botón aquí, el controlador la agregará
 
         // Añadir el panel principal al panel de fondo
         gbc.gridx = 0;
@@ -157,5 +142,31 @@ public class RegistroComensalView extends JFrame {
         gbc.gridy = 2;
         gbc.weighty = 1; // Darle todo el peso vertical
         backgroundPanel.add(spacer, gbc);
+    }
+
+    // Método para que el controlador agregue el listener de volver
+    public void addBackListener(java.awt.event.MouseListener listener) {
+        backLabel.addMouseListener(listener);
+    }
+
+    public JLabel getBackLabel() {
+        return backLabel;
+    }
+    public RoundedButton getRegisterButton() {
+        return registerButton;
+    }
+    public String getCorreo() {
+        return emailInput.getText().trim();
+    }
+    public String getContrasena() {
+        return passwordInput.getText().trim();
+    }
+    public String getCedula() {
+        return cedulaInput.getText().trim();
+    }
+    public String getTipo() {
+        if (comensalCheck.isSelected()) return "comensal";
+        if (adminCheck.isSelected()) return "administrador";
+        return "";
     }
 }

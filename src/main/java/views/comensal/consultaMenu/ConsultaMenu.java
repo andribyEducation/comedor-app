@@ -2,6 +2,7 @@ package views.comensal.consultaMenu;
 
 import components.Button.RoundedButton;
 import views.home.menuDelDia.menuDelDia;
+import views.comensal.saldo.SaldoView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -124,7 +125,8 @@ public class ConsultaMenu extends JFrame {
         btnSaldo.setFocusPainted(false);
         btnSaldo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnSaldo.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Aquí se desarrollará la lógica para gestión de saldo.");
+            new SaldoView().setVisible(true);
+            this.dispose();
         });
         getContentPane().add(btnSaldo);
     }

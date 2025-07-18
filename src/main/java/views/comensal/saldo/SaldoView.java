@@ -1,9 +1,15 @@
-package views.comensal.consultaMenu;
+package views.comensal.saldo;
 
 import javax.swing.*;
+
+import views.comensal.consultaMenu.ConsultaMenu;
+
 import java.awt.*;
 
 public class SaldoView extends JFrame {
+
+    private Image backgroundImage;
+
     public SaldoView() {
         setTitle("Saldo");
         setSize(1920, 1080);
@@ -11,6 +17,17 @@ public class SaldoView extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(null);
         getContentPane().setBackground(Color.BLACK);
+
+        backgroundImage = new ImageIcon(getClass().getResource("/assets/Background/Gradient Background #2.png"))
+                .getImage()
+                .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+        setContentPane(new JPanel() {
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(backgroundImage, 0, 0, null);
+            }
+        });
+        getContentPane().setLayout(null);
 
         JLabel titulo = new JLabel("Saldo", SwingConstants.LEFT);
         titulo.setFont(new Font("Inter", Font.BOLD, 38));

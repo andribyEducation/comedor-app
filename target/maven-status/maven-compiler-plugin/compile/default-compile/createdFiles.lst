@@ -1,1 +1,37 @@
+<<<<<<< HEAD
+controllers\HomeController.class
+views\comensal\consultaMenu\ConsultaMenu$5.class
+controllers\AdminDashboardController$1.class
+components\TextInput\TextInput$1.class
+views\Registro_Comensal_view\RegistroComensalView.class
+components\CheckBox\CheckBox$CustomIcon.class
+controllers\LoginController.class
+views\comensal\consultaMenu\ConsultaMenu$1.class
+views\comensal\consultaMenu\ConsultaMenu.class
+controllers\AdminDashboardController$2.class
+listeners\StyledButtonMouseListener.class
+views\Registro_Comensal_view\RegistroExitosoView.class
+components\TextInput\TextInput.class
+components\TextInput\TextInput$RoundedCornerBorder.class
+models\Usuario.class
+com\ucv\comedor\App.class
+views\home\menuDelDia\menuDelDia.class
+views\login\LoginView.class
+components\CheckBox\CheckBox.class
+views\admin\Validation\ValidationAdminView.class
+views\comensal\consultaMenu\ConsultaMenu$2.class
+views\home\Home.class
+components\Backgrounds\DarkBackground.class
+views\comensal\consultaMenu\ConsultaMenu$3.class
+services\AuthService.class
+views\admin\dashboards\AdminDashboardView.class
+views\comensal\consultaMenu\ConsultaMenu$4.class
+views\admin\dashboards\AdminDashboardView$1.class
+views\admin\dashboards\AdminDashboardView$VentanaCCB.class
+components\Button\RoundedButton.class
+views\admin\dashboards\BackgroundPanel.class
+controllers\AdminDashboardController.class
+controllers\HomeController$1.class
+=======
 components/TextInput/TextInput$1.class
+>>>>>>> main

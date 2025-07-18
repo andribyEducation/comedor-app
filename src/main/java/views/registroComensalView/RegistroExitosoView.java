@@ -1,4 +1,4 @@
-package views.Registro_Comensal_view;
+package views.registroComensalView;
 
 public class RegistroExitosoView {
     

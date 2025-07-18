@@ -1,4 +1,4 @@
-package views.Registro_Comensal_view;
+package views.registroComensalView;
 
 import components.Button.RoundedButton;
 import components.CheckBox.CheckBox;

@@ -1,22 +1,15 @@
 package com.ucv.comedor;
-<<<<<<< HEAD
-import views.login.LoginView;
-=======
-import views.Registro_Comensal_view.RegistroComensalView;
->>>>>>> main
+// import views.Registro_Comensal_view.RegistroComensalView;
+import views.home.Home;
+
 import javax.swing.*;
 
 public class App {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-<<<<<<< HEAD
-           LoginView loginView = new LoginView();
-            loginView.setVisible(true);
-=======
-            RegistroComensalView view = new RegistroComensalView();
+            Home view = new Home();
             // new AdminDashboardController(view);
             view.setVisible(true);
->>>>>>> main
         });
     }
 }

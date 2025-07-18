@@ -1,5 +1,6 @@
 package com.ucv.comedor;
 import views.home.Home;
+import controllers.home.HomeController;
 import javax.swing.SwingUtilities;
 import controllers.home.HomeController;
 

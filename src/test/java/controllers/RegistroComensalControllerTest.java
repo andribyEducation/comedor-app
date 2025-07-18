@@ -1,9 +1,11 @@
-package controllers;
+package controllers.register;
+
+import controllers.register.RegisterController;
 
 import org.junit.jupiter.api.*;
 import java.io.*;
 
-class RegistroComensalControllerTest {
+class RegisterControllerTest {
 
     private static final String TEST_DATA_PATH = "data/comensales_test.txt";
     private RegistroComensalController controller;
@@ -15,7 +17,7 @@ class RegistroComensalControllerTest {
         file.getParentFile().mkdirs();
         file.createNewFile();
         // Instanciar el controlador con ruta de test
-        controller = new RegistroComensalController(TEST_DATA_PATH);
+        controller = new RegisterController(TEST_DATA_PATH);
     }
 
     @AfterEach

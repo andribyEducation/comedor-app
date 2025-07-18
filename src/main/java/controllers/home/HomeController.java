@@ -2,12 +2,12 @@ package controllers.home;
 
 import views.home.Home;
 import views.login.LoginView;
-import views.registroComensalView.RegistroComensalView;
+import views.registroView.RegistroView;
 
 import javax.swing.*;
 
-import controllers.LoginController;
-import controllers.RegistroComensalController;
+import controllers.login.LoginController;
+import controllers.register.RegisterController;
 
 import java.awt.event.*;
 
@@ -49,8 +49,8 @@ public class HomeController implements ActionListener {
     // Nueva función para redirigir al registro
     private void redirigirARegistro() {
         homeView.setVisible(false);
-        RegistroComensalView registroView = new RegistroComensalView();
-        new RegistroComensalController(registroView);
+        RegistroView registroView = new RegistroView();
+        new controllers.register.RegisterController(registroView);
         registroView.setVisible(true);
     }
 }

@@ -1,4 +1,4 @@
-package controllers;
+package controllers.login;
 
 import views.admin.dashboards.AdminDashboardView;
 import views.comensal.consultaMenu.ConsultaMenu;
@@ -38,7 +38,7 @@ public class LoginController {
         if (tipo != null) {
             if ("administrador".equalsIgnoreCase(tipo)) {
                 AdminDashboardView adminDashboard = new AdminDashboardView();
-                new AdminDashboardController(adminDashboard);
+                new controllers.adminDashboard.AdminDashboardController(adminDashboard);
                 adminDashboard.setVisible(true);
             } else if ("comensal".equalsIgnoreCase(tipo)) {
                 ConsultaMenu consultaMenu = new ConsultaMenu();

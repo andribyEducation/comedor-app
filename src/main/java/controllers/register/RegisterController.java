@@ -1,7 +1,6 @@
-package controllers;
+package controllers.register;
 
-import views.registroComensalView.RegistroComensalView;
-import views.registroComensalView.RegistroExitosoView;
+import views.registroView.RegistroView;
 import views.home.Home;
 import controllers.home.HomeController;
 import controllers.registroExitoso.RegistroExitosoController;
@@ -9,11 +8,11 @@ import controllers.registroExitoso.RegistroExitosoController;
 import javax.swing.*;
 import java.io.*;
 
-public class RegistroComensalController {
+public class RegisterController {
     private String dataPath;
-    private RegistroComensalView view;
+    private RegistroView view;
 
-    public RegistroComensalController(RegistroComensalView view) {
+    public RegisterController(RegistroView view) {
         this.view = view;
         this.dataPath = "data/comensales.txt";
 
@@ -89,7 +88,7 @@ public class RegistroComensalController {
     }
 
     // Constructor para test
-    public RegistroComensalController(String dataPath) {
+    public RegisterController(String dataPath) {
         this.dataPath = dataPath;
     }
 

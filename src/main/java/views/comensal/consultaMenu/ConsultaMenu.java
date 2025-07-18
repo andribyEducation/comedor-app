@@ -21,15 +21,18 @@ public class ConsultaMenu extends JFrame {
 
         // Fondo con imagen
         backgroundImage = new ImageIcon(getClass().getResource("/assets/Background/Gradient Background #2.png"))
-                .getImage()
-                .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
-        setContentPane(new JPanel() {
+        .getImage()
+        .getScaledInstance(1920, 1080, Image.SCALE_SMOOTH);
+
+        JPanel fondoPanel = new JPanel() {
+            @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(backgroundImage, 0, 0, null);
+                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
             }
-        });
-        getContentPane().setLayout(null);
+        };
+        fondoPanel.setLayout(null);
+        setContentPane(fondoPanel);
 
         // Logo UCV (más grande)
         ImageIcon iconoLogo = new ImageIcon(getClass().getResource("/assets/logos/logoucv.png"));

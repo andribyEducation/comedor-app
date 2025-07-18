@@ -18,7 +18,7 @@ public class RegistroExitosoView extends JFrame {
     public RegistroExitosoView() {
         setTitle("Registro Exitoso");
         setSize(600, 700);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 

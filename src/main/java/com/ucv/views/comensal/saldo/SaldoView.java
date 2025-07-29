@@ -1,6 +1,9 @@
 package com.ucv.views.comensal.saldo;
 
 import javax.swing.*;
+
+import com.ucv.models.Usuario;
+
 import java.awt.*;
 
 public class SaldoView extends JFrame {
@@ -108,7 +111,7 @@ public class SaldoView extends JFrame {
         add(saldoDisponibleLabel);
 
         // Saldo al lado del título, más pequeño
-        saldoLabel = new JLabel("250 Bs", SwingConstants.LEFT);
+        saldoLabel = new JLabel( Usuario.getUsuarioActual().getSaldo() + " Bs", SwingConstants.LEFT);
         saldoLabel.setFont(new Font("Inter", Font.BOLD, 26));
         saldoLabel.setForeground(new Color(255, 204, 0));
         saldoLabel.setBounds(440, 38, 120, 30);

@@ -5,6 +5,7 @@ import com.ucv.views.home.Home;
 import com.ucv.controllers.home.HomeController;
 import com.ucv.controllers.registroExitoso.RegistroExitosoController;
 import com.ucv.views.registroView.RegistroExitosoView;
+import com.ucv.services.ConexionService;
 
 import javax.swing.*;
 import java.io.*;
@@ -12,6 +13,7 @@ import java.io.*;
 public class RegisterController {
     private String dataPath;
     private RegistroView view;
+    private ConexionService conexionService = new ConexionService();
 
     public RegisterController(RegistroView view) {
         this.view = view;
@@ -60,13 +62,8 @@ public class RegisterController {
             String saldo = "0";
             String registro = correo + "|" + contrasena + "|" + cedula + "|" + tipo + "|" + saldo + "\n";
             try {
-                File dataDir = new File("data");
-                if (!dataDir.exists()) {
-                    dataDir.mkdirs();
-                }
-                FileWriter writer = new FileWriter(dataPath, true);
-                writer.write(registro);
-                writer.close();
+                conexionService.crearDirectorioSiNoExiste("data");
+                conexionService.escribirLineaArchivo(dataPath, registro);
                 view.setVisible(false);
                 RegistroExitosoView registroExitosoView = new RegistroExitosoView();
                 new RegistroExitosoController(registroExitosoView);
@@ -107,9 +104,7 @@ public class RegisterController {
     }
 
     public boolean existeCorreoOCedula(String correo, String cedula) {
-        File file = new File(dataPath);
-        if (!file.exists()) return false;
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader reader = conexionService.obtenerLectorArchivo(dataPath)) {
             String linea;
             while ((linea = reader.readLine()) != null) {
                 String[] partes = linea.split("\\|");
@@ -129,13 +124,8 @@ public class RegisterController {
         String saldo = "0";
         String registro = correo + "|" + contrasena + "|" + cedula + "|" + tipo + "|" + saldo + "\n";
         try {
-            File dataDir = new File("data");
-            if (!dataDir.exists()) {
-                dataDir.mkdirs();
-            }
-            FileWriter writer = new FileWriter(dataPath, true);
-            writer.write(registro);
-            writer.close();
+            conexionService.crearDirectorioSiNoExiste("data");
+            conexionService.escribirLineaArchivo(dataPath, registro);
         } catch (IOException ex) {
             // Manejo simple para test
         }

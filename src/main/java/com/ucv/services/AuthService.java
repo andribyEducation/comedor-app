@@ -1,16 +1,13 @@
 package com.ucv.services;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.File;
 
 public class AuthService {
     private static final String DATA_PATH = "data/comensales.txt";
+    private ConexionService conexionService = new ConexionService();
 
     public String autenticarYObtenerTipo(String cedula, String contrasena) {
-        File file = new File(DATA_PATH);
-        if (!file.exists()) return null;
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader reader = conexionService.obtenerLectorArchivo(DATA_PATH)) {
             String linea;
             while ((linea = reader.readLine()) != null) {
                 String[] partes = linea.split("\\|");

@@ -1,8 +1,7 @@
 package com.ucv.comedor;
-import views.home.Home;
-import controllers.home.HomeController;
+import com.ucv.views.home.Home;
+import com.ucv.controllers.home.HomeController;
 import javax.swing.SwingUtilities;
-import controllers.home.HomeController;
 
 public class App {
     public static void main(String[] args) {

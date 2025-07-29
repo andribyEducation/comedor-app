@@ -1,6 +1,8 @@
 C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\test\java\com\ucv\comedor\AppTest.java
-C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\test\java\controllers\AdminDashboardControllerTest.java
-C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\test\java\controllers\LoginControllerTest.java
-C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\test\java\controllers\RegistroComensalControllerTest.java
-C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\test\java\views\comensal\saldo\SaldoViewTest.java
-C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\test\java\views\home\HomeTest.java
+C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\test\java\com\ucv\controllers\AdminDashboardControllerTest.java
+C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\test\java\com\ucv\controllers\LoginControllerTest.java
+C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\test\java\com\ucv\controllers\RegisterControllerTest.java
+C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\test\java\com\ucv\controllers\registroExitoso\RegistroExitosoControllerTest.java
+C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\test\java\com\ucv\controllers\saldo\SaldoControllerTest.java
+C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\test\java\com\ucv\views\comensal\saldo\SaldoViewTest.java
+C:\Users\carlo\OneDrive\Escritorio\ProyectoIS\comedor-app\src\test\java\com\ucv\views\home\HomeTest.java

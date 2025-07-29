@@ -1,0 +1,22 @@
+
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "type": "java",
+            "name": "Debug App",
+            "request": "launch",
+            "mainClass": "com.ucv.comedor.App",
+            "projectName": "comedor-app",
+            "vmArgs": "-Xmx512m -Xms256m"
+        },
+        {
+            "type": "java",
+            "name": "Launch App",
+            "request": "launch",
+            "mainClass": "com.ucv.comedor.App",
+            "projectName": "comedor-app"
+        }
+    ]
+}

@@ -41,7 +41,7 @@ public class ValidationAdminView extends JFrame {
         add(Box.createVerticalStrut(30)); // Espacio vertical
 
         // 3. Botón de validación
-        validarButton = new RoundedButton("Validar", false);
+        validarButton = new RoundedButton("Validar");
         validarButton.setFont(new Font("Inter", Font.BOLD, 20));
         validarButton.setPreferredSize(new Dimension(400, 50));
         validarButton.setMaximumSize(new Dimension(400, 50));

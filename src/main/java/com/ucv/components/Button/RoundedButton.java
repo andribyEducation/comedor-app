@@ -11,32 +11,45 @@ import java.awt.RenderingHints;
 import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.io.IOException;
+
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import com.ucv.listeners.StyledButtonMouseListener;
 
 public class RoundedButton extends JButton {
 
     private final Color normalBackgroundColor;
-    private final Color darkBackgroundColor;
+
     private final Color hoverBackgroundColor;
-    private final Color hoverDarkBackgroundColor;
+
     private final Color pressedBackgroundColor;
-    private final Color pressedDarkBackgroundColor;
+
     private int cornerRadius = 40;
     private boolean drawTextOutline = false;
 
-    public RoundedButton(String text, boolean bgDark) {
+    public RoundedButton(String text, boolean border) {
         super(text);
 
         // Definición de colores
         normalBackgroundColor = new Color(0, 51, 102);
-        darkBackgroundColor = new Color(255, 210, 0);
+
         hoverBackgroundColor = new Color(0, 82, 153);
-        hoverDarkBackgroundColor = new Color(255, 220, 55);
+
         pressedBackgroundColor = new Color(0, 31, 77);
-        pressedDarkBackgroundColor = new Color(255, 170, 0);
 
         // Estilos base del botón
+        if (border) {
+            setContentAreaFilled(false);
+            setOpaque(false);
+            setBorder(BorderFactory.createLineBorder(new Color(0, 51, 102)));
+            setBackground(Color.WHITE);
+            setForeground(Color.BLACK);
+        } else {
+
+            // Asigna el color de fondo y de fuente inicial
+            setBackground(normalBackgroundColor);
+            setForeground(Color.WHITE);
+        }
         setFont(loadCustomFont());
         setPreferredSize(new java.awt.Dimension(200, 50));
         setFocusPainted(false);
@@ -44,20 +57,15 @@ public class RoundedButton extends JButton {
         setContentAreaFilled(false);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        // Asigna el color de fondo y de fuente inicial
-        if (bgDark) {
-            setBackground(darkBackgroundColor);
-            setForeground(Color.WHITE); // Texto blanco
-            drawTextOutline = true; // Activar borde de texto
-        } else {
-            setBackground(normalBackgroundColor);
-            setForeground(Color.WHITE); // Texto blanco para fondo azul
-        }
-
         // Listener para efectos de hover y click
-        addMouseListener(new StyledButtonMouseListener(this, bgDark,
-                normalBackgroundColor, hoverBackgroundColor, hoverDarkBackgroundColor,
-                darkBackgroundColor, pressedDarkBackgroundColor, pressedBackgroundColor));
+        addMouseListener(new StyledButtonMouseListener(this, border, normalBackgroundColor,
+                hoverBackgroundColor,
+                pressedBackgroundColor));
+    }
+
+    // Si necesitas un constructor con solo el texto, agrégalo así:
+    public RoundedButton(String text) {
+        this(text, false);
     }
 
     @Override

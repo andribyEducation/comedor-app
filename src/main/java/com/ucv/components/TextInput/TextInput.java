@@ -10,19 +10,23 @@ public class TextInput extends JPanel {
     private JTextPane textPane;
     private JLabel label;
     private String validationRegex;
+    private boolean bgDark;
 
     public TextInput(String description) {
-        this(description, 1, 20);
+        this(description, false);
     }
 
-    public TextInput(String description, int rows, int columns) {
+    public TextInput(String description, boolean bgDark) {
         super(new BorderLayout(0, 5));
+        this.bgDark = bgDark;
         setOpaque(false);
 
         label = new JLabel(description);
         label.setFont(new Font("Inter", Font.PLAIN, 18));
         label.setBorder(BorderFactory.createEmptyBorder(0, 8, 0, 0));
-
+        if (bgDark) {
+            label.setForeground(Color.WHITE);
+        }
         textPane = new JTextPane();
         initializeTextPane();
 
@@ -34,7 +38,10 @@ public class TextInput extends JPanel {
         textPane.setBorder(new RoundedCornerBorder());
         // Hacemos el JTextPane transparente para que no pinte un fondo gris.
         textPane.setOpaque(false);
-        textPane.setBackground(new Color(0,0,0,0));
+        textPane.setFont(new Font("Inter", Font.PLAIN, 18));
+          if (bgDark) {
+        textPane.setForeground(Color.WHITE); // Pintar texto de blanco
+    }
     }
 
     public void setTextPaneOpaque(boolean isOpaque) {
@@ -47,7 +54,7 @@ public class TextInput extends JPanel {
 
     public void setText(String text) {
         textPane.setText(text);
-    
+
     }
 
     public void setValidationRegex(String regex) {
@@ -71,10 +78,10 @@ public class TextInput extends JPanel {
         public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             Graphics2D g2 = (Graphics2D) g.create();
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            
+
             // Dibuja solo el borde, sin rellenar el fondo.
             Shape border = new RoundRectangle2D.Double(x, y, width - 1, height - 1, cornerRadius, cornerRadius);
-            
+
             g2.setColor(Color.GRAY);
             g2.draw(border);
             g2.dispose();

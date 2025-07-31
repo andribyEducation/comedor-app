@@ -11,7 +11,7 @@ class RegistroExitosoControllerTest {
 
     static class StubRegistroExitosoView extends RegistroExitosoView {
         private boolean visible = true;
-        private RoundedButton ingresarButton = new RoundedButton("Ingresar", false);
+        private RoundedButton ingresarButton = new RoundedButton("Ingresar");
 
         @Override
         public void setVisible(boolean b) { visible = b; }

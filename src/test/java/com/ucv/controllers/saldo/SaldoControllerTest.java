@@ -1,6 +1,8 @@
 package com.ucv.controllers.saldo;
 
 import org.junit.jupiter.api.*;
+
+import com.ucv.components.TextInput.TextInput;
 import com.ucv.views.comensal.saldo.SaldoView;
 
 import javax.swing.*;
@@ -15,7 +17,7 @@ class SaldoControllerTest {
         private JMenuItem cambiarContrasena = new JMenuItem();
         private JMenuItem reportarProblema = new JMenuItem();
         private JPanel panelRecarga = new JPanel();
-        private JTextField txtMonto = new JTextField();
+        private TextInput txtMonto = new TextInput("Monto");
         private JButton btnConfirmar = new JButton();
         private JButton btnCancelar = new JButton();
         private JButton btnVolver = new JButton();
@@ -26,7 +28,7 @@ class SaldoControllerTest {
         @Override public JMenuItem getCambiarContrasenaItem() { return cambiarContrasena; }
         @Override public JMenuItem getReportarProblemaItem() { return reportarProblema; }
         @Override public JPanel getPanelRecarga() { return panelRecarga; }
-        @Override public JTextField getTxtMonto() { return txtMonto; }
+        @Override public TextInput getTxtMonto() { return txtMonto; }
         @Override public JButton getBtnConfirmar() { return btnConfirmar; }
         @Override public JButton getBtnCancelar() { return btnCancelar; }
         @Override public JButton getBtnVolver() { return btnVolver; }

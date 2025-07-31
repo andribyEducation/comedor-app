@@ -68,7 +68,7 @@ public class RegistroExitosoView extends JFrame {
 
         // Botón "Ingresar"
         gbc.gridy++;
-        ingresarButton = new RoundedButton("Ingresar", false); // Usar RoundedButton, false para fondo azul
+        ingresarButton = new RoundedButton("Ingresar"); // Usar RoundedButton, false para fondo azul
         ingresarButton.setBackground(new Color(52, 152, 219)); // Azul
         ingresarButton.setForeground(Color.WHITE);
         ingresarButton.setFont(interBold18); // Establecer la fuente

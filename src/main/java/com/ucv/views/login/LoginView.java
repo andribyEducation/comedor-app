@@ -84,7 +84,7 @@ public class LoginView extends JFrame {
         mainPanel.add(passwordInput, mainGbc);
 
         // Botón de ingreso
-        loginButton = new RoundedButton("Ingreso", false);
+        loginButton = new RoundedButton("Ingreso");
         loginButton.setFont(new Font("Inter", Font.BOLD, 18));
         mainGbc.gridy++;
         mainGbc.fill = GridBagConstraints.NONE;

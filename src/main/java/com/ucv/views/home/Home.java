@@ -49,7 +49,7 @@ public class Home extends JFrame {
     }
 
     private void agregarBtnRegistrarse() {
-        btnRegistrarse = new RoundedButton("Registrarse", false);
+        btnRegistrarse = new RoundedButton("Registrarse");
         btnRegistrarse.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnRegistrarse.setPreferredSize(btnSize);
         btnRegistrarse.setMaximumSize(btnSize);
@@ -60,7 +60,7 @@ public class Home extends JFrame {
     }
 
     private void agregarBtnIngresar() {
-        btnIngresar = new RoundedButton("Ingresar", false);
+        btnIngresar = new RoundedButton("Ingresar");
         btnIngresar.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnIngresar.setPreferredSize(btnSize);
         btnIngresar.setMaximumSize(btnSize);

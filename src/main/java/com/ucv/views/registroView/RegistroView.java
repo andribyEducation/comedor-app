@@ -119,7 +119,7 @@ public class RegistroView extends JFrame {
         mainPanel.add(checkBoxPanel, mainGbc);
 
         // Botón de registro
-        registerButton = new RoundedButton("Registrarse", false); // false para fondo azul
+        registerButton = new RoundedButton("Registrarse"); // false para fondo azul
         registerButton.setFont(new Font("Inter", Font.BOLD, 18));
         mainGbc.gridy++;
         mainGbc.fill = GridBagConstraints.HORIZONTAL;

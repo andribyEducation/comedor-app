@@ -4,7 +4,6 @@ import com.ucv.views.comensal.saldo.SaldoView;
 import com.ucv.views.comensal.consultaMenu.ConsultaMenu;
 
 import javax.swing.*;
-import java.awt.event.*;
 
 public class SaldoController {
 
@@ -16,17 +15,6 @@ public class SaldoController {
     }
 
     private void initListeners() {
-        // Menú usuario (icono)
-        view.getIconoUsuario().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                JPopupMenu menu = view.getMenuUsuario();
-                JLabel icon = view.getIconoUsuario();
-                int x = -menu.getPreferredSize().width + icon.getWidth();
-                int y = icon.getHeight();
-                menu.show(icon, x, y);
-            }
-        });
 
         // Cambiar contraseña
         view.getCambiarContrasenaItem().addActionListener(e -> {

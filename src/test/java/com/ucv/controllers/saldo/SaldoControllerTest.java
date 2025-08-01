@@ -13,7 +13,6 @@ class SaldoControllerTest {
 
     static class StubSaldoView extends SaldoView {
         private JLabel iconoUsuario = new JLabel();
-        private JPopupMenu menuUsuario = new JPopupMenu();
         private JMenuItem cambiarContrasena = new JMenuItem();
         private JMenuItem reportarProblema = new JMenuItem();
         private JPanel panelRecarga = new JPanel();
@@ -24,7 +23,6 @@ class SaldoControllerTest {
         private JButton btnRecargar = new JButton();
 
         @Override public JLabel getIconoUsuario() { return iconoUsuario; }
-        @Override public JPopupMenu getMenuUsuario() { return menuUsuario; }
         @Override public JMenuItem getCambiarContrasenaItem() { return cambiarContrasena; }
         @Override public JMenuItem getReportarProblemaItem() { return reportarProblema; }
         @Override public JPanel getPanelRecarga() { return panelRecarga; }

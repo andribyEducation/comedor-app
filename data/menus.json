@@ -1,0 +1,97 @@
+{
+    "Martes": {
+        "almuerzo": {
+            "precio": 0,
+            "cupos": 45,
+            "platos": [
+                "Pabellón Criollo (Carne mechada, arroz, caraotas, tajadas)",
+                "Ensalada rallada",
+                "Papelón con limón"
+            ]
+        },
+        "desayuno": {
+            "precio": 0,
+            "cupos": 25,
+            "platos": [
+                "Arepas con perico",
+                "Jugo de lechosa"
+            ]
+        }
+    },
+    "Miércoles": {
+        "almuerzo": {
+            "precio": 0,
+            "cupos": 40,
+            "platos": [
+                "Sopa de pollo y arroz",
+                "Asado Negro con puré de papas",
+                "Chicha criolla"
+            ]
+        },
+        "desayuno": {
+            "precio": 0,
+            "cupos": 34,
+            "platos": [
+                "Arepas con jamón y queso",
+                "Café con leche"
+            ]
+        }
+    },
+    "Viernes": {
+        "almuerzo": {
+            "precio": 0,
+            "cupos": 48,
+            "platos": [
+                "Cachapa con queso de mano",
+                "Pollo en brasa con tostones",
+                "Tizana"
+            ]
+        },
+        "desayuno": {
+            "precio": 0,
+            "cupos": 28,
+            "platos": [
+                "Empanadas de carne molida",
+                "Jugo de parchita"
+            ]
+        }
+    },
+    "Lunes": {
+        "almuerzo": {
+            "precio": 0,
+            "cupos": 50,
+            "platos": [
+                "Sancocho de res",
+                "Hallacas con ensalada de gallina",
+                "Ponche crema"
+            ]
+        },
+        "desayuno": {
+            "precio": 0,
+            "cupos": 0,
+            "platos": [
+                "Arepas con aguacate",
+                "Jugo de guayaba"
+            ]
+        }
+    },
+    "Jueves": {
+        "almuerzo": {
+            "precio": 0,
+            "cupos": 55,
+            "platos": [
+                "Pastel de Chucho",
+                "Mojito en coco",
+                "Refresco de tamarindo"
+            ]
+        },
+        "desayuno": {
+            "precio": 500,
+            "cupos": 20,
+            "platos": [
+                "Tequeños",
+                "Chocolate frio"
+            ]
+        }
+    }
+}

@@ -2,12 +2,17 @@ package com.ucv.views.comensal.consultaMenu;
 
 import com.ucv.components.Button.RoundedButton;
 import com.ucv.components.Header.HeaderPanel;
+import com.ucv.controllers.login.LoginController;
 import com.ucv.controllers.saldo.SaldoController;
 import com.ucv.views.comensal.menuDelDia.menuDelDia;
 import com.ucv.views.comensal.saldo.SaldoView;
+import com.ucv.views.login.LoginView;
+import java.awt.event.MouseEvent;
 
 import javax.swing.*;
+
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 
 public class ConsultaMenu extends JFrame {
     private HeaderPanel headerPanel;
@@ -19,8 +24,18 @@ public class ConsultaMenu extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        headerPanel = new HeaderPanel(false,"Turnos Disponibles", "Pedro");
+        headerPanel = new HeaderPanel(false,"Turnos Disponibles", "Pedro",true);
         add(headerPanel, BorderLayout.NORTH);
+
+         headerPanel.getBackButtonLabel().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                LoginView view=new LoginView();
+                new LoginController(view);
+                view.setVisible(true);
+                dispose(); 
+            }
+        });
 
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setBackground(Color.WHITE);

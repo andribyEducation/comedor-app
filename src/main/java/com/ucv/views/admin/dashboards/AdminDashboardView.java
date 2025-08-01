@@ -4,6 +4,8 @@ package com.ucv.views.admin.dashboards;
 import com.ucv.components.Button.RoundedButton;
 import com.ucv.components.Header.HeaderPanel;
 import com.ucv.components.TextInput.TextInput;
+import com.ucv.controllers.login.LoginController;
+import com.ucv.views.login.LoginView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,7 +39,7 @@ public class AdminDashboardView extends JFrame {
     }
 
     private void createHeader() {
-        headerPanel = new HeaderPanel(false, "Dashboard de Administrador", "Juan");
+        headerPanel = new HeaderPanel(false, "Dashboard de Administrador", "Juan", true);
         add(headerPanel, BorderLayout.NORTH);
 
         headerPanel.getIconoUsuario().addMouseListener(new MouseAdapter() {
@@ -46,6 +48,16 @@ public class AdminDashboardView extends JFrame {
                 int x = -menuUsuario.getPreferredSize().width + headerPanel.getIconoUsuario().getWidth();
                 int y = headerPanel.getIconoUsuario().getHeight();
                 menuUsuario.show(headerPanel.getIconoUsuario(), x, y);
+            }
+        });
+
+        headerPanel.getBackButtonLabel().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                LoginView view=new LoginView();
+                new LoginController(view);
+                view.setVisible(true);
+                dispose(); 
             }
         });
     }
@@ -57,22 +69,16 @@ public class AdminDashboardView extends JFrame {
 
         GridBagConstraints gbc = new GridBagConstraints();
 
-        JPanel buttonsPanel = new JPanel(new GridLayout(3, 2, 60, 60));
+        JPanel buttonsPanel = new JPanel(new GridLayout(1, 2, 60, 60));
         buttonsPanel.setBackground(Color.WHITE);
 
         String[] options = {
-                "Gestionar insumos",
-                "Registrar consumo",
                 "Gestionar Menú",
-                "Gestionar disponibilidad",
                 "CCB"
         };
 
         String[] buttonTexts = {
-                "Consultar",
-                "Consultar",
-                "Consultar",
-                "Consultar",
+                "Gestionar",
                 "Calcular"
         };
 

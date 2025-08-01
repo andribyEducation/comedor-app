@@ -25,7 +25,7 @@ class RegistroExitosoControllerTest {
     @BeforeEach
     void setUp() {
         stubView = new StubRegistroExitosoView();
-        controller = new RegistroExitosoController(stubView);
+        controller = new RegistroExitosoController(stubView, null);
     }
 
     @Test

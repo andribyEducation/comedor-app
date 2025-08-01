@@ -24,7 +24,7 @@ public class SaldoView extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        headerPanel = new HeaderPanel(true, "Consultar Saldo", "Juan Perez");
+        headerPanel = new HeaderPanel(true, "Consultar Saldo", "Juan Perez",false);
         add(headerPanel, BorderLayout.NORTH);
 
         // Panel principal que contendrá todo

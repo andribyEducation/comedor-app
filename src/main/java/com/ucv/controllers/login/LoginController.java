@@ -5,6 +5,8 @@ import com.ucv.views.comensal.consultaMenu.ConsultaMenu;
 import com.ucv.views.home.Home;
 import com.ucv.views.login.LoginView;
 import com.ucv.services.AuthService;
+import com.ucv.views.registroView.RegistroView;
+
 import javax.swing.JOptionPane;
 
 import com.ucv.controllers.home.HomeController;
@@ -13,9 +15,30 @@ public class LoginController {
 
     private LoginView view;
     protected AuthService authService;
+    private RegistroView registroView;
+
 
     public LoginController(LoginView view) {
         this.view = view;
+        this.authService = new AuthService();
+
+        // Listener para el botón de login
+        this.view.getLoginButton().addActionListener(e -> {
+            String cedula = view.getCedula();
+            String contrasena = view.getContrasena();
+            handleLogin(cedula, contrasena);
+        });
+
+        this.view.getBackLabel().addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                handleBack();
+            }
+        });
+    }
+    public LoginController(LoginView view, RegistroView registroView) {
+        this.view = view;
+        this.registroView = registroView;
         this.authService = new AuthService();
 
         // Listener para el botón de login
@@ -46,6 +69,9 @@ public class LoginController {
                 consultaMenu.setVisible(true);
             }
             view.setVisible(false);
+            if (registroView != null) {
+                registroView.dispose();
+            }
         } else {
             JOptionPane.showMessageDialog(view, "Cédula o contraseña incorrectos.", "Error de inicio de sesión", JOptionPane.ERROR_MESSAGE);
         }

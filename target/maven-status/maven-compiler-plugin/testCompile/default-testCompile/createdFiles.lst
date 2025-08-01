@@ -1,0 +1,14 @@
+com\ucv\controllers\AdminDashboardControllerTest$StubAdminDashboardView.class
+com\ucv\controllers\registroExitoso\RegistroExitosoControllerTest$StubRegistroExitosoView.class
+com\ucv\comedor\AppTest.class
+com\ucv\controllers\saldo\SaldoControllerTest$StubSaldoView.class
+com\ucv\views\comensal\saldo\SaldoViewTest.class
+com\ucv\controllers\AdminDashboardControllerTest.class
+com\ucv\controllers\registroExitoso\RegistroExitosoControllerTest.class
+com\ucv\controllers\LoginControllerTest$StubLoginView.class
+com\ucv\controllers\LoginControllerTest$1.class
+com\ucv\views\home\HomeTest.class
+com\ucv\controllers\RegisterControllerTest.class
+com\ucv\controllers\LoginControllerTest$StubAuthService.class
+com\ucv\controllers\LoginControllerTest.class
+com\ucv\controllers\saldo\SaldoControllerTest.class

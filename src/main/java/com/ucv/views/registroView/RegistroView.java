@@ -33,7 +33,7 @@ public class RegistroView extends JFrame {
         ImageIcon backIcon = new ImageIcon(getClass().getResource("/assets/Iconos/FlechaIzquierda.png"));
         Image scaledBackImage = backIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         backLabel = new JLabel(new ImageIcon(scaledBackImage));
-
+        backLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         // Elimina el listener aquí, el controlador lo agregará
         gbc.gridx = 0;
         gbc.gridy = 0;

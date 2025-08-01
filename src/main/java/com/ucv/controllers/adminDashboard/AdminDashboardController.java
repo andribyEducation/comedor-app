@@ -2,6 +2,8 @@
 package com.ucv.controllers.adminDashboard;
 
 import com.ucv.views.admin.dashboards.AdminDashboardView;
+import com.ucv.views.admin.menu.GestionarMenuView;
+import com.ucv.controllers.admin.menu.GestionarMenuController;
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
@@ -66,7 +68,13 @@ public class AdminDashboardController {
     }
 
     private void showDashboardOption(String option) {
-        JOptionPane.showMessageDialog(view, "Mostrar dashboard: " + option);
+        if ("Gestionar Menú".equals(option)) {
+            GestionarMenuView menuView = new GestionarMenuView();
+            new GestionarMenuController (menuView);
+            menuView.display();
+        } else {
+            JOptionPane.showMessageDialog(view, "Mostrar dashboard: " + option);
+        }
     }
     
     /**

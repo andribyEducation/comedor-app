@@ -30,6 +30,7 @@ public class LoginView extends JFrame {
         ImageIcon backIcon = new ImageIcon(getClass().getResource("/assets/Iconos/FlechaIzquierda.png"));
         Image scaledBackImage = backIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         backLabel = new JLabel(new ImageIcon(scaledBackImage));
+        backLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
         gbc.gridx = 0;
         gbc.gridy = 0;

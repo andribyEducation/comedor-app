@@ -54,7 +54,7 @@ public class RegisterController {
                 JOptionPane.showMessageDialog(view, "Debe seleccionar un rol.");
                 return;
             }
-            if (existeCorreoOCedula(correo, cedula)) {
+            if (existeCorreoOCedula(correo, cedula, tipo)) {
                 JOptionPane.showMessageDialog(view, "El correo o la cédula ya están registrados.");
                 return;
             }
@@ -103,13 +103,13 @@ public class RegisterController {
         return contrasena.length() >= 6;
     }
 
-    public boolean existeCorreoOCedula(String correo, String cedula) {
+    public boolean existeCorreoOCedula(String correo, String cedula, String tipo) {
         try (BufferedReader reader = conexionService.obtenerLectorArchivo(dataPath)) {
             String linea;
             while ((linea = reader.readLine()) != null) {
                 String[] partes = linea.split("\\|");
                 if (partes.length >= 3) {
-                    if (partes[0].equalsIgnoreCase(correo) || partes[2].equals(cedula)) {
+                    if ( ( partes[0].equals(correo) || partes[2].equals(cedula) ) && partes[3].equals(tipo) ) {
                         return true;
                     }
                 }

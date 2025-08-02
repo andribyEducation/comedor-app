@@ -1,6 +1,7 @@
 package com.ucv.views.comensal.consultaMenu;
 
 import com.ucv.components.Button.RoundedButton;
+import com.ucv.components.UserMenu.UserMenu;
 import com.ucv.controllers.saldo.SaldoController;
 import com.ucv.views.comensal.menuDelDia.menuDelDia;
 import com.ucv.views.comensal.saldo.SaldoView;
@@ -51,40 +52,8 @@ public class ConsultaMenu extends JFrame {
         iconoUsuario.setIcon(new ImageIcon(iconoEscalado));
         getContentPane().add(iconoUsuario);
 
-        // Menú emergente del usuario
-        JPopupMenu menuUsuario = new JPopupMenu() {
-            @Override
-            public void paintComponent(Graphics g) {
-                Graphics2D g2 = (Graphics2D) g;
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                g2.setColor(new Color(30, 30, 30));
-                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
-            }
-        };
-        menuUsuario.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
-        menuUsuario.setOpaque(false);
-
-        JLabel nombreUsuario = new JLabel("Usuario: Nombre");
-        nombreUsuario.setFont(new Font("Inter", Font.BOLD, 22));
-        nombreUsuario.setForeground(Color.WHITE);
-        nombreUsuario.setOpaque(false);
-        menuUsuario.add(nombreUsuario);
-        menuUsuario.add(Box.createVerticalStrut(10));
-
-        JMenuItem cambiarContrasena = new JMenuItem("Cambiar contraseña");
-        personalizarItem(cambiarContrasena);
-        cambiarContrasena.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Lógica para cambiar contraseña.");
-        });
-        menuUsuario.add(cambiarContrasena);
-
-        JMenuItem reportarProblema = new JMenuItem("Reportar problema");
-        personalizarItem(reportarProblema);
-        reportarProblema.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Aquí va la lógica para reportar un problema.");
-        });
-        menuUsuario.add(reportarProblema);
-
+        // Menú de usuario reutilizable
+        UserMenu menuUsuario = new UserMenu(this, "Usuario: Nombre");
         iconoUsuario.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -136,27 +105,6 @@ public class ConsultaMenu extends JFrame {
         getContentPane().add(btnSaldo);
     }
 
-    private void personalizarItem(JMenuItem item) {
-        item.setBackground(new Color(50, 50, 50));
-        item.setForeground(Color.WHITE);
-        item.setFont(new Font("Inter", Font.BOLD, 18));
-        item.setOpaque(true);
-        item.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
-        item.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
-        item.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                item.setBackground(new Color(70, 70, 70));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                item.setBackground(new Color(50, 50, 50));
-            }
-        });
-    }
-
     private void agregarDia(String dia, int x, int y) {
         int botonAncho = 220; // Ajustado para 1366x768
         int etiquetaAncho = 220; // Ajustado para 1366x768
@@ -180,6 +128,4 @@ public class ConsultaMenu extends JFrame {
         });
         getContentPane().add(verMenu);
     }
-
-   
 }

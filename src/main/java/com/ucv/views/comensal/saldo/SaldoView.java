@@ -2,6 +2,7 @@ package com.ucv.views.comensal.saldo;
 
 import javax.swing.*;
 
+import com.ucv.components.UserMenu.UserMenu;
 import com.ucv.models.Usuario;
 
 import java.awt.*;
@@ -10,9 +11,7 @@ public class SaldoView extends JFrame {
 
     private Image backgroundImage;
     private JLabel iconoUsuario;
-    private JPopupMenu menuUsuario;
-    private JMenuItem cambiarContrasena;
-    private JMenuItem reportarProblema;
+    private UserMenu menuUsuario; // Cambia el tipo aquí
     private JLabel saldoLabel;
     private JPanel panelRecarga;
     private JTextField txtMonto;
@@ -65,43 +64,8 @@ public class SaldoView extends JFrame {
         iconoUsuario.setIcon(new ImageIcon(iconoEscalado));
         add(iconoUsuario);
 
-        // Menú emergente de usuario
-        menuUsuario = new JPopupMenu() {
-            @Override
-            public void paintComponent(Graphics g) {
-                Graphics2D g2 = (Graphics2D) g;
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                g2.setColor(new Color(30, 30, 30));
-                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
-            }
-        };
-        menuUsuario.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        menuUsuario.setOpaque(false);
-
-        JLabel nombreUsuario = new JLabel("Usuario: Juan Pérez");
-        nombreUsuario.setFont(new Font("Inter", Font.BOLD, 15));
-        nombreUsuario.setForeground(Color.WHITE);
-        nombreUsuario.setOpaque(false);
-        menuUsuario.add(nombreUsuario);
-        menuUsuario.add(Box.createVerticalStrut(8));
-
-        cambiarContrasena = new JMenuItem("Cambiar contraseña");
-        cambiarContrasena.setBackground(new Color(50, 50, 50));
-        cambiarContrasena.setForeground(Color.WHITE);
-        cambiarContrasena.setFont(new Font("Inter", Font.BOLD, 15));
-        cambiarContrasena.setOpaque(true);
-        cambiarContrasena.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-        cambiarContrasena.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        menuUsuario.add(cambiarContrasena);
-
-        reportarProblema = new JMenuItem("Reportar problema");
-        reportarProblema.setBackground(new Color(50, 50, 50));
-        reportarProblema.setForeground(Color.WHITE);
-        reportarProblema.setFont(new Font("Inter", Font.BOLD, 15));
-        reportarProblema.setOpaque(true);
-        reportarProblema.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-        reportarProblema.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        menuUsuario.add(reportarProblema);
+        // Usa el componente UserMenu
+        menuUsuario = new UserMenu(this, "Usuario: Juan Pérez");
 
         // Etiqueta "saldo disponible:"
         JLabel saldoDisponibleLabel = new JLabel("saldo disponible:", SwingConstants.LEFT);
@@ -182,9 +146,7 @@ public class SaldoView extends JFrame {
 
     // Métodos para el controlador
     public JLabel getIconoUsuario() { return iconoUsuario; }
-    public JPopupMenu getMenuUsuario() { return menuUsuario; }
-    public JMenuItem getCambiarContrasenaItem() { return cambiarContrasena; }
-    public JMenuItem getReportarProblemaItem() { return reportarProblema; }
+    public UserMenu getMenuUsuario() { return menuUsuario; }
     public JLabel getSaldoLabel() { return saldoLabel; }
     public JPanel getPanelRecarga() { return panelRecarga; }
     public JTextField getTxtMonto() { return txtMonto; }

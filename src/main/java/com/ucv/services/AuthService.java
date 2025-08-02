@@ -2,6 +2,8 @@ package com.ucv.services;
 
 import java.io.BufferedReader;
 
+import com.ucv.models.Usuario;
+
 public class AuthService {
     private static final String DATA_PATH = "data/comensales.txt";
     private ConexionService conexionService = new ConexionService();
@@ -24,5 +26,9 @@ public class AuthService {
             
         }
         return null;
+    }
+
+    public void cerrarSesion() {
+        Usuario.setUsuarioActual(null);
     }
 }

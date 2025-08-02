@@ -11,9 +11,6 @@ class SaldoControllerTest {
 
     static class StubSaldoView extends SaldoView {
         private JLabel iconoUsuario = new JLabel();
-        private JPopupMenu menuUsuario = new JPopupMenu();
-        private JMenuItem cambiarContrasena = new JMenuItem();
-        private JMenuItem reportarProblema = new JMenuItem();
         private JPanel panelRecarga = new JPanel();
         private JTextField txtMonto = new JTextField();
         private JButton btnConfirmar = new JButton();
@@ -22,9 +19,6 @@ class SaldoControllerTest {
         private JButton btnRecargar = new JButton();
 
         @Override public JLabel getIconoUsuario() { return iconoUsuario; }
-        @Override public JPopupMenu getMenuUsuario() { return menuUsuario; }
-        @Override public JMenuItem getCambiarContrasenaItem() { return cambiarContrasena; }
-        @Override public JMenuItem getReportarProblemaItem() { return reportarProblema; }
         @Override public JPanel getPanelRecarga() { return panelRecarga; }
         @Override public JTextField getTxtMonto() { return txtMonto; }
         @Override public JButton getBtnConfirmar() { return btnConfirmar; }
@@ -40,24 +34,6 @@ class SaldoControllerTest {
     void setUp() {
         stubView = new StubSaldoView();
         controller = new SaldoController(stubView);
-    }
-
-    @Test
-    void testCambiarContrasenaListener() {
-        ActionEvent event = new ActionEvent(stubView.getCambiarContrasenaItem(), ActionEvent.ACTION_PERFORMED, "");
-        for (ActionListener listener : stubView.getCambiarContrasenaItem().getActionListeners()) {
-            listener.actionPerformed(event);
-        }
-        Assertions.assertTrue(true);
-    }
-
-    @Test
-    void testReportarProblemaListener() {
-        ActionEvent event = new ActionEvent(stubView.getReportarProblemaItem(), ActionEvent.ACTION_PERFORMED, "");
-        for (ActionListener listener : stubView.getReportarProblemaItem().getActionListeners()) {
-            listener.actionPerformed(event);
-        }
-        Assertions.assertTrue(true);
     }
 
     @Test

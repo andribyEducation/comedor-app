@@ -3,6 +3,7 @@ package com.ucv.views.admin.dashboards;
 
 import com.ucv.components.Button.RoundedButton;
 import com.ucv.components.TextInput.TextInput;
+import com.ucv.components.UserMenu.UserMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,10 +12,9 @@ import java.util.Map;
 
 public class AdminDashboardView extends JFrame {
 
-    private JMenuItem cambiarContrasenaItem;
-    private JMenuItem reportarProblemaItem;
     private JLabel iconoUsuario;
-    private JPopupMenu menuUsuario;
+    private UserMenu menuUsuario; // Cambia el tipo aquí
+    // Elimina los JMenuItem individuales
     private final Map<String, RoundedButton> actionButtons = new HashMap<>();
 
     public AdminDashboardView() {
@@ -55,43 +55,14 @@ public class AdminDashboardView extends JFrame {
         iconoUsuario.setIcon(new ImageIcon(iconoEscalado));
         headerPanel.add(iconoUsuario);
 
-        menuUsuario = createUserMenu();
+        // Usa el componente UserMenu
+        menuUsuario = new UserMenu(this, "Administrador: Nombre");
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.NORTHEAST;
         gbc.insets = new Insets(20, 0, 0, 20);
         add(headerPanel, gbc);
-    }
-
-    private JPopupMenu createUserMenu() {
-        JPopupMenu menu = new JPopupMenu() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                Graphics2D g2 = (Graphics2D) g;
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                g2.setColor(new Color(30, 30, 30));
-                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
-            }
-        };
-        menu.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
-        menu.setOpaque(false);
-
-        JLabel nombreUsuario = new JLabel("Administrador: Nombre");
-        nombreUsuario.setFont(new Font("Inter", Font.BOLD, 18));
-        nombreUsuario.setForeground(Color.WHITE);
-        menu.add(nombreUsuario);
-        menu.add(Box.createVerticalStrut(12));
-
-        cambiarContrasenaItem = new JMenuItem("Cambiar contraseña");
-        personalizarItem(cambiarContrasenaItem);
-        menu.add(cambiarContrasenaItem);
-
-        reportarProblemaItem = new JMenuItem("Reportar problema");
-        personalizarItem(reportarProblemaItem);
-        menu.add(reportarProblemaItem);
-
-        return menu;
     }
 
     private void createTitle() {
@@ -178,19 +149,8 @@ public class AdminDashboardView extends JFrame {
         return panel;
     }
 
-    private void personalizarItem(JMenuItem item) {
-        item.setBackground(new Color(50, 50, 50));
-        item.setForeground(Color.WHITE);
-        item.setFont(new Font("Inter", Font.BOLD, 18));
-        item.setOpaque(true);
-        item.setBorder(BorderFactory.createEmptyBorder(8, 15, 8, 15));
-        item.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    }
-
-    public JMenuItem getCambiarContrasenaItem() { return cambiarContrasenaItem; }
-    public JMenuItem getReportarProblemaItem() { return reportarProblemaItem; }
     public JLabel getIconoUsuario() { return iconoUsuario; }
-    public JPopupMenu getMenuUsuario() { return menuUsuario; }
+    public UserMenu getMenuUsuario() { return menuUsuario; }
     public Map<String, RoundedButton> getActionButtons() { return actionButtons; }
 
     public void display() {

@@ -3,7 +3,6 @@ package com.ucv.controllers.adminDashboard;
 
 import com.ucv.views.admin.dashboards.AdminDashboardView;
 import javax.swing.*;
-import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -32,14 +31,6 @@ public class AdminDashboardController {
             }
         });
 
-        // Listeners para los items del menú
-        view.getCambiarContrasenaItem().addActionListener(e -> changePassword());
-        view.getReportarProblemaItem().addActionListener(e -> reportProblem());
-        
-        // Asigna el efecto hover a los items del menú
-        addHoverEffect(view.getCambiarContrasenaItem());
-        addHoverEffect(view.getReportarProblemaItem());
-
         // Listeners para los botones de acción principales
         view.getActionButtons().forEach((option, button) -> {
             button.addActionListener(e -> showDashboardOption(option));
@@ -57,35 +48,7 @@ public class AdminDashboardController {
         menu.show(icon, x, y);
     }
 
-    private void changePassword() {
-        JOptionPane.showMessageDialog(view, "Lógica para cambiar contraseña.");
-    }
-
-    private void reportProblem() {
-        JOptionPane.showMessageDialog(view, "Aquí va la lógica para reportar un problema.");
-    }
-
     private void showDashboardOption(String option) {
         JOptionPane.showMessageDialog(view, "Mostrar dashboard: " + option);
     }
-    
-    /**
-     * Añade un efecto visual de hover a un JMenuItem.
-     * Aunque es un cambio visual, se controla aquí porque es una respuesta a un evento.
-     */
-    private void addHoverEffect(JMenuItem item) {
-        item.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                item.setBackground(new Color(70, 70, 70));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                item.setBackground(new Color(50, 50, 50));
-            }
-        });
-    }
-
-   
 }

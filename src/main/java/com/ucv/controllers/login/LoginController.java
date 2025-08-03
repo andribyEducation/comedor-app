@@ -5,8 +5,12 @@ import com.ucv.views.comensal.consultaMenu.ConsultaMenu;
 import com.ucv.views.home.Home;
 import com.ucv.views.login.LoginView;
 import com.ucv.services.AuthService;
+<<<<<<< HEAD
 import com.ucv.views.registroView.RegistroView;
 
+=======
+import com.ucv.services.ConexionService;
+>>>>>>> 7b6030e (Conexion service)
 import javax.swing.JOptionPane;
 
 import com.ucv.controllers.home.HomeController;
@@ -16,8 +20,12 @@ public class LoginController {
 
     private LoginView view;
     protected AuthService authService;
+<<<<<<< HEAD
     private RegistroView registroView;
 
+=======
+    private ConexionService conexionService = new ConexionService();
+>>>>>>> 7b6030e (Conexion service)
 
     public LoginController(LoginView view) {
         this.view = view;
@@ -80,8 +88,7 @@ public class LoginController {
     }
 
     private void setUsuario(String cedula){
-        try (java.io.BufferedReader reader = new java.io.BufferedReader(
-            new java.io.FileReader("data/comensales.txt"))) {
+        try (java.io.BufferedReader reader = conexionService.obtenerLectorArchivo("data/comensales.txt")) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split("\\|");

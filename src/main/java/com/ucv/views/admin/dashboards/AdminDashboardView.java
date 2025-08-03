@@ -7,11 +7,16 @@ import com.ucv.components.TextInput.TextInput;
 import com.ucv.controllers.login.LoginController;
 import com.ucv.views.login.LoginView;
 import com.ucv.components.UserMenu.UserMenu;
+import com.ucv.services.CostosService;
 
 import javax.swing.*;
+
+import org.json.JSONObject;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -221,17 +226,42 @@ public class AdminDashboardView extends JFrame {
             mainPanel.add(inputVariables);
             mainPanel.add(Box.createVerticalStrut(40));
 
+            try {
+            CostosService service = new CostosService();
+            JSONObject datos = service.leerCostos();
+            if (datos.has("costoFijo")) {
+            inputFijos.setText(String.valueOf(datos.getDouble("costoFijo")));
+            }
+            if (datos.has("costoVariable")) {
+            inputVariables.setText(String.valueOf(datos.getDouble("costoVariable")));
+            }
+            } catch (IOException ex) {
+            System.err.println("No se pudo cargar costos.json: " + ex.getMessage());
+            }
+
             RoundedButton btnCalcular = new RoundedButton("Calcular");
             btnCalcular.setAlignmentX(Component.CENTER_ALIGNMENT);
             btnCalcular.setPreferredSize(new Dimension(150, 45));
             mainPanel.add(btnCalcular);
 
             btnCalcular.addActionListener(e -> {
-                String fijo = inputFijos.getText();
-                String variable = inputVariables.getText();
-                JOptionPane.showMessageDialog(this,
-                        "Lógica aún no implementada. Fijo: " + fijo + ", Variable: " + variable);
-            });
+            try {
+                double costoFijo = Double.parseDouble(inputFijos.getText());
+                double costoVariable = Double.parseDouble(inputVariables.getText());
+                double ccb = costoFijo + costoVariable;
+
+                // Guarda los costos ingresados
+                CostosService serviceJson = new CostosService();
+                serviceJson.guardarCostos(costoFijo, costoVariable);
+
+            JOptionPane.showMessageDialog(this, "CCB calculado: " + ccb + "\nCostos guardados en JSON.");
+
+            } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Por favor ingresa valores numéricos válidos.");
+            } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error al guardar los datos: " + ex.getMessage());
+            }
+        });
 
             add(mainPanel);
             setVisible(true);

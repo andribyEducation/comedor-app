@@ -6,6 +6,7 @@ import com.ucv.components.Header.HeaderPanel;
 import com.ucv.components.TextInput.TextInput;
 import com.ucv.controllers.login.LoginController;
 import com.ucv.views.login.LoginView;
+import com.ucv.components.UserMenu.UserMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +17,10 @@ import java.util.Map;
 
 public class AdminDashboardView extends JFrame {
     private HeaderPanel headerPanel;
-    private JPopupMenu menuUsuario;
+
+    private JLabel iconoUsuario;
+    private UserMenu menuUsuario; // Cambia el tipo aquí
+    // Elimina los JMenuItem individuales
     private final Map<String, RoundedButton> actionButtons = new HashMap<>();
 
     public AdminDashboardView() {
@@ -66,6 +70,43 @@ public class AdminDashboardView extends JFrame {
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setBackground(Color.WHITE);
         add(mainPanel, BorderLayout.CENTER);
+        ImageIcon iconoLogo = new ImageIcon(getClass().getResource("/assets/logos/logoucv.png"));
+        Image imagenEscalada = iconoLogo.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        headerPanel.add(new JLabel(new ImageIcon(imagenEscalada)));
+
+        iconoUsuario = new JLabel();
+        iconoUsuario.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/assets/logos/usericon.png"));
+        Image iconoEscalado = iconoOriginal.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        iconoUsuario.setIcon(new ImageIcon(iconoEscalado));
+        headerPanel.add(iconoUsuario);
+
+        // Usa el componente UserMenu
+        menuUsuario = new UserMenu(this, "Administrador: Nombre");
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.NORTHEAST;
+        gbc.insets = new Insets(20, 0, 0, 20);
+        add(headerPanel, gbc);
+    }
+
+    private void createTitle() {
+        JPanel titlePanel = new JPanel();
+        titlePanel.setOpaque(false);
+        titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.Y_AXIS));
+
+        JLabel titulo = new JLabel("Dashboard de Administrador");
+        titulo.setFont(new Font("Inter", Font.BOLD, 48));
+        titulo.setForeground(Color.WHITE);
+        titulo.setAlignmentX(Component.LEFT_ALIGNMENT);
+        titlePanel.add(titulo);
+
+        JPanel linea = new JPanel();
+        linea.setBackground(new Color(255, 204, 0));
+        linea.setMaximumSize(new Dimension(430, 4));
+        linea.setAlignmentX(Component.LEFT_ALIGNMENT);
+        titlePanel.add(linea);
 
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -88,7 +129,6 @@ public class AdminDashboardView extends JFrame {
 
         gbc.gridy = 2;
         gbc.insets = new Insets(0, 100, 0, 100);
-        mainPanel.add(buttonsPanel, gbc);
     }
 
     private JPanel createActionButtonPanel(String option, String buttonText) {
@@ -125,9 +165,10 @@ public class AdminDashboardView extends JFrame {
         return headerPanel;
     }
 
-    public Map<String, RoundedButton> getActionButtons() {
-        return actionButtons;
-    }
+
+    public JLabel getIconoUsuario() { return iconoUsuario; }
+    public UserMenu getMenuUsuario() { return (UserMenu) menuUsuario; }
+    public Map<String, RoundedButton> getActionButtons() { return actionButtons; }
 
     public void display() {
         setVisible(true);
@@ -196,14 +237,5 @@ public class AdminDashboardView extends JFrame {
             setVisible(true);
         }
 
-    }
-
-    public JLabel getIconoUsuario() {
-        return headerPanel.getIconoUsuario();
-
-    }
-
-    public JPopupMenu getMenuUsuario() {
-        return menuUsuario;
     }
 }

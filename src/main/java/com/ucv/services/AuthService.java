@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import com.ucv.models.Usuario;
+
 public class AuthService {
     private static final String ADMINS_DATA_PATH = "data/admins.json";
     private static final String COMENSALES_DATA_PATH = "data/comensales.json";
@@ -42,5 +44,9 @@ public class AuthService {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public void cerrarSesion() {
+        Usuario.setUsuarioActual(null);
     }
 }

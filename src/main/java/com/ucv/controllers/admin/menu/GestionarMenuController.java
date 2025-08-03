@@ -24,7 +24,7 @@ public class GestionarMenuController {
 
     private void loadMenuData() {
         try {
-            if (!Files.exists(Paths.get(menuDataPath)) || Files.readString(Paths.get(menuDataPath)).trim().isEmpty()) {
+            if (!Files.exists(Paths.get(menuDataPath)) || new String(Files.readAllBytes(Paths.get(menuDataPath))).trim().isEmpty()) {
                 return; // No hay menú para cargar o el archivo está vacío
             }
             String content = new String(Files.readAllBytes(Paths.get(menuDataPath)));
@@ -79,7 +79,7 @@ public class GestionarMenuController {
     private void saveMenuData() {
         try {
             String content = "{}";
-            if (Files.exists(Paths.get(menuDataPath)) && !Files.readString(Paths.get(menuDataPath)).trim().isEmpty()) {
+            if (Files.exists(Paths.get(menuDataPath)) && !new String(Files.readAllBytes(Paths.get(menuDataPath))).trim().isEmpty()) {
                 content = new String(Files.readAllBytes(Paths.get(menuDataPath)));
             }
             JSONObject fullMenu = new JSONObject(content);

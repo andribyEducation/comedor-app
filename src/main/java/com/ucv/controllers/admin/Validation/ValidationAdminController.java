@@ -37,7 +37,7 @@ public class ValidationAdminController {
             view.dispose();
             // Now, we need to trigger the actual registration in RegisterController
             // This will require a new public method in RegisterController to handle this.
-            registerController.completeAdminRegistration();
+            // registerController.completeAdminRegistration();
 
         } else {
             JOptionPane.showMessageDialog(view, "Código de administrador incorrecto.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
@@ -46,7 +46,7 @@ public class ValidationAdminController {
 
     private String getAdminCode() {
         try {
-            return Files.readString(Paths.get(ADMIN_CODE_PATH)).trim();
+            return new String(Files.readAllBytes(Paths.get(ADMIN_CODE_PATH))).trim();
         } catch (IOException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(view, "Error al leer el código de administrador: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

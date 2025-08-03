@@ -1,7 +1,6 @@
 package com.ucv.controllers.register;
 
 import com.ucv.views.registroView.RegistroView;
-import com.ucv.views.admin.Validation.ValidationAdminView;
 import com.ucv.views.home.Home;
 import com.ucv.controllers.home.HomeController;
 import com.ucv.controllers.registroExitoso.RegistroExitosoController;
@@ -11,6 +10,8 @@ import org.json.JSONObject;
 import com.ucv.services.ConexionService;
 
 import javax.swing.*;
+
+import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -38,8 +39,31 @@ public class RegisterController {
             if (!validarCampos(currentCorreo, currentContrasena, currentCedula, currentTipo)) {
                 return;
             }
-
-            if (existeCorreoOCedula(currentCorreo, currentCedula)) {
+            if (!validarCorreo(currentCorreo)) {
+                JOptionPane.showMessageDialog(view, "El correo electrónico no es válido.");
+                return;
+            }
+            if (currentContrasena.isEmpty()) {
+                JOptionPane.showMessageDialog(view, "El campo contraseña es obligatorio.");
+                return;
+            }
+            if (currentContrasena.length() < 6) {
+                JOptionPane.showMessageDialog(view, "La contraseña debe tener al menos 6 caracteres.");
+                return;
+            }
+            if (currentCedula.isEmpty()) {
+                JOptionPane.showMessageDialog(view, "El campo cédula es obligatorio.");
+                return;
+            }
+            if (!currentCedula.matches("\\d+")) {
+                JOptionPane.showMessageDialog(view, "La cédula debe ser numérica.");
+                return;
+            }
+            if (currentTipo.isEmpty()) {
+                JOptionPane.showMessageDialog(view, "Debe seleccionar un rol.");
+                return;
+            }
+            if (existeCorreoOCedula(currentCorreo, currentCedula, currentTipo)) {
                 JOptionPane.showMessageDialog(view, "El correo o la cédula ya están registrados.");
                 return;
             }
@@ -148,25 +172,20 @@ public class RegisterController {
         return java.util.regex.Pattern.matches(regex, correo);
     }
 
-    private boolean existeCorreoOCedula(String correo, String cedula) {
-        return checkExistence(comensalesDataPath, correo, cedula) ||
-            checkExistence(adminsDataPath, correo, cedula);
+    public boolean validarContrasena(String contrasena) {
+        return contrasena.length() >= 6;
     }
 
-    private boolean checkExistence(String dataPath, String correo, String cedula) {
-        try {
-            if (!Files.exists(Paths.get(dataPath))) {
-                return false;
-            }
-            String content = new String(Files.readAllBytes(Paths.get(dataPath)));
-            if (content.trim().isEmpty()) {
-                return false;
-            }
-            JSONArray users = new JSONArray(content);
-            for (int i = 0; i < users.length(); i++) {
-                JSONObject user = users.getJSONObject(i);
-                if (user.optString("correo").equals(correo) || user.optString("ID").equals(cedula)) {
-                    return true;
+    public boolean existeCorreoOCedula(String correo, String cedula, String tipo) {
+        String dataPath = tipo.equals("comensal") ? comensalesDataPath : adminsDataPath;
+        try (BufferedReader reader = conexionService.obtenerLectorArchivo(dataPath)) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                String[] partes = linea.split("\\|");
+                if (partes.length >= 3) {
+                    if ( ( partes[0].equals(correo) || partes[2].equals(cedula) ) && partes[3].equals(tipo) ) {
+                        return true;
+                    }
                 }
             }
             return false;

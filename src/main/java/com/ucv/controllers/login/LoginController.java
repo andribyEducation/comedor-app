@@ -10,6 +10,7 @@ import com.ucv.views.registroView.RegistroView;
 import javax.swing.JOptionPane;
 
 import com.ucv.controllers.home.HomeController;
+import com.ucv.models.Usuario;
 
 public class LoginController {
 
@@ -68,12 +69,36 @@ public class LoginController {
                 // new ConsultaMenuController(consultaMenu);
                 consultaMenu.setVisible(true);
             }
+            setUsuario(cedula);
             view.setVisible(false);
             if (registroView != null) {
                 registroView.dispose();
             }
         } else {
             JOptionPane.showMessageDialog(view, "Cédula o contraseña incorrectos.", "Error de inicio de sesión", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void setUsuario(String cedula){
+        try (java.io.BufferedReader reader = new java.io.BufferedReader(
+            new java.io.FileReader("data/comensales.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split("\\|");
+                System.out.println("Leyendo línea: " + line);
+                if (parts.length >= 5 && parts[2].equals(cedula)) {
+                    // parts[0]=correo, parts[1]=password, parts[2]=cedula, parts[3]=tipo, parts[4]=saldo
+                    Usuario.setUsuarioActual(new Usuario(
+                        parts[2], // cedula
+                        parts[0], // correo
+                        parts[3], // tipo
+                        Integer.parseInt(parts[4]) // saldo
+                    ));
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

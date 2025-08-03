@@ -46,7 +46,7 @@ public class ValidationAdminController {
 
     private String getAdminCode() {
         try {
-            return Files.readString(Paths.get(ADMIN_CODE_PATH)).trim();
+            return new String(Files.readAllBytes(Paths.get(ADMIN_CODE_PATH))).trim();
         } catch (IOException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(view, "Error al leer el código de administrador: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

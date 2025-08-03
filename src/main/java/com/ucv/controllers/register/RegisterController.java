@@ -6,12 +6,9 @@ import com.ucv.views.home.Home;
 import com.ucv.controllers.home.HomeController;
 import com.ucv.controllers.registroExitoso.RegistroExitosoController;
 import com.ucv.views.registroView.RegistroExitosoView;
-<<<<<<< HEAD
 import org.json.JSONArray;
 import org.json.JSONObject;
-=======
 import com.ucv.services.ConexionService;
->>>>>>> 7b6030e (Conexion service)
 
 import javax.swing.*;
 import java.io.FileWriter;
@@ -23,14 +20,11 @@ public class RegisterController {
     private final String comensalesDataPath = "data/comensales.json";
     private final String adminsDataPath = "data/admins.json";
     private RegistroView view;
-<<<<<<< HEAD
     private String currentCorreo;
     private String currentContrasena;
     private String currentCedula;
     private String currentTipo;
-=======
     private ConexionService conexionService = new ConexionService();
->>>>>>> 7b6030e (Conexion service)
 
     public RegisterController(RegistroView view) {
         this.view = view;
@@ -50,21 +44,16 @@ public class RegisterController {
                 return;
             }
 
-<<<<<<< HEAD
-            if (currentTipo.equals("administrador")) {
-                ValidationAdminView validationView = new ValidationAdminView();
-                new com.ucv.controllers.admin.Validation.ValidationAdminController(validationView, view, this);
-                validationView.setVisible(true);
-=======
             String saldo = "0";
-            String registro = correo + "|" + contrasena + "|" + cedula + "|" + tipo + "|" + saldo + "\n";
+            String registro = currentCorreo + "|" + currentContrasena + "|" + currentCedula + "|" + currentTipo + "|" + saldo + "\n";
             try {
                 conexionService.crearDirectorioSiNoExiste("data");
-                conexionService.escribirLineaArchivo(dataPath, registro);
->>>>>>> 7b6030e (Conexion service)
-                view.setVisible(false);
-            } else {
+                conexionService.escribirLineaArchivo(comensalesDataPath, registro);
                 registrarUsuario(currentCorreo, currentContrasena, currentCedula, currentTipo);
+                view.setVisible(false);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(view, "Error al registrar el usuario: " + ex.getMessage());
+                ex.printStackTrace();
             }
         });
 
@@ -161,7 +150,7 @@ public class RegisterController {
 
     private boolean existeCorreoOCedula(String correo, String cedula) {
         return checkExistence(comensalesDataPath, correo, cedula) ||
-               checkExistence(adminsDataPath, correo, cedula);
+            checkExistence(adminsDataPath, correo, cedula);
     }
 
     private boolean checkExistence(String dataPath, String correo, String cedula) {
@@ -174,45 +163,16 @@ public class RegisterController {
                 return false;
             }
             JSONArray users = new JSONArray(content);
-
-<<<<<<< HEAD
             for (int i = 0; i < users.length(); i++) {
                 JSONObject user = users.getJSONObject(i);
-                if (user.has("correo") && user.has("ID") &&
-                    (user.getString("correo").equalsIgnoreCase(correo) || user.getString("ID").equals(cedula))) {
+                if (user.optString("correo").equals(correo) || user.optString("ID").equals(cedula)) {
                     return true;
-=======
-    public boolean existeCorreoOCedula(String correo, String cedula) {
-        try (BufferedReader reader = conexionService.obtenerLectorArchivo(dataPath)) {
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                String[] partes = linea.split("\\|");
-                if (partes.length >= 3) {
-                    if (partes[0].equalsIgnoreCase(correo) || partes[2].equals(cedula)) {
-                        return true;
-                    }
->>>>>>> 7b6030e (Conexion service)
                 }
             }
-        } catch (IOException | org.json.JSONException e) {
-            System.err.println("Error al verificar la existencia en " + dataPath + ": " + e.getMessage());
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
         }
-        return false;
-    }
-
-<<<<<<< HEAD
-    public void completeAdminRegistration() {
-        registrarUsuario(currentCorreo, currentContrasena, currentCedula, currentTipo);
-=======
-    public void registrarComensal(String correo, String contrasena, String cedula, String tipo) {
-        String saldo = "0";
-        String registro = correo + "|" + contrasena + "|" + cedula + "|" + tipo + "|" + saldo + "\n";
-        try {
-            conexionService.crearDirectorioSiNoExiste("data");
-            conexionService.escribirLineaArchivo(dataPath, registro);
-        } catch (IOException ex) {
-            // Manejo simple para test
-        }
->>>>>>> 7b6030e (Conexion service)
     }
 }

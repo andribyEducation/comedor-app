@@ -37,7 +37,7 @@ public class ValidationAdminController {
             view.dispose();
             // Now, we need to trigger the actual registration in RegisterController
             // This will require a new public method in RegisterController to handle this.
-            registerController.completeAdminRegistration();
+            // registerController.completeAdminRegistration();
 
         } else {
             JOptionPane.showMessageDialog(view, "Código de administrador incorrecto.", "Error de Validación", JOptionPane.ERROR_MESSAGE);

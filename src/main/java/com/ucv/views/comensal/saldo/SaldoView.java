@@ -54,6 +54,7 @@ public class SaldoView extends JFrame {
         JPanel saldoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
         saldoPanel.setOpaque(false);
         JLabel saldoDisponibleLabel = new JLabel("Saldo disponible:", SwingConstants.LEFT);
+
         saldoDisponibleLabel.setFont(new Font("Inter", Font.PLAIN, 22));
         saldoDisponibleLabel.setForeground(Color.WHITE);
         saldoPanel.add(saldoDisponibleLabel);

@@ -16,16 +16,6 @@ public class SaldoController {
 
     private void initListeners() {
 
-        // Cambiar contraseña
-        view.getCambiarContrasenaItem().addActionListener(e -> {
-            JOptionPane.showMessageDialog(view, "Lógica para cambiar contraseña.");
-        });
-
-        // Reportar problema
-        view.getReportarProblemaItem().addActionListener(e -> {
-            JOptionPane.showMessageDialog(view, "Aquí va la lógica para reportar un problema.");
-        });
-
         // Botón volver
         view.getBtnVolver().addActionListener(e -> {
             new ConsultaMenu().setVisible(true);

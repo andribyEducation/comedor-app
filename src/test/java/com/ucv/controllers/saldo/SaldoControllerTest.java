@@ -43,24 +43,6 @@ class SaldoControllerTest {
     }
 
     @Test
-    void testCambiarContrasenaListener() {
-        ActionEvent event = new ActionEvent(stubView.getCambiarContrasenaItem(), ActionEvent.ACTION_PERFORMED, "");
-        for (ActionListener listener : stubView.getCambiarContrasenaItem().getActionListeners()) {
-            listener.actionPerformed(event);
-        }
-        Assertions.assertTrue(true);
-    }
-
-    @Test
-    void testReportarProblemaListener() {
-        ActionEvent event = new ActionEvent(stubView.getReportarProblemaItem(), ActionEvent.ACTION_PERFORMED, "");
-        for (ActionListener listener : stubView.getReportarProblemaItem().getActionListeners()) {
-            listener.actionPerformed(event);
-        }
-        Assertions.assertTrue(true);
-    }
-
-    @Test
     void testBtnVolverListener() {
         ActionEvent event = new ActionEvent(stubView.getBtnVolver(), ActionEvent.ACTION_PERFORMED, "");
         for (ActionListener listener : stubView.getBtnVolver().getActionListeners()) {

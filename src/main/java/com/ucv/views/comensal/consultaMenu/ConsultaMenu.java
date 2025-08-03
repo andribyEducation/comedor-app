@@ -3,6 +3,7 @@ package com.ucv.views.comensal.consultaMenu;
 import com.ucv.components.Button.RoundedButton;
 import com.ucv.components.Header.HeaderPanel;
 import com.ucv.controllers.login.LoginController;
+import com.ucv.components.UserMenu.UserMenu;
 import com.ucv.controllers.saldo.SaldoController;
 import com.ucv.views.comensal.menuDelDia.menuDelDia;
 import com.ucv.views.comensal.saldo.SaldoView;

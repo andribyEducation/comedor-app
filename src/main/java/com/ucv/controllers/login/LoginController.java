@@ -5,12 +5,8 @@ import com.ucv.views.comensal.consultaMenu.ConsultaMenu;
 import com.ucv.views.home.Home;
 import com.ucv.views.login.LoginView;
 import com.ucv.services.AuthService;
-<<<<<<< HEAD
 import com.ucv.views.registroView.RegistroView;
-
-=======
 import com.ucv.services.ConexionService;
->>>>>>> 7b6030e (Conexion service)
 import javax.swing.JOptionPane;
 
 import com.ucv.controllers.home.HomeController;
@@ -20,12 +16,8 @@ public class LoginController {
 
     private LoginView view;
     protected AuthService authService;
-<<<<<<< HEAD
     private RegistroView registroView;
-
-=======
     private ConexionService conexionService = new ConexionService();
->>>>>>> 7b6030e (Conexion service)
 
     public LoginController(LoginView view) {
         this.view = view;

@@ -33,10 +33,13 @@ public class AdminDashboardView extends JFrame {
         createHeader();
         createBody();
 
-        // Acción para botón CCB
-        actionButtons.get("CCB").addActionListener(e -> {
-            new VentanaCCB();
-        });
+        // Mueve esto después de createBody(), cuando el botón ya existe en el mapa
+        RoundedButton ccbButton = actionButtons.get("CCB");
+        if (ccbButton != null) {
+            ccbButton.addActionListener(e -> {
+                new VentanaCCB();
+            });
+        }
     }
 
     private void setupUI() {
@@ -93,7 +96,7 @@ public class AdminDashboardView extends JFrame {
         gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.NORTHEAST;
         gbc.insets = new Insets(20, 0, 0, 20);
-        add(headerPanel, gbc);
+        add(headerPanel, BorderLayout.NORTH);
     }
 
     private void createTitle() {

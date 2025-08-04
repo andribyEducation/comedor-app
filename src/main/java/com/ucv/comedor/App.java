@@ -14,9 +14,6 @@ public class App {
             new HomeController(view);
             view.setVisible(true);
 
-            //dashboard comensal
-            //ConsultaMenu consultaMenu = new ConsultaMenu();
-           //consultaMenu.setVisible(true);
 
         // AdminDashboardView adminView = new AdminDashboardView();
         // new AdminDashboardController(adminView);

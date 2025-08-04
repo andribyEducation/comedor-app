@@ -24,7 +24,7 @@ public class GestionarMenuView extends JFrame {
         tabbedPane.setFont(new Font("Inter", Font.BOLD, 16));
         add(tabbedPane, BorderLayout.CENTER);
 
-        String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes"};
+        String[] dias = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes"};
         for (String dia : dias) {
             tabbedPane.addTab(dia, createDayPanel());
         }

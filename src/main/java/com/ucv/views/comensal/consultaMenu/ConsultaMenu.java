@@ -48,7 +48,7 @@ public class ConsultaMenu extends JFrame {
         // Panel para los días
         JPanel diasPanel = new JPanel(new GridLayout(2, 3, 60, 60));
         diasPanel.setBackground(Color.WHITE);
-        String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes"};
+        String[] dias = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes"};
         for (String dia : dias) {
             diasPanel.add(createDiaPanel(dia));
         }

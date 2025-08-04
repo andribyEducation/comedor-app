@@ -141,7 +141,7 @@ public class SaldoView extends JFrame {
         mainPanel.add(bottomPanel, gbc);
     }
 
-    public StubSaldoView() {
+    public void StubSaldoView() {
         //TODO Auto-generated constructor stub
     }
 

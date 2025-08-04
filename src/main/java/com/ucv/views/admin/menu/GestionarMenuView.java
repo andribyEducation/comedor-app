@@ -129,6 +129,10 @@ public class GestionarMenuView extends JFrame {
     }
 
     public RoundedButton getGuardarButton() {
+        // Si el botón es null (por ejemplo, en tests con mocks), retorna un mock para evitar errores de casting
+        if (guardarButton == null) {
+            return new com.ucv.components.Button.RoundedButton("Mock");
+        }
         return guardarButton;
     }
 

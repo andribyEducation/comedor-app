@@ -70,6 +70,20 @@ public class ConsultaMenu extends JFrame {
         gbc.anchor = GridBagConstraints.SOUTHEAST;
         gbc.insets = new Insets(50, 0, 50, 50);
         mainPanel.add(btnSaldo, gbc);
+
+        // Botón Menus Reservados
+        RoundedButton btnMenusReservados = new RoundedButton("Menus Reservados");
+        btnMenusReservados.setFont(new Font("Inter", Font.BOLD, 22));
+        btnMenusReservados.setPreferredSize(new Dimension(250, 50));
+        btnMenusReservados.addActionListener(e -> {
+            com.ucv.views.comensal.menusReservados.MenusReservadosView view = new com.ucv.views.comensal.menusReservados.MenusReservadosView();
+            new com.ucv.controllers.comensal.MenusReservadosController(view);
+            view.setVisible(true);
+        });
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.SOUTHEAST;
+        gbc.insets = new Insets(0, 0, 50, 50);
+        mainPanel.add(btnMenusReservados, gbc);
     }
 
     private JPanel createDiaPanel(String dia) {

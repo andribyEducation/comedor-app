@@ -2,7 +2,7 @@
     "Miercoles": {
         "almuerzo": {
             "precio": 21.25,
-            "cupos": 1000,
+            "cupos": 999,
             "platos": [
                 "Sopa de pollo y arroz",
                 "Asado Negro con puré de papas",

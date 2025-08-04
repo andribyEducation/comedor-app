@@ -27,6 +27,10 @@ public class Usuario {
         return tipo;
     }
 
+<<<<<<< HEAD
+    public int getSaldo() {
+        return saldo;
+=======
     public String getID() {
         return cedula;
     }
@@ -37,6 +41,7 @@ public class Usuario {
         } else {
             return 0; // Retorna 0 si el saldo no está definido
         }
+>>>>>>> 4c1f5cc236c4cc52a8eac7d2fb57e7ca08d44111
     }
 
     public void setSaldo(double saldo) {

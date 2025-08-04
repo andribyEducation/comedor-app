@@ -15,13 +15,6 @@
     },
     {
         "precio": 0,
-        "tipo": "desayuno",
-        "cedula": "30513493",
-        "posicionCola": 1,
-        "dia": "Lunes"
-    },
-    {
-        "precio": 0,
         "tipo": "almuerzo",
         "cedula": "30513493",
         "posicionCola": 1,

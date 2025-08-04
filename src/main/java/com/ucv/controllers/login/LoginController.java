@@ -98,6 +98,27 @@ public class LoginController {
             String content = new String(Files.readAllBytes(Paths.get(dataPath)));
             JSONArray users = new JSONArray(content);
 
+            String nombre = "";
+            String apellido = "";
+            String rol = "";
+
+            // Buscar datos en secretaria.json
+            try {
+                String secretariaContent = new String(Files.readAllBytes(Paths.get("data/secretaria.json")));
+                JSONArray secretarias = new JSONArray(secretariaContent);
+                for (int j = 0; j < secretarias.length(); j++) {
+                    JSONObject persona = secretarias.getJSONObject(j);
+                    if (cedula.equals(persona.optString("cedula"))) {
+                        nombre = persona.optString("nombre", "");
+                        apellido = persona.optString("apellido", "");
+                        rol = persona.optString("tipo", "");
+                        break;
+                    }
+                }
+            } catch (Exception ex) {
+                // Si no se encuentra, deja los campos vacíos
+            }
+
             for (int i = 0; i < users.length(); i++) {
                 JSONObject user = users.getJSONObject(i);
                 String userCedula = user.getString("ID");
@@ -105,11 +126,12 @@ public class LoginController {
                     String correo = user.getString("correo");
                     Usuario usuario;
                     if ("comensal".equalsIgnoreCase(tipo)) {
-                        int saldo = user.has("saldo") ? user.getInt("saldo") : 0;
-                        usuario = new Usuario(userCedula, correo, tipo);
+                        double saldo = user.has("saldo") ? user.getDouble("saldo") : 0.0;
+                        usuario = new Usuario(userCedula, correo, tipo, nombre, apellido);
                         usuario.setSaldo(saldo);
+                        usuario.setRol(rol);
                     } else {
-                        usuario = new Usuario(userCedula, correo, tipo);
+                        usuario = new Usuario(userCedula, correo, tipo, nombre, apellido);
                     }
                     Usuario.setUsuarioActual(usuario);
                     break;

@@ -138,7 +138,8 @@ public class RegisterController {
             String content = new String(Files.readAllBytes(Paths.get(dataPath)));
             JSONArray secretarias = new JSONArray(content);
             for (int i = 0; i < secretarias.length(); i++) {
-                if (cedula.equals(secretarias.getString(i))) {
+                JSONObject persona = secretarias.getJSONObject(i);
+                if (cedula.equals(persona.optString("cedula"))) {
                     return true;
                 }
             }

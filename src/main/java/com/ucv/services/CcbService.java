@@ -3,10 +3,10 @@ import org.json.JSONObject;
 
 import java.io.*;
 
-public class CostosService {
-        private static final String RUTA_ARCHIVO = "data/costos.json";
+public class CcbService {
+    private static final String RUTA_ARCHIVO = "data/ccb.json";
 
-    public JSONObject leerCostos() throws IOException {
+    public JSONObject leerCcb() throws IOException {
         File archivo = new File(RUTA_ARCHIVO);
         if (!archivo.exists()) {
             return new JSONObject(); 
@@ -23,17 +23,12 @@ public class CostosService {
         return new JSONObject(sb.toString());
     }
 
-    public void guardarCostos(double costoFijo, double costoVariable) throws IOException {
+    public void guardarCcb(JSONObject datos) throws IOException {
         ConexionService conexion = new ConexionService();
         conexion.crearDirectorioSiNoExiste("data");
 
-        JSONObject json = new JSONObject();
-        json.put("costoFijo", costoFijo);
-        json.put("costoVariable", costoVariable);
-
         FileWriter writer = new FileWriter(RUTA_ARCHIVO);
-        writer.write(json.toString(4));
+        writer.write(datos.toString(4));
         writer.close();
     }
 }
-

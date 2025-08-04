@@ -9,12 +9,18 @@
         "correo": "adrian@gmail.com",
         "contrasena": "za63qj2p",
         "ID": "30513493",
-        "saldo": 999999979.0
+        "saldo": 999999979
     },
     {
         "correo": "carmen@gmail.com",
         "contrasena": "123456",
         "ID": "32061534",
         "saldo": 55000
+    },
+    {
+        "correo": "correo@correo.com",
+        "contrasena": "123456",
+        "ID": "987654321",
+        "saldo": 0
     }
 ]

@@ -24,9 +24,9 @@ public class AdminDashboardView extends JFrame {
     private final Map<String, RoundedButton> actionButtons = new HashMap<>();
     private JLabel iconoUsuario;
 
-    public AdminDashboardView() {
+    public AdminDashboardView(String nombreCompleto) {
         setupUI();
-        createHeader();
+        createHeader(nombreCompleto);
         createBody();
     }
 
@@ -39,8 +39,8 @@ public class AdminDashboardView extends JFrame {
         getContentPane().setBackground(Color.WHITE);
     }
 
-    private void createHeader() {
-        headerPanel = new HeaderPanel(this, false, "Dashboard de Administrador", "Juan", true);
+    private void createHeader(String nombreCompleto) {
+        headerPanel = new HeaderPanel(this, false, "Dashboard de Administrador", nombreCompleto, true);
         add(headerPanel, BorderLayout.NORTH);
 
         headerPanel.getBackButtonLabel().addMouseListener(new MouseAdapter() {

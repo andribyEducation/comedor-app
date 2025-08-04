@@ -20,14 +20,14 @@ public class SaldoView extends JFrame {
     private RoundedButton btnVolver;
     private RoundedButton btnRecargar;
 
-    public SaldoView() {
+    public SaldoView(String nombreCompleto) {
         setTitle("Saldo");
         setSize(1920, 1080);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        headerPanel = new HeaderPanel(this,true, "Consultar Saldo", "Juan Perez",false);
+        headerPanel = new HeaderPanel(this,true, "Consultar Saldo", nombreCompleto,false);
         add(headerPanel, BorderLayout.NORTH);
 
         // Panel principal que contendrá todo

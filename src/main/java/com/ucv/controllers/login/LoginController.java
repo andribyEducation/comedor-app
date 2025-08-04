@@ -93,12 +93,18 @@ public class LoginController {
                 // new ConsultaMenuController(consultaMenu);
                 consultaMenu.setVisible(true);
             }
-            view.setVisible(false);
+            setUsuario(cedula, tipo);
+            if (view != null) {
+                view.setVisible(false);
+            }
             if (registroView != null) {
                 registroView.dispose();
             }
         } else {
-            JOptionPane.showMessageDialog(view, "Cédula o contraseña incorrectos.", "Error de inicio de sesión", JOptionPane.ERROR_MESSAGE);
+            // Evita mostrar JOptionPane si no hay UI (por ejemplo, en tests)
+            if (view != null && javax.swing.SwingUtilities.getWindowAncestor(view) != null) {
+                JOptionPane.showMessageDialog(view, "Cédula o contraseña incorrectos.", "Error de inicio de sesión", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 

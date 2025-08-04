@@ -141,6 +141,10 @@ public class SaldoView extends JFrame {
         mainPanel.add(bottomPanel, gbc);
     }
 
+    public StubSaldoView() {
+        //TODO Auto-generated constructor stub
+    }
+
     // Métodos para el controlador
     public JLabel getIconoUsuario() {
         return headerPanel.getIconoUsuario();

@@ -14,9 +14,6 @@ import java.nio.file.Paths;
 import javax.swing.JOptionPane;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.TextStyle;
-import java.util.Locale;
-import java.time.DayOfWeek;
 
 public class MenuDelDiaController {
 
@@ -27,18 +24,22 @@ public class MenuDelDiaController {
         this.view.getBtnReservar().addActionListener(new ReservarListener());
     }
 
-    private class ReservarListener implements ActionListener {
+    public class ReservarListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (!view.isDesayunoReservado() && !view.isAlmuerzoReservado()) {
-                JOptionPane.showMessageDialog(view, "Debe seleccionar al menos un menú para reservar.", "Reserva", JOptionPane.WARNING_MESSAGE);
+                if (view != null && javax.swing.SwingUtilities.getWindowAncestor(view) != null) {
+                    JOptionPane.showMessageDialog(view, "Debe seleccionar al menos un menú para reservar.", "Reserva", JOptionPane.WARNING_MESSAGE);
+                }
                 return;
             }
 
             String dia = view.getTitle().replace("Menú del Día - ", "");
             // Validar si el día ya pasó
             if (diaYaPaso(dia)) {
-                JOptionPane.showMessageDialog(view, "El menú o el día seleccionado ya no se encuentra disponible.", "Menú no disponible", JOptionPane.WARNING_MESSAGE);
+                if (view != null && javax.swing.SwingUtilities.getWindowAncestor(view) != null) {
+                    JOptionPane.showMessageDialog(view, "El menú o el día seleccionado ya no se encuentra disponible.", "Menú no disponible", JOptionPane.WARNING_MESSAGE);
+                }
                 return;
             }
 
@@ -56,22 +57,30 @@ public class MenuDelDiaController {
                     almuerzoFueraDeHora = true;
                 }
                 if (desayunoFueraDeHora && almuerzoFueraDeHora) {
-                    JOptionPane.showMessageDialog(view, "El menú de desayuno y almuerzo ya no están disponibles para hoy.", "Menú no disponible", JOptionPane.WARNING_MESSAGE);
+                    if (view != null && javax.swing.SwingUtilities.getWindowAncestor(view) != null) {
+                        JOptionPane.showMessageDialog(view, "El menú de desayuno y almuerzo ya no están disponibles para hoy.", "Menú no disponible", JOptionPane.WARNING_MESSAGE);
+                    }
                     return;
                 }
                 if (view.isDesayunoReservado() && desayunoFueraDeHora) {
-                    JOptionPane.showMessageDialog(view, "El menú de desayuno ya no está disponible para hoy.", "Menú no disponible", JOptionPane.WARNING_MESSAGE);
+                    if (view != null && javax.swing.SwingUtilities.getWindowAncestor(view) != null) {
+                        JOptionPane.showMessageDialog(view, "El menú de desayuno ya no está disponible para hoy.", "Menú no disponible", JOptionPane.WARNING_MESSAGE);
+                    }
                     return;
                 }
                 if (view.isAlmuerzoReservado() && almuerzoFueraDeHora) {
-                    JOptionPane.showMessageDialog(view, "El menú de almuerzo ya no está disponible para hoy.", "Menú no disponible", JOptionPane.WARNING_MESSAGE);
+                    if (view != null && javax.swing.SwingUtilities.getWindowAncestor(view) != null) {
+                        JOptionPane.showMessageDialog(view, "El menú de almuerzo ya no está disponible para hoy.", "Menú no disponible", JOptionPane.WARNING_MESSAGE);
+                    }
                     return;
                 }
             }
 
             Usuario usuario = Usuario.getUsuarioActual();
             if (usuario == null) {
-                JOptionPane.showMessageDialog(view, "No se encontró el usuario actual.", "Error", JOptionPane.ERROR_MESSAGE);
+                if (view != null && javax.swing.SwingUtilities.getWindowAncestor(view) != null) {
+                    JOptionPane.showMessageDialog(view, "No se encontró el usuario actual.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 return;
             }
 
@@ -86,7 +95,9 @@ public class MenuDelDiaController {
                     reservas = new JSONArray();
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(view, "Error al leer las reservas.", "Error", JOptionPane.ERROR_MESSAGE);
+                if (view != null && javax.swing.SwingUtilities.getWindowAncestor(view) != null) {
+                    JOptionPane.showMessageDialog(view, "Error al leer las reservas.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 return;
             }
 
@@ -108,11 +119,15 @@ public class MenuDelDiaController {
             }
 
             if (view.isDesayunoReservado() && yaReservoDesayuno) {
-                JOptionPane.showMessageDialog(view, "Ya ha reservado el desayuno para este día.", "Reserva duplicada", JOptionPane.WARNING_MESSAGE);
+                if (view != null && javax.swing.SwingUtilities.getWindowAncestor(view) != null) {
+                    JOptionPane.showMessageDialog(view, "Ya ha reservado el desayuno para este día.", "Reserva duplicada", JOptionPane.WARNING_MESSAGE);
+                }
                 return;
             }
             if (view.isAlmuerzoReservado() && yaReservoAlmuerzo) {
-                JOptionPane.showMessageDialog(view, "Ya ha reservado el almuerzo para este día.", "Reserva duplicada", JOptionPane.WARNING_MESSAGE);
+                if (view != null && javax.swing.SwingUtilities.getWindowAncestor(view) != null) {
+                    JOptionPane.showMessageDialog(view, "Ya ha reservado el almuerzo para este día.", "Reserva duplicada", JOptionPane.WARNING_MESSAGE);
+                }
                 return;
             }
 
@@ -145,21 +160,29 @@ public class MenuDelDiaController {
                     total += precioAlmuerzo;
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(view, "Error al validar precios o cupos del menú.", "Error", JOptionPane.ERROR_MESSAGE);
+                if (view != null && javax.swing.SwingUtilities.getWindowAncestor(view) != null) {
+                    JOptionPane.showMessageDialog(view, "Error al validar precios o cupos del menú.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 return;
             }
 
             if (view.isDesayunoReservado() && !cupoDesayuno) {
-                JOptionPane.showMessageDialog(view, "No hay cupos disponibles para el desayuno.", "Cupos insuficientes", JOptionPane.WARNING_MESSAGE);
+                if (view != null && javax.swing.SwingUtilities.getWindowAncestor(view) != null) {
+                    JOptionPane.showMessageDialog(view, "No hay cupos disponibles para el desayuno.", "Cupos insuficientes", JOptionPane.WARNING_MESSAGE);
+                }
                 return;
             }
             if (view.isAlmuerzoReservado() && !cupoAlmuerzo) {
-                JOptionPane.showMessageDialog(view, "No hay cupos disponibles para el almuerzo.", "Cupos insuficientes", JOptionPane.WARNING_MESSAGE);
+                if (view != null && javax.swing.SwingUtilities.getWindowAncestor(view) != null) {
+                    JOptionPane.showMessageDialog(view, "No hay cupos disponibles para el almuerzo.", "Cupos insuficientes", JOptionPane.WARNING_MESSAGE);
+                }
                 return;
             }
 
             if (usuario.getSaldo() < total) {
-                JOptionPane.showMessageDialog(view, "No tiene saldo suficiente para reservar el/los menú(s) seleccionados.", "Saldo insuficiente", JOptionPane.WARNING_MESSAGE);
+                if (view != null && javax.swing.SwingUtilities.getWindowAncestor(view) != null) {
+                    JOptionPane.showMessageDialog(view, "No tiene saldo suficiente para reservar el/los menú(s) seleccionados.", "Saldo insuficiente", JOptionPane.WARNING_MESSAGE);
+                }
                 return;
             }
 
@@ -182,7 +205,9 @@ public class MenuDelDiaController {
                     }
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(view, "Error al actualizar los cupos del menú.", "Error", JOptionPane.ERROR_MESSAGE);
+                if (view != null && javax.swing.SwingUtilities.getWindowAncestor(view) != null) {
+                    JOptionPane.showMessageDialog(view, "Error al actualizar los cupos del menú.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 return;
             }
 
@@ -213,11 +238,15 @@ public class MenuDelDiaController {
                     writer.write(reservas.toString(4));
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(view, "Error al guardar la reserva.", "Error", JOptionPane.ERROR_MESSAGE);
+                if (view != null && javax.swing.SwingUtilities.getWindowAncestor(view) != null) {
+                    JOptionPane.showMessageDialog(view, "Error al guardar la reserva.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 return;
             }
 
-            JOptionPane.showMessageDialog(view, "¡Reserva realizada con éxito!", "Reserva", JOptionPane.INFORMATION_MESSAGE);
+            if (view != null && javax.swing.SwingUtilities.getWindowAncestor(view) != null) {
+                JOptionPane.showMessageDialog(view, "¡Reserva realizada con éxito!", "Reserva", JOptionPane.INFORMATION_MESSAGE);
+            }
             view.dispose();
         }
 

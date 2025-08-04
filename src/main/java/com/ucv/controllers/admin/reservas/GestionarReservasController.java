@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 public class GestionarReservasController {
 
     private GestionarReservasView view;
@@ -148,7 +149,10 @@ public class GestionarReservasController {
             String comensalesContent = new String(Files.readAllBytes(Paths.get(comensalesPath)));
             comensalesArr = new JSONArray(comensalesContent);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(view, "Error al leer comensales.json: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            // Solo mostrar JOptionPane si hay UI (evita NullPointerException en tests)
+            if (view != null && SwingUtilities.getWindowAncestor(view) != null) {
+                JOptionPane.showMessageDialog(view, "Error al leer comensales.json: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
             return false;
         }
 
@@ -158,7 +162,9 @@ public class GestionarReservasController {
             if (comensal.optString("ID").equals(cedula)) {
                 int saldoActual = comensal.optInt("saldo", 0);
                 if (saldoActual < precioMenu) {
-                    JOptionPane.showMessageDialog(view, "El usuario no tiene saldo suficiente para validar la reserva.", "Saldo insuficiente", JOptionPane.ERROR_MESSAGE);
+                    if (view != null && SwingUtilities.getWindowAncestor(view) != null) {
+                        JOptionPane.showMessageDialog(view, "El usuario no tiene saldo suficiente para validar la reserva.", "Saldo insuficiente", JOptionPane.ERROR_MESSAGE);
+                    }
                     return false;
                 }
                 comensal.put("saldo", saldoActual - (int)precioMenu);
@@ -167,13 +173,17 @@ public class GestionarReservasController {
             }
         }
         if (!saldoActualizado) {
-            JOptionPane.showMessageDialog(view, "No se encontró el usuario en comensales.json.", "Error", JOptionPane.ERROR_MESSAGE);
+            if (view != null && SwingUtilities.getWindowAncestor(view) != null) {
+                JOptionPane.showMessageDialog(view, "No se encontró el usuario en comensales.json.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
             return false;
         }
         try {
             Files.write(Paths.get(comensalesPath), comensalesArr.toString(4).getBytes());
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(view, "Error al actualizar comensales.json: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            if (view != null && SwingUtilities.getWindowAncestor(view) != null) {
+                JOptionPane.showMessageDialog(view, "Error al actualizar comensales.json: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
             return false;
         }
         return true;

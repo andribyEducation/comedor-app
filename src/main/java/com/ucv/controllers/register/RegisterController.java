@@ -63,6 +63,10 @@ public class RegisterController {
                 JOptionPane.showMessageDialog(view, "Debe seleccionar un rol.");
                 return;
             }
+            if(!validarSecretaria(currentCedula)) {
+                JOptionPane.showMessageDialog(view, "La cédula no está autorizada para el registro.");
+                return;
+            }
             if (existeCorreoOCedula(currentCorreo, currentCedula, currentTipo)) {
                 JOptionPane.showMessageDialog(view, "El correo o la cédula ya están registrados.");
                 return;
@@ -128,7 +132,25 @@ public class RegisterController {
         return true;
     }
 
+    private boolean validarSecretaria(String cedula) {
+        String dataPath = "data/secretaria.json";
+        try {
+            String content = new String(Files.readAllBytes(Paths.get(dataPath)));
+            JSONArray secretarias = new JSONArray(content);
+            for (int i = 0; i < secretarias.length(); i++) {
+                if (cedula.equals(secretarias.getString(i))) {
+                    return true;
+                }
+            }
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     private void registrarUsuario(String correo, String contrasena, String cedula, String tipo) {
+
         String dataPath = tipo.equals("comensal") ? comensalesDataPath : adminsDataPath;
         JSONObject nuevoUsuario = new JSONObject();
         nuevoUsuario.put("ID", cedula);
@@ -178,18 +200,25 @@ public class RegisterController {
 
     public boolean existeCorreoOCedula(String correo, String cedula, String tipo) {
         String dataPath = tipo.equals("comensal") ? comensalesDataPath : adminsDataPath;
-        try (BufferedReader reader = conexionService.obtenerLectorArchivo(dataPath)) {
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                String[] partes = linea.split("\\|");
-                if (partes.length >= 3) {
-                    if ( ( partes[0].equals(correo) || partes[2].equals(cedula) ) && partes[3].equals(tipo) ) {
-                        return true;
-                    }
+        try {
+            if (!Files.exists(Paths.get(dataPath))) {
+                return false;
+            }
+            String content = new String(Files.readAllBytes(Paths.get(dataPath)));
+            if (content.trim().isEmpty()) {
+                return false;
+            }
+            JSONArray usuarios = new JSONArray(content);
+            for (int i = 0; i < usuarios.length(); i++) {
+                JSONObject usuario = usuarios.getJSONObject(i);
+                String correoJson = usuario.getString("correo");
+                String cedulaJson = usuario.getString("ID");
+                if (correoJson.equals(correo) || cedulaJson.equals(cedula)) {
+                    return true;
                 }
             }
             return false;
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }

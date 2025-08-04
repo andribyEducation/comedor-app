@@ -6,10 +6,12 @@ import com.ucv.views.home.Home;
 import com.ucv.views.login.LoginView;
 import com.ucv.services.AuthService;
 import com.ucv.views.registroView.RegistroView;
-import com.ucv.services.ConexionService;
 import javax.swing.JOptionPane;
-
 import com.ucv.controllers.home.HomeController;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import com.ucv.models.Usuario;
 
 public class LoginController {
@@ -17,7 +19,9 @@ public class LoginController {
     private LoginView view;
     protected AuthService authService;
     private RegistroView registroView;
-    private ConexionService conexionService = new ConexionService();
+
+    private static final String ADMINS_DATA_PATH = "data/admins.json";
+    private static final String COMENSALES_DATA_PATH = "data/comensales.json";
 
     public LoginController(LoginView view) {
         this.view = view;
@@ -27,7 +31,12 @@ public class LoginController {
         this.view.getLoginButton().addActionListener(e -> {
             String cedula = view.getCedula();
             String contrasena = view.getContrasena();
-            handleLogin(cedula, contrasena);
+            String tipo = view.getTipo();
+            if (tipo == null || tipo.isEmpty()) {
+                JOptionPane.showMessageDialog(view, "Debe seleccionar un tipo de usuario.", "Tipo de usuario requerido", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            handleLogin(cedula, contrasena, tipo);
         });
 
         this.view.getBackLabel().addMouseListener(new java.awt.event.MouseAdapter() {
@@ -46,7 +55,12 @@ public class LoginController {
         this.view.getLoginButton().addActionListener(e -> {
             String cedula = view.getCedula();
             String contrasena = view.getContrasena();
-            handleLogin(cedula, contrasena);
+            String tipo = view.getTipo();
+            if (tipo == null || tipo.isEmpty()) {
+                JOptionPane.showMessageDialog(view, "Debe seleccionar un tipo de usuario.", "Tipo de usuario requerido", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            handleLogin(cedula, contrasena, tipo);
         });
 
         this.view.getBackLabel().addMouseListener(new java.awt.event.MouseAdapter() {
@@ -57,9 +71,8 @@ public class LoginController {
         });
     }
 
-    public void handleLogin(String cedula, String contrasena) {
-        String tipo = authService.autenticarYObtenerTipo(cedula, contrasena);
-        if (tipo != null) {
+    public void handleLogin(String cedula, String contrasena, String tipo) {
+        if (tipo != null && authService.autenticar(cedula, contrasena, tipo)) {
             if ("administrador".equalsIgnoreCase(tipo)) {
                 AdminDashboardView adminDashboard = new AdminDashboardView();
                 new com.ucv.controllers.adminDashboard.AdminDashboardController(adminDashboard);
@@ -69,7 +82,7 @@ public class LoginController {
                 // new ConsultaMenuController(consultaMenu);
                 consultaMenu.setVisible(true);
             }
-            setUsuario(cedula);
+            setUsuario(cedula, tipo);
             view.setVisible(false);
             if (registroView != null) {
                 registroView.dispose();
@@ -79,20 +92,26 @@ public class LoginController {
         }
     }
 
-    private void setUsuario(String cedula){
-        try (java.io.BufferedReader reader = conexionService.obtenerLectorArchivo("data/comensales.txt")) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split("\\|");
-                System.out.println("Leyendo línea: " + line);
-                if (parts.length >= 5 && parts[2].equals(cedula)) {
-                    // parts[0]=correo, parts[1]=password, parts[2]=cedula, parts[3]=tipo, parts[4]=saldo
-                    Usuario.setUsuarioActual(new Usuario(
-                        parts[2], // cedula
-                        parts[0], // correo
-                        parts[3], // tipo
-                        Integer.parseInt(parts[4]) // saldo
-                    ));
+    private void setUsuario(String cedula, String tipo){
+        String dataPath = "administrador".equalsIgnoreCase(tipo) ? ADMINS_DATA_PATH : COMENSALES_DATA_PATH;
+        try {
+            String content = new String(Files.readAllBytes(Paths.get(dataPath)));
+            JSONArray users = new JSONArray(content);
+
+            for (int i = 0; i < users.length(); i++) {
+                JSONObject user = users.getJSONObject(i);
+                String userCedula = user.getString("ID");
+                if (userCedula.equals(cedula)) {
+                    String correo = user.getString("correo");
+                    Usuario usuario;
+                    if ("comensal".equalsIgnoreCase(tipo)) {
+                        int saldo = user.has("saldo") ? user.getInt("saldo") : 0;
+                        usuario = new Usuario(userCedula, correo, tipo);
+                        usuario.setSaldo(saldo);
+                    } else {
+                        usuario = new Usuario(userCedula, correo, tipo);
+                    }
+                    Usuario.setUsuarioActual(usuario);
                     break;
                 }
             }

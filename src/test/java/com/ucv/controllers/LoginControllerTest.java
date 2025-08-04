@@ -23,12 +23,7 @@ class LoginControllerTest {
     }
 
     static class StubAuthService extends AuthService {
-        private String tipoRetorno;
         public void setTipoRetorno(String tipo) { this.tipoRetorno = tipo; }
-        @Override
-        public String autenticarYObtenerTipo(String cedula, String contrasena) {
-            return tipoRetorno;
-        }
     }
 
     private StubLoginView stubView;

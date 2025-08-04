@@ -14,19 +14,8 @@ public class AuthService {
     private static final String ADMINS_DATA_PATH = "data/admins.json";
     private static final String COMENSALES_DATA_PATH = "data/comensales.json";
 
-    public String autenticarYObtenerTipo(String cedula, String contrasena) {
-        if (autenticar(ADMINS_DATA_PATH, cedula, contrasena)) {
-            return "administrador";
-        }
-
-        if (autenticar(COMENSALES_DATA_PATH, cedula, contrasena)) {
-            return "comensal";
-        }
-
-        return null;
-    }
-
-    private boolean autenticar(String dataPath, String cedula, String contrasena) {
+    public boolean autenticar(String cedula, String contrasena, String tipo) {
+        String dataPath = "administrador".equalsIgnoreCase(tipo) ? ADMINS_DATA_PATH : COMENSALES_DATA_PATH;
         try {
             String content = new String(Files.readAllBytes(Paths.get(dataPath)));
             JSONArray users = new JSONArray(content);

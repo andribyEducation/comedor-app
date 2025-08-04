@@ -56,7 +56,6 @@ public class AdminDashboardView extends JFrame {
 
     private void createBody() {
         JPanel mainPanel = new JPanel(new GridBagLayout());
-        JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setBackground(Color.WHITE);
         add(mainPanel, BorderLayout.CENTER);
 

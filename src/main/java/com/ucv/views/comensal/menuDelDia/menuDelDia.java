@@ -130,7 +130,9 @@ public class menuDelDia extends JFrame {
 
         panel.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        JLabel lblPrecio = new JLabel("Precio: " + String.format("%.2f", menu.getDouble("precio")) + " Bs.");
+        JSONObject precios = menus.getJSONObject("precios");
+        double precio = precios.getDouble(this.userRole.toLowerCase());
+        JLabel lblPrecio = new JLabel("Precio: " + String.format("%.2f", precio) + " Bs.");
         lblPrecio.setFont(new Font("Inter", Font.BOLD, 16));
         lblPrecio.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(lblPrecio);

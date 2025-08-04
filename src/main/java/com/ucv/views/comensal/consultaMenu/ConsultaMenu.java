@@ -98,7 +98,9 @@ public class ConsultaMenu extends JFrame {
         verMenu.setFont(new Font("Inter", Font.BOLD, 20));
         verMenu.setPreferredSize(new Dimension(300, 50));
         verMenu.addActionListener(e -> {
-            menuDelDia menuView = new menuDelDia(dia);
+            com.ucv.models.Usuario usuarioActual = com.ucv.models.Usuario.getUsuarioActual();
+            String userRole = (usuarioActual != null && usuarioActual.getRol() != null) ? usuarioActual.getRol() : "estudiante";
+            menuDelDia menuView = new menuDelDia(dia, userRole);
             new MenuDelDiaController(menuView);
             menuView.setVisible(true);
         });

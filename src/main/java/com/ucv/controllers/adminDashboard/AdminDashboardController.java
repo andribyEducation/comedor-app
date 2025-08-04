@@ -27,7 +27,9 @@ public class AdminDashboardController {
     private void initController() {
         // Listeners para los botones de acción principales
         view.getActionButtons().forEach((option, button) -> {
-            button.addActionListener(e -> showDashboardOption(option));
+            if (!"CCB".equals(option)) {
+                button.addActionListener(e -> showDashboardOption(option));
+            }
         });
     }
 

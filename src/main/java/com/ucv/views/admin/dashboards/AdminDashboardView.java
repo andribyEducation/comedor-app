@@ -69,7 +69,7 @@ public class AdminDashboardView extends JFrame {
         for (int i = 0; i < options.length; i++) {
             gbc.gridx = i;
             mainPanel.add(createActionButtonPanel(options[i], buttonTexts[i]), gbc);
-        }
+    }
 
         // Listener para el botón CCB
         RoundedButton ccbButton = actionButtons.get("CCB");
@@ -189,7 +189,32 @@ public class AdminDashboardView extends JFrame {
             loadCcb();
 
             // Listener para el botón de calcular
-            btnCalcular.addActionListener(e -> calcularYGuardarCCB());
+            btnCalcular.addActionListener(e -> {
+                try {
+                    double costoFijo = Double.parseDouble(inputFijos.getText());
+                    double costoVariable = Double.parseDouble(inputVariables.getText());
+                    double ccb = costoFijo + costoVariable;
+
+                    // Guardar los costos fijos y variables
+                    CostosService costosService = new CostosService();
+                    costosService.guardarCostos(costoFijo, costoVariable);
+
+                    // Actualizar los precios del menú usando el CcbService
+                    CcbService ccbService = new CcbService();
+                    ccbService.actualizarPreciosMenu(ccb);
+
+                    JOptionPane.showMessageDialog(this, 
+                        "CCB calculado: " + String.format("%.2f", ccb) + "\n" +
+                        "Los precios para todos los tipos de usuario han sido actualizados exitosamente.",
+                        "Cálculo Exitoso", 
+                        JOptionPane.INFORMATION_MESSAGE);
+
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(this, "Por favor, ingrese valores numéricos válidos.", "Error de Formato", JOptionPane.ERROR_MESSAGE);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, "Error al guardar los datos: " + ex.getMessage(), "Error de Archivo", JOptionPane.ERROR_MESSAGE);
+                }
+            });
         }
 
         private void calcularYGuardarCCB() {

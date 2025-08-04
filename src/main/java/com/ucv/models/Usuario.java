@@ -28,11 +28,7 @@ public class Usuario {
     }
 
     public int getSaldo() {
-        if(saldo != -1) {
-            return saldo;
-        } else {
-            return 0; // Retorna 0 si el saldo no está definido
-        }
+        return saldo;
     }
 
     public void setSaldo(int saldo) {

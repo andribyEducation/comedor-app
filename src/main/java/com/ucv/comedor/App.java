@@ -9,13 +9,13 @@ public class App {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
 
-            /*Home view = new Home();
+            Home view = new Home();
             new HomeController(view);
-            view.setVisible(true); */
+            view.setVisible(true); 
 
-            AdminDashboardView adminDashboardView = new AdminDashboardView();
-            new AdminDashboardController(adminDashboardView);
-            adminDashboardView.setVisible(true);
+            // AdminDashboardView adminDashboardView = new AdminDashboardView();
+            // new AdminDashboardController(adminDashboardView);
+            // adminDashboardView.setVisible(true);
         });
     }
 }

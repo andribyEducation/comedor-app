@@ -11,7 +11,6 @@ import com.ucv.services.ConexionService;
 
 import javax.swing.*;
 
-import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -107,7 +106,7 @@ public class RegisterController {
         });
     }
 
-    private boolean validarCampos(String correo, String contrasena, String cedula, String tipo) {
+    public boolean validarCampos(String correo, String contrasena, String cedula, String tipo) {
         if (correo.isEmpty()) {
             JOptionPane.showMessageDialog(view, "El campo correo es obligatorio.");
             return false;
@@ -236,7 +235,7 @@ public class RegisterController {
         }
     }
 
-    private String obtenerTipoPersonaSecretaria(String cedula) {
+    public String obtenerTipoPersonaSecretaria(String cedula) {
         String dataPath = "data/secretaria.json";
         try {
             String content = new String(Files.readAllBytes(Paths.get(dataPath)));
@@ -253,7 +252,7 @@ public class RegisterController {
         return null;
     }
 
-    private boolean validarTipoRegistro(String tipoPersona, String tipoRegistro) {
+    public boolean validarTipoRegistro(String tipoPersona, String tipoRegistro) {
         if ("administrador".equalsIgnoreCase(tipoPersona)) {
             // Un administrador puede registrarse como comensal o administrador
             return "comensal".equalsIgnoreCase(tipoRegistro) || "administrador".equalsIgnoreCase(tipoRegistro);

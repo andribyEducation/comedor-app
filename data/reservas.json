@@ -1,23 +1,7 @@
-[
-    {
-        "precio": 0,
-        "tipo": "desayuno",
-        "cedula": "30513493",
-        "posicionCola": 1,
-        "dia": "Miercoles"
-    },
-    {
-        "precio": 0,
-        "tipo": "desayuno",
-        "cedula": "30513493",
-        "posicionCola": 1,
-        "dia": "Martes"
-    },
-    {
-        "precio": 0,
-        "tipo": "almuerzo",
-        "cedula": "30513493",
-        "posicionCola": 1,
-        "dia": "Lunes"
-    }
-]
+[{
+    "tipo": "desayuno",
+    "precio": 10,
+    "cedula": "30513493",
+    "posicionCola": 1,
+    "dia": "Lunes"
+}]

@@ -19,5 +19,12 @@
         "cedula": "30513493",
         "posicionCola": 1,
         "dia": "Lunes"
+    },
+    {
+        "precio": 0,
+        "tipo": "almuerzo",
+        "cedula": "32061534",
+        "posicionCola": 2,
+        "dia": "Lunes"
     }
 ]

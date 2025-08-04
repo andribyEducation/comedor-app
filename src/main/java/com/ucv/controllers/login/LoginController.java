@@ -73,16 +73,26 @@ public class LoginController {
 
     public void handleLogin(String cedula, String contrasena, String tipo) {
         if (tipo != null && authService.autenticar(cedula, contrasena, tipo)) {
+            setUsuario(cedula, tipo);
+            Usuario usuarioActual = Usuario.getUsuarioActual();
+            String nombreCompleto = "";
+            String rol = "";
+            if (usuarioActual != null) {
+                nombreCompleto = usuarioActual.getNombre() + " " + usuarioActual.getApellido();
+                rol = usuarioActual.getRol();
+            }
+
+            String displayText = rol + ": " + nombreCompleto;
+
             if ("administrador".equalsIgnoreCase(tipo)) {
-                AdminDashboardView adminDashboard = new AdminDashboardView();
+                AdminDashboardView adminDashboard = new AdminDashboardView(displayText);
                 new com.ucv.controllers.adminDashboard.AdminDashboardController(adminDashboard);
                 adminDashboard.setVisible(true);
             } else if ("comensal".equalsIgnoreCase(tipo)) {
-                ConsultaMenu consultaMenu = new ConsultaMenu();
+                ConsultaMenu consultaMenu = new ConsultaMenu(displayText);
                 // new ConsultaMenuController(consultaMenu);
                 consultaMenu.setVisible(true);
             }
-            setUsuario(cedula, tipo);
             view.setVisible(false);
             if (registroView != null) {
                 registroView.dispose();
@@ -132,6 +142,7 @@ public class LoginController {
                         usuario.setRol(rol);
                     } else {
                         usuario = new Usuario(userCedula, correo, tipo, nombre, apellido);
+                        usuario.setRol(rol);
                     }
                     Usuario.setUsuarioActual(usuario);
                     break;

@@ -59,7 +59,7 @@
     "Lunes": {
         "almuerzo": {
             "precio": 0,
-            "cupos": 999,
+            "cupos": 998,
             "platos": [
                 "Sancocho de res",
                 "Hallacas con ensalada de gallina",

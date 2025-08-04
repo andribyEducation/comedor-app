@@ -42,6 +42,12 @@ public class UserMenu extends JPopupMenu {
         add(reportarProblema);
 
         JMenuItem cerrarSesion = crearItem("Cerrar sesión");
+        cerrarSesion.addActionListener(e -> {
+            parent.dispose();
+            com.ucv.views.login.LoginView loginView = new com.ucv.views.login.LoginView();
+            new com.ucv.controllers.login.LoginController(loginView);
+            loginView.setVisible(true);
+        });
         add(cerrarSesion);
     }
 

@@ -25,14 +25,6 @@ public class AdminDashboardController {
      * Inicializa todos los listeners para los componentes de la vista.
      */
     private void initController() {
-        // Listener para mostrar el menú desplegable al hacer clic en el icono de usuario
-        view.getIconoUsuario().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                showUserMenu();
-            }
-        });
-
         // Listeners para los botones de acción principales
         view.getActionButtons().forEach((option, button) -> {
             button.addActionListener(e -> showDashboardOption(option));

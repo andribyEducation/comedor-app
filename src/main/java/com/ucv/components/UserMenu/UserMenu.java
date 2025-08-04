@@ -1,12 +1,15 @@
 package com.ucv.components.UserMenu;
 
 import javax.swing.*;
+
+import com.ucv.models.Usuario;
+
 import java.awt.*;
 import java.awt.event.*;
 
 public class UserMenu extends JPopupMenu {
-
-    public UserMenu(JFrame parent, String userName) {
+    Usuario usuarioActual = Usuario.getUsuarioActual();
+    public UserMenu(JFrame parent) {
         super();
         setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         setOpaque(false);
@@ -22,7 +25,7 @@ public class UserMenu extends JPopupMenu {
             }
         });
 
-        JLabel nombreUsuario = new JLabel(userName);
+        JLabel nombreUsuario = new JLabel(usuarioActual.getNombre() + " " + usuarioActual.getApellido());
         nombreUsuario.setFont(new Font("Inter", Font.BOLD, 22));
         nombreUsuario.setForeground(Color.WHITE);
         nombreUsuario.setOpaque(false);

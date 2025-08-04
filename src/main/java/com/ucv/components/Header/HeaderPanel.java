@@ -72,7 +72,7 @@ public class HeaderPanel extends JPanel {
         add(iconoUsuario, BorderLayout.EAST);
 
         // Menú de Usuario
-        menuUsuario = new UserMenu(parent, userName);
+        menuUsuario = new UserMenu(parent);
         iconoUsuario.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {

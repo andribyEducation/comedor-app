@@ -40,11 +40,8 @@ public class AdminDashboardView extends JFrame {
     }
 
     private void createHeader() {
-        headerPanel = new HeaderPanel(false, "Dashboard de Administrador", "Juan", true);
+        headerPanel = new HeaderPanel(this, false, "Dashboard de Administrador", "Juan", true);
         add(headerPanel, BorderLayout.NORTH);
-
-        iconoUsuario = headerPanel.getIconoUsuario();
-        menuUsuario = new UserMenu(this, "Administrador: Nombre");
 
         headerPanel.getBackButtonLabel().addMouseListener(new MouseAdapter() {
             @Override
@@ -58,25 +55,22 @@ public class AdminDashboardView extends JFrame {
     }
 
     private void createBody() {
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setBackground(Color.WHITE);
         mainPanel.setBorder(BorderFactory.createEmptyBorder(50, 100, 50, 100));
         add(mainPanel, BorderLayout.CENTER);
 
-        mainPanel.add(Box.createVerticalStrut(60));
-
-        // Botones
-        JPanel buttonsPanel = new JPanel(new GridLayout(1, 3, 100, 0));
-        buttonsPanel.setOpaque(false);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(20, 20, 20, 20);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
         String[] options = {"Gestionar Menú", "CCB", "Gestionar Reservas"};
         String[] buttonTexts = {"Gestionar", "Calcular", "Ver Reservas"};
 
         for (int i = 0; i < options.length; i++) {
-            buttonsPanel.add(createActionButtonPanel(options[i], buttonTexts[i]));
+            gbc.gridx = i;
+            mainPanel.add(createActionButtonPanel(options[i], buttonTexts[i]), gbc);
         }
-        mainPanel.add(buttonsPanel);
 
         // Listener para el botón CCB
         RoundedButton ccbButton = actionButtons.get("CCB");
@@ -95,23 +89,25 @@ public class AdminDashboardView extends JFrame {
         }
     }
 
-
     private JPanel createActionButtonPanel(String option, String buttonText) {
-        JPanel panel = new JPanel(new BorderLayout(0, 0));
+        JPanel panel = new JPanel(new GridBagLayout());
         panel.setOpaque(false);
+        GridBagConstraints gbc = new GridBagConstraints();
 
         JLabel lblOption = new JLabel(option, SwingConstants.CENTER);
         lblOption.setFont(new Font("Inter", Font.BOLD, 30));
-        panel.add(lblOption, BorderLayout.CENTER);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(0, 0, 10, 0);
+        panel.add(lblOption, gbc);
 
         RoundedButton actionButton = new RoundedButton(buttonText);
         actionButton.setFont(new Font("Inter", Font.BOLD, 22));
         actionButton.setPreferredSize(new Dimension(300, 50));
         actionButtons.put(option, actionButton);
-        JPanel buttonContainer = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        buttonContainer.setOpaque(false);
-        buttonContainer.add(actionButton);
-        panel.add(buttonContainer, BorderLayout.SOUTH);
+        gbc.gridy = 1;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        panel.add(actionButton, gbc);
 
         return panel;
     }

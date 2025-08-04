@@ -25,7 +25,7 @@ public class ConsultaMenu extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        headerPanel = new HeaderPanel(false,"Turnos Disponibles", "Pedro",true);
+        headerPanel = new HeaderPanel(this, false,"Turnos Disponibles", "Pedro",true);
         add(headerPanel, BorderLayout.NORTH);
 
          headerPanel.getBackButtonLabel().addMouseListener(new MouseAdapter() {

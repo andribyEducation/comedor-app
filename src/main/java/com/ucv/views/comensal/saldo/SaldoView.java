@@ -27,7 +27,7 @@ public class SaldoView extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        headerPanel = new HeaderPanel(true, "Consultar Saldo", "Juan Perez",false);
+        headerPanel = new HeaderPanel(this,true, "Consultar Saldo", "Juan Perez",false);
         add(headerPanel, BorderLayout.NORTH);
 
         // Panel principal que contendrá todo
@@ -146,13 +146,6 @@ public class SaldoView extends JFrame {
         return headerPanel.getIconoUsuario();
     }
 
-    public JMenuItem getCambiarContrasenaItem() {
-        return headerPanel.getCambiarContrasenaItem();
-    }
-
-    public JMenuItem getReportarProblemaItem() {
-        return headerPanel.getReportarProblemaItem();
-    }
 
     public JLabel getSaldoLabel() {
         return saldoLabel;

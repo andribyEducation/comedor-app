@@ -7,7 +7,7 @@ import com.ucv.components.TextInput.TextInput;
 import com.ucv.controllers.login.LoginController;
 import com.ucv.views.login.LoginView;
 import com.ucv.components.UserMenu.UserMenu;
-import com.ucv.services.CostosService;
+import com.ucv.services.CcbService;
 
 import javax.swing.*;
 import org.json.JSONObject;
@@ -56,8 +56,8 @@ public class AdminDashboardView extends JFrame {
 
     private void createBody() {
         JPanel mainPanel = new JPanel(new GridBagLayout());
+        JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setBackground(Color.WHITE);
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(50, 100, 50, 100));
         add(mainPanel, BorderLayout.CENTER);
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -75,7 +75,7 @@ public class AdminDashboardView extends JFrame {
         // Listener para el botón CCB
         RoundedButton ccbButton = actionButtons.get("CCB");
         if (ccbButton != null) {
-            ccbButton.addActionListener(e -> new VentanaCCB());
+            ccbButton.addActionListener(e -> new VentanaCCB().setVisible(true));
         }
 
         // Listener para el botón Gestionar Reservas
@@ -130,69 +130,107 @@ public class AdminDashboardView extends JFrame {
 
     // VENTANA CCB INTERNA
     class VentanaCCB extends JFrame {
+        private TextInput inputFijos;
+        private TextInput inputVariables;
+        private TextInput inputNB;
+        private TextInput inputMerma;
+        private final CcbService ccbService;
+
         public VentanaCCB() {
+            this.ccbService = new CcbService();
             setTitle("Costo Cubierto por Bandeja (CCB)");
-            setSize(700, 600);
+            setSize(1000, 850);
             setLocationRelativeTo(AdminDashboardView.this);
-            setLayout(new BorderLayout());
+            setLayout(new GridBagLayout());
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             getContentPane().setBackground(Color.WHITE);
 
-            JPanel mainPanel = new JPanel();
-            mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-            mainPanel.setBorder(BorderFactory.createEmptyBorder(30, 40, 30, 40));
-            mainPanel.setBackground(Color.WHITE);
-            add(mainPanel, BorderLayout.CENTER);
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.insets = new Insets(10, 10, 10, 10);
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.gridwidth = 2;
+            gbc.anchor = GridBagConstraints.CENTER;
 
             // Título
             JLabel lblTitle = new JLabel("Costo Cubierto por Bandeja (CCB)");
             lblTitle.setFont(new Font("Inter", Font.BOLD, 24));
-            lblTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
-            mainPanel.add(lblTitle);
-            mainPanel.add(Box.createVerticalStrut(30));
+            add(lblTitle, gbc);
 
-            // Sección de Costos Fijos
-            mainPanel.add(createCostSection("Costos Fijos", "Ingrese costo fijo"));
-            mainPanel.add(Box.createVerticalStrut(30));
+            // Secciones de Costos
+            gbc.gridwidth = 1;
+            gbc.anchor = GridBagConstraints.WEST;
 
-            // Sección de Costos Variables
-            mainPanel.add(createCostSection("Costos Variables", "Ingrese costo variable"));
-            mainPanel.add(Box.createVerticalStrut(40));
+            inputFijos = new TextInput("Ingrese costo fijo");
+            gbc.gridy++;
+            add(createCostSection("Costos Fijos", inputFijos), gbc);
+
+            inputVariables = new TextInput("Ingrese costo variable");
+            gbc.gridy++;
+            add(createCostSection("Costos Variables", inputVariables), gbc);
+
+            inputNB = new TextInput("Ingrese número de bandejas del periodo");
+            gbc.gridy++;
+            add(createCostSection("Número de Bandejas (NB)", inputNB), gbc);
+
+            inputMerma = new TextInput("Ingrese porcentaje de merma");
+            gbc.gridy++;
+            add(createCostSection("% Merma", inputMerma), gbc);
+
 
             // Botón Calcular
+            gbc.gridy++;
+            gbc.gridwidth = 2;
+            gbc.anchor = GridBagConstraints.CENTER;
             RoundedButton btnCalcular = new RoundedButton("Calcular");
-            btnCalcular.setAlignmentX(Component.CENTER_ALIGNMENT);
             btnCalcular.setPreferredSize(new Dimension(150, 45));
-            mainPanel.add(btnCalcular);
+            add(btnCalcular, gbc);
 
             // Cargar datos existentes
-            TextInput inputFijos = (TextInput) ((JPanel) mainPanel.getComponent(2)).getComponent(2);
-            TextInput inputVariables = (TextInput) ((JPanel) mainPanel.getComponent(4)).getComponent(2);
-            loadCostos(inputFijos, inputVariables);
+            loadCcb();
 
-            // Action Listener para el botón
-            btnCalcular.addActionListener(e -> {
-                try {
-                    double costoFijo = Double.parseDouble(inputFijos.getText());
-                    double costoVariable = Double.parseDouble(inputVariables.getText());
-                    double ccb = costoFijo + costoVariable;
-
-                    CostosService serviceJson = new CostosService();
-                    serviceJson.guardarCostos(costoFijo, costoVariable);
-
-                    JOptionPane.showMessageDialog(this, "CCB calculado: " + ccb + "\nCostos guardados en JSON.");
-
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(this, "Por favor ingresa valores numéricos válidos.");
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(this, "Error al guardar los datos: " + ex.getMessage());
-                }
-            });
-
-            setVisible(true);
+            // Listener para el botón de calcular
+            btnCalcular.addActionListener(e -> calcularYGuardarCCB());
         }
 
-        private JPanel createCostSection(String title, String placeholder) {
+        private void calcularYGuardarCCB() {
+            try {
+                double costoFijo = Double.parseDouble(inputFijos.getText());
+                double costoVariable = Double.parseDouble(inputVariables.getText());
+                int nb = Integer.parseInt(inputNB.getText());
+                double merma = Double.parseDouble(inputMerma.getText());
+
+                if (nb <= 0) {
+                    JOptionPane.showMessageDialog(this, "El número de bandejas debe ser mayor a cero.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (merma < 0) {
+                    JOptionPane.showMessageDialog(this, "El porcentaje de merma no puede ser negativo.", "Error de Validación", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                double ccb = ((costoFijo + costoVariable) / nb) * (1 + merma / 100.0);
+
+                JSONObject datos = new JSONObject();
+                datos.put("costoFijo", costoFijo);
+                datos.put("costoVariable", costoVariable);
+                datos.put("nb", nb);
+                datos.put("merma", merma);
+                datos.put("ccb", ccb);
+
+                ccbService.guardarCcb(datos);
+
+                String mensaje = String.format("El CCB calculado es: %.2f\nLos valores han sido guardados.", ccb);
+                JOptionPane.showMessageDialog(this, mensaje, "Cálculo Exitoso", JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Por favor, ingrese valores numéricos válidos.", "Error de Formato", JOptionPane.ERROR_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Error al guardar los datos de CCB: " + ex.getMessage(), "Error de Guardado", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+        private JPanel createCostSection(String title, TextInput input) {
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
             panel.setOpaque(false);
@@ -203,26 +241,31 @@ public class AdminDashboardView extends JFrame {
             panel.add(label);
             panel.add(Box.createVerticalStrut(10));
 
-            TextInput input = new TextInput(placeholder);
             input.setAlignmentX(Component.LEFT_ALIGNMENT);
             panel.add(input);
 
             return panel;
         }
 
-        private void loadCostos(TextInput inputFijos, TextInput inputVariables) {
+        private void loadCcb() {
             try {
-                CostosService service = new CostosService();
-                JSONObject datos = service.leerCostos();
+                JSONObject datos = ccbService.leerCcb();
                 if (datos.has("costoFijo")) {
                     inputFijos.setText(String.valueOf(datos.getDouble("costoFijo")));
                 }
                 if (datos.has("costoVariable")) {
                     inputVariables.setText(String.valueOf(datos.getDouble("costoVariable")));
                 }
+                if (datos.has("nb")) {
+                    inputNB.setText(String.valueOf(datos.getInt("nb")));
+                }
+                if (datos.has("merma")) {
+                    inputMerma.setText(String.valueOf(datos.getDouble("merma")));
+                }
             } catch (IOException ex) {
-                System.err.println("No se pudo cargar costos.json: " + ex.getMessage());
+                System.err.println("No se pudo cargar ccb.json: " + ex.getMessage());
             }
         }
     }
 }
+

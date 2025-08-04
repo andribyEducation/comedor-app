@@ -15,6 +15,12 @@
         "correo": "carmen@gmail.com",
         "contrasena": "123456",
         "ID": "32061534",
-        "saldo": 55100
+        "saldo": 55000
+    },
+    {
+        "correo": "correo@correo.com",
+        "contrasena": "123456",
+        "ID": "987654321",
+        "saldo": 0
     }
 ]

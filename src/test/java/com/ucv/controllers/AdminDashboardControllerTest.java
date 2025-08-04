@@ -6,27 +6,31 @@ import com.ucv.views.admin.dashboards.AdminDashboardView;
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
+import java.util.Map;
 
 class AdminDashboardControllerTest {
 
     static class StubAdminDashboardView extends AdminDashboardView {
+        public StubAdminDashboardView(String nombreCompleto) {
+            super(nombreCompleto);
+        }
+
         private JLabel iconoUsuario = new JLabel();
         private HashMap<String, JButton> actionButtons = new HashMap<>();
 
-        public StubAdminDashboardView() {
-            actionButtons.put("opcion1", new JButton());
-            actionButtons.put("opcion2", new JButton());
-        }
 
         @Override
         public JLabel getIconoUsuario() { return iconoUsuario; }
+
+        @Override
+        public Map getActionButtons() { return actionButtons; }
     }
 
     private StubAdminDashboardView stubView;
 
     @BeforeEach
     void setUp() {
-        stubView = new StubAdminDashboardView();
+        stubView = new StubAdminDashboardView("Admin");
     }
 
     @Test

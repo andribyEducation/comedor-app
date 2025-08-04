@@ -53,27 +53,42 @@ public class GestionarMenuController {
 
     private void populateMealPanel(JPanel mealPanel, JSONObject mealData) {
         JSONArray platos = mealData.optJSONArray("platos");
-        System.out.println(platos);
         int cupos = mealData.optInt("cupos", 0);
         double precio = mealData.optDouble("precio", 0.0);
 
         JPanel fieldsPanel = (JPanel) mealPanel.getComponent(0);
         if (platos != null) {
-            for (int i = 0; i < platos.length(); i++) {
-                // Asegurarse de que el componente es un TextInput antes de intentar setText
-                Component comp = fieldsPanel.getComponent(i * 2 + 1);
-                if (comp instanceof TextInput) {
-                    ((TextInput) comp).setText(platos.optString(i, ""));
+            int textInputIndex = 0;
+            for (int i = 0; i < fieldsPanel.getComponentCount(); i++) {
+                Component comp = fieldsPanel.getComponent(i);
+                if (comp instanceof TextInput && textInputIndex < platos.length()) {
+                    ((TextInput) comp).setText(platos.optString(textInputIndex, ""));
+                    textInputIndex++;
                 }
             }
         }
 
         JPanel detailsPanel = (JPanel) mealPanel.getComponent(1);
-        JSpinner availabilitySpinner = (JSpinner) detailsPanel.getComponent(1);
-        availabilitySpinner.setValue(cupos);
 
-        JSpinner priceSpinner = (JSpinner) detailsPanel.getComponent(4); // El 4to componente es el JSpinner del precio
-        priceSpinner.setValue(precio);
+        // Busca los JSpinner por tipo en vez de por índice fijo
+        JSpinner availabilitySpinner = null;
+        JSpinner priceSpinner = null;
+        for (int i = 0; i < detailsPanel.getComponentCount(); i++) {
+            Component comp = detailsPanel.getComponent(i);
+            if (comp instanceof JSpinner) {
+                if (availabilitySpinner == null) {
+                    availabilitySpinner = (JSpinner) comp;
+                } else if (priceSpinner == null) {
+                    priceSpinner = (JSpinner) comp;
+                }
+            }
+        }
+        if (availabilitySpinner != null) {
+            availabilitySpinner.setValue(cupos);
+        }
+        if (priceSpinner != null) {
+            priceSpinner.setValue(precio);
+        }
     }
 
     private void saveMenuData() {

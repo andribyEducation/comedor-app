@@ -4,7 +4,6 @@ package com.ucv.controllers.adminDashboard;
 import com.ucv.views.admin.dashboards.AdminDashboardView;
 import com.ucv.views.admin.menu.GestionarMenuView;
 import com.ucv.controllers.admin.menu.GestionarMenuController;
-import javax.swing.*;
 
 /**
  * El Controlador maneja las interacciones del usuario.

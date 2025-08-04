@@ -2,8 +2,8 @@ package com.ucv.views.comensal.consultaMenu;
 
 import com.ucv.components.Button.RoundedButton;
 import com.ucv.components.Header.HeaderPanel;
+import com.ucv.controllers.comensal.MenuDelDiaController;
 import com.ucv.controllers.login.LoginController;
-import com.ucv.components.UserMenu.UserMenu;
 import com.ucv.controllers.saldo.SaldoController;
 import com.ucv.views.comensal.menuDelDia.menuDelDia;
 import com.ucv.views.comensal.saldo.SaldoView;
@@ -70,6 +70,20 @@ public class ConsultaMenu extends JFrame {
         gbc.anchor = GridBagConstraints.SOUTHEAST;
         gbc.insets = new Insets(50, 0, 50, 50);
         mainPanel.add(btnSaldo, gbc);
+
+        // Botón Menus Reservados
+        RoundedButton btnMenusReservados = new RoundedButton("Menus Reservados");
+        btnMenusReservados.setFont(new Font("Inter", Font.BOLD, 22));
+        btnMenusReservados.setPreferredSize(new Dimension(250, 50));
+        btnMenusReservados.addActionListener(e -> {
+            com.ucv.views.comensal.menusReservados.MenusReservadosView view = new com.ucv.views.comensal.menusReservados.MenusReservadosView();
+            new com.ucv.controllers.comensal.MenusReservadosController(view);
+            view.setVisible(true);
+        });
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.SOUTHEAST;
+        gbc.insets = new Insets(0, 0, 50, 50);
+        mainPanel.add(btnMenusReservados, gbc);
     }
 
     private JPanel createDiaPanel(String dia) {
@@ -83,7 +97,11 @@ public class ConsultaMenu extends JFrame {
         RoundedButton verMenu = new RoundedButton("Consultar");
         verMenu.setFont(new Font("Inter", Font.BOLD, 20));
         verMenu.setPreferredSize(new Dimension(300, 50));
-        verMenu.addActionListener(e -> new menuDelDia(dia).setVisible(true));
+        verMenu.addActionListener(e -> {
+            menuDelDia menuView = new menuDelDia(dia);
+            new MenuDelDiaController(menuView);
+            menuView.setVisible(true);
+        });
         
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.setOpaque(false);

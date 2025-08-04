@@ -18,14 +18,14 @@ import java.awt.event.MouseAdapter;
 public class ConsultaMenu extends JFrame {
     private HeaderPanel headerPanel;
 
-    public ConsultaMenu() {
+    public ConsultaMenu(String displayText) {
         setTitle("Turnos disponibles");
         setSize(1920, 1080);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        headerPanel = new HeaderPanel(false,"Turnos Disponibles", "Pedro",true);
+        headerPanel = new HeaderPanel(this, false,"Turnos Disponibles", displayText,true);
         add(headerPanel, BorderLayout.NORTH);
 
          headerPanel.getBackButtonLabel().addMouseListener(new MouseAdapter() {
@@ -61,9 +61,9 @@ public class ConsultaMenu extends JFrame {
         btnSaldo.setFont(new Font("Inter", Font.BOLD, 22));
         btnSaldo.setPreferredSize(new Dimension(250, 50));
         btnSaldo.addActionListener(e -> {
-            SaldoView saldoView = new SaldoView();
+            SaldoView saldoView = new SaldoView(displayText);
             saldoView.setVisible(true);
-            new SaldoController(saldoView);
+            new SaldoController(saldoView, displayText);
             this.dispose();
         });
         gbc.gridy = 3;

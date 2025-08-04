@@ -16,8 +16,6 @@ class SaldoControllerTest {
 
     static class StubSaldoView extends SaldoView {
         private JLabel iconoUsuario = new JLabel();
-        private JMenuItem cambiarContrasena = new JMenuItem();
-        private JMenuItem reportarProblema = new JMenuItem();
         private JPanel panelRecarga = new JPanel();
         private TextInput txtMonto = new TextInput("Monto");
         private JLabel saldoLabel = new JLabel();
@@ -27,12 +25,10 @@ class SaldoControllerTest {
         private JButton btnRecargar = new JButton();
 
         public StubSaldoView() {
-            // No llamar a super(); y no inicializar nada de JFrame
+            super("Saldo");
         }
 
         @Override public JLabel getIconoUsuario() { return iconoUsuario; }
-        @Override public JMenuItem getCambiarContrasenaItem() { return cambiarContrasena; }
-        @Override public JMenuItem getReportarProblemaItem() { return reportarProblema; }
         @Override public JPanel getPanelRecarga() { return panelRecarga; }
         @Override public TextInput getTxtMonto() { return txtMonto; }
         @Override public JLabel getSaldoLabel() { return saldoLabel; }
@@ -49,8 +45,6 @@ class SaldoControllerTest {
     void setUp() {
         stubView = mock(StubSaldoView.class, CALLS_REAL_METHODS);
         when(stubView.getIconoUsuario()).thenReturn(new JLabel());
-        when(stubView.getCambiarContrasenaItem()).thenReturn(new JMenuItem());
-        when(stubView.getReportarProblemaItem()).thenReturn(new JMenuItem());
         when(stubView.getPanelRecarga()).thenReturn(new JPanel());
         when(stubView.getTxtMonto()).thenReturn(new TextInput("Monto"));
         when(stubView.getSaldoLabel()).thenReturn(new JLabel());
@@ -62,7 +56,7 @@ class SaldoControllerTest {
         Usuario usuario = new Usuario("30513493", "adrian@gmail.com", "comensal", "Adrian", "Gonzalez");
         usuario.setSaldo(100);
         Usuario.setUsuarioActual(usuario);
-        controller = new SaldoController(stubView);
+        controller = new SaldoController(stubView, null);
     }
 
     @Test

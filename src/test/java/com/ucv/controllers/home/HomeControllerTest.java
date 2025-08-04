@@ -1,8 +1,6 @@
 package com.ucv.controllers.home;
 
 import com.ucv.views.home.Home;
-import com.ucv.views.login.LoginView;
-import com.ucv.views.registroView.RegistroView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

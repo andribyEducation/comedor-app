@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [{
     "tipo": "desayuno",
     "precio": 10,
@@ -5,3 +6,35 @@
     "posicionCola": 1,
     "dia": "Lunes"
 }]
+=======
+[
+    {
+        "precio": 0,
+        "tipo": "desayuno",
+        "cedula": "30513493",
+        "posicionCola": 1,
+        "dia": "Miercoles"
+    },
+    {
+        "precio": 0,
+        "tipo": "desayuno",
+        "cedula": "30513493",
+        "posicionCola": 1,
+        "dia": "Martes"
+    },
+    {
+        "precio": 0,
+        "tipo": "almuerzo",
+        "cedula": "30513493",
+        "posicionCola": 1,
+        "dia": "Lunes"
+    },
+    {
+        "precio": 0,
+        "tipo": "almuerzo",
+        "cedula": "32061534",
+        "posicionCola": 2,
+        "dia": "Lunes"
+    }
+]
+>>>>>>> 46f2c73c07ea714295edfc13b7338fdeb8814e74

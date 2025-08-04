@@ -15,9 +15,11 @@ import java.nio.file.Paths;
 public class SaldoController {
 
     private SaldoView view;
+    private String displayText;
 
-    public SaldoController(SaldoView view) {
+    public SaldoController(SaldoView view, String displayText) {
         this.view = view;
+        this.displayText = displayText;
         initListeners();
     }
 
@@ -25,7 +27,7 @@ public class SaldoController {
 
         // Botón volver
         view.getBtnVolver().addActionListener(e -> {
-            new ConsultaMenu().setVisible(true);
+            new ConsultaMenu(displayText).setVisible(true);
             view.dispose();
         });
 

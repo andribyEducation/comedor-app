@@ -5,14 +5,14 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import com.ucv.components.UserMenu.UserMenu;
+
 public class HeaderPanel extends JPanel {
     private JLabel iconoUsuario;
-    private JPopupMenu menuUsuario;
-    private JMenuItem cambiarContrasenaItem;
-    private JMenuItem reportarProblemaItem;
+    private UserMenu menuUsuario;
     private JLabel backButtonLabel;
 
-    public HeaderPanel(boolean bgDark, String titulo, String userName, boolean showBackButton) {
+    public HeaderPanel(JFrame parent, boolean bgDark, String titulo, String userName, boolean showBackButton) {
         setLayout(new BorderLayout());
         setOpaque(true);
         if (bgDark) {
@@ -72,7 +72,7 @@ public class HeaderPanel extends JPanel {
         add(iconoUsuario, BorderLayout.EAST);
 
         // Menú de Usuario
-        menuUsuario = createUserMenu(userName);
+        menuUsuario = new UserMenu(parent, userName);
         iconoUsuario.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -83,55 +83,12 @@ public class HeaderPanel extends JPanel {
         });
     }
 
-    private JPopupMenu createUserMenu(String userName) {
-        JPopupMenu menu = new JPopupMenu() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                Graphics2D g2 = (Graphics2D) g;
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                g2.setColor(new Color(30, 30, 30));
-                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
-            }
-        };
-        menu.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
-        menu.setOpaque(false);
-
-        JLabel nombreUsuarioLabel = new JLabel(userName);
-        nombreUsuarioLabel.setFont(new Font("Inter", Font.BOLD, 18));
-        nombreUsuarioLabel.setForeground(Color.WHITE);
-        menu.add(nombreUsuarioLabel);
-        menu.add(Box.createVerticalStrut(12));
-
-        cambiarContrasenaItem = new JMenuItem("Cambiar contraseña");
-        personalizarItem(cambiarContrasenaItem);
-        menu.add(cambiarContrasenaItem);
-
-        reportarProblemaItem = new JMenuItem("Reportar problema");
-        personalizarItem(reportarProblemaItem);
-        menu.add(reportarProblemaItem);
-
-        return menu;
-    }
-
-    private void personalizarItem(JMenuItem item) {
-        item.setBackground(new Color(50, 50, 50));
-        item.setForeground(Color.WHITE);
-        item.setFont(new Font("Inter", Font.BOLD, 18));
-        item.setOpaque(true);
-        item.setBorder(BorderFactory.createEmptyBorder(8, 15, 8, 15));
-        item.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    }
-
     public JLabel getIconoUsuario() {
         return iconoUsuario;
     }
 
-    public JMenuItem getCambiarContrasenaItem() {
-        return cambiarContrasenaItem;
-    }
-
-    public JMenuItem getReportarProblemaItem() {
-        return reportarProblemaItem;
+    public UserMenu getMenuUsuario() {
+        return menuUsuario;
     }
 
     public JLabel getBackButtonLabel() {

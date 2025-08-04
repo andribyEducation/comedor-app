@@ -4,7 +4,7 @@ public class Usuario {
     private String cedula;
     private String correo;
     private String tipo; 
-    private int saldo = -1;
+    private double saldo = -1;
 
     private static Usuario usuarioActual; // Instancia global
 
@@ -27,11 +27,24 @@ public class Usuario {
         return tipo;
     }
 
+<<<<<<< HEAD
     public int getSaldo() {
         return saldo;
+=======
+    public String getID() {
+        return cedula;
     }
 
-    public void setSaldo(int saldo) {
+    public double getSaldo() {
+        if(saldo != -1) {
+            return saldo;
+        } else {
+            return 0; // Retorna 0 si el saldo no está definido
+        }
+>>>>>>> 4c1f5cc236c4cc52a8eac7d2fb57e7ca08d44111
+    }
+
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 

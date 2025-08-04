@@ -13,6 +13,9 @@ import java.nio.file.Paths;
 public class menuDelDia extends JFrame {
 
     private JSONObject menus;
+    private RoundedButton btnReservar;
+    private CheckBox chkDesayuno;
+    private CheckBox chkAlmuerzo;
 
     public menuDelDia(String dia) {
         try {
@@ -52,9 +55,13 @@ public class menuDelDia extends JFrame {
 
         JSONObject menuDia = menus.getJSONObject(dia);
 
-        menuPanel.add(createMenuSeccion("Desayuno", menuDia.getJSONObject("desayuno"), "De 7:20am - 9:20am"));
+        // Guardar los checkboxes como atributos para validación
+        chkDesayuno = null;
+        chkAlmuerzo = null;
+
+        menuPanel.add(createMenuSeccion("Desayuno", menuDia.getJSONObject("desayuno"), "De 7:20am - 9:20am", true));
         menuPanel.add(Box.createRigidArea(new Dimension(40, 0)));
-        menuPanel.add(createMenuSeccion("Almuerzo", menuDia.getJSONObject("almuerzo"), "De 12:00pm - 2:00pm"));
+        menuPanel.add(createMenuSeccion("Almuerzo", menuDia.getJSONObject("almuerzo"), "De 12:00pm - 2:00pm", false));
         mainPanel.add(menuPanel);
 
         mainPanel.add(Box.createVerticalGlue());
@@ -67,14 +74,26 @@ public class menuDelDia extends JFrame {
 
         mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        RoundedButton btnReservar = new RoundedButton("Reservar");
+        btnReservar = new RoundedButton("Reservar");
         btnReservar.setFont(new Font("Inter", Font.BOLD, 22));
         btnReservar.setPreferredSize(new Dimension(200, 50));
         btnReservar.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(btnReservar);
     }
 
-    private JPanel createMenuSeccion(String tipo, JSONObject menu, String horario) {
+    public RoundedButton getBtnReservar() {
+        return btnReservar;
+    }
+
+    public boolean isDesayunoReservado() {
+        return chkDesayuno != null && chkDesayuno.isSelected();
+    }
+
+    public boolean isAlmuerzoReservado() {
+        return chkAlmuerzo != null && chkAlmuerzo.isSelected();
+    }
+
+    private JPanel createMenuSeccion(String tipo, JSONObject menu, String horario, boolean esDesayuno) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(new Color(245, 245, 245));
@@ -131,6 +150,12 @@ public class menuDelDia extends JFrame {
             chkReservar.setFont(new Font("Inter", Font.PLAIN, 14));
             chkReservar.setAlignmentX(Component.CENTER_ALIGNMENT);
             panel.add(chkReservar);
+
+            if (esDesayuno) {
+                chkDesayuno = chkReservar;
+            } else {
+                chkAlmuerzo = chkReservar;
+            }
         }
 
         return panel;

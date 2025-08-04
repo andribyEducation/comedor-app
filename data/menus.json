@@ -1,27 +1,8 @@
 {
-    "Martes": {
-        "almuerzo": {
-            "precio": 0,
-            "cupos": 45,
-            "platos": [
-                "Pabellón Criollo (Carne mechada, arroz, caraotas, tajadas)",
-                "Ensalada rallada",
-                "Papelón con limón"
-            ]
-        },
-        "desayuno": {
-            "precio": 0,
-            "cupos": 25,
-            "platos": [
-                "Arepas con perico",
-                "Jugo de lechosa"
-            ]
-        }
-    },
     "Miercoles": {
         "almuerzo": {
-            "precio": 0,
-            "cupos": 40,
+            "precio": 21.25,
+            "cupos": 1000,
             "platos": [
                 "Sopa de pollo y arroz",
                 "Asado Negro con puré de papas",
@@ -30,17 +11,36 @@
         },
         "desayuno": {
             "precio": 0,
-            "cupos": 34,
+            "cupos": 198,
             "platos": [
                 "Arepas con jamón y queso",
                 "Café con leche"
             ]
         }
     },
+    "Martes": {
+        "almuerzo": {
+            "precio": 0,
+            "cupos": 1000,
+            "platos": [
+                "Pabellón Criollo (Carne mechada, arroz, caraotas, tajadas)",
+                "Ensalada rallada",
+                "Papelón con limón"
+            ]
+        },
+        "desayuno": {
+            "precio": 0,
+            "cupos": 199,
+            "platos": [
+                "Arepas con perico",
+                "Jugo de lechosa"
+            ]
+        }
+    },
     "Viernes": {
         "almuerzo": {
             "precio": 0,
-            "cupos": 48,
+            "cupos": 1000,
             "platos": [
                 "Cachapa con queso de mano",
                 "Pollo en brasa con tostones",
@@ -49,7 +49,7 @@
         },
         "desayuno": {
             "precio": 0,
-            "cupos": 28,
+            "cupos": 200,
             "platos": [
                 "Empanadas de carne molida",
                 "Jugo de parchita"
@@ -59,7 +59,7 @@
     "Lunes": {
         "almuerzo": {
             "precio": 0,
-            "cupos": 50,
+            "cupos": 999,
             "platos": [
                 "Sancocho de res",
                 "Hallacas con ensalada de gallina",
@@ -68,7 +68,7 @@
         },
         "desayuno": {
             "precio": 0,
-            "cupos": 0,
+            "cupos": 199,
             "platos": [
                 "Arepas con aguacate",
                 "Jugo de guayaba"
@@ -78,7 +78,7 @@
     "Jueves": {
         "almuerzo": {
             "precio": 0,
-            "cupos": 55,
+            "cupos": 1000,
             "platos": [
                 "Pastel de Chucho",
                 "Mojito en coco",
@@ -87,7 +87,7 @@
         },
         "desayuno": {
             "precio": 500,
-            "cupos": 20,
+            "cupos": 200,
             "platos": [
                 "Tequeños",
                 "Chocolate frio"

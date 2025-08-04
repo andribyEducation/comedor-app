@@ -1,4 +1,6 @@
 {
-    "costoFijo": 120.5,
-    "costoVariable": 30.75
+    "merma": 4,
+    "nb": 45,
+    "costoFijo": 1231,
+    "costoVariable": 122
 }

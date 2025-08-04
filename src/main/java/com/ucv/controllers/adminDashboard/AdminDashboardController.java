@@ -56,6 +56,7 @@ public class AdminDashboardController {
             new GestionarMenuController (menuView);
             menuView.display();
         } else {
+            JOptionPane.showMessageDialog(view, "Mostrar dashboard: " + option);
         }
     }
 }

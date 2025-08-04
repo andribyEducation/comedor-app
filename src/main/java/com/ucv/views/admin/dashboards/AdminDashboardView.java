@@ -67,11 +67,11 @@ public class AdminDashboardView extends JFrame {
         mainPanel.add(Box.createVerticalStrut(60));
 
         // Botones
-        JPanel buttonsPanel = new JPanel(new GridLayout(1, 3, 100, 0));
+        JPanel buttonsPanel = new JPanel(new GridLayout(1, 2, 100, 0));
         buttonsPanel.setOpaque(false);
 
-        String[] options = {"Gestionar Menú", "CCB", "Gestionar Reservas"};
-        String[] buttonTexts = {"Gestionar", "Calcular", "Ver Reservas"};
+        String[] options = {"Gestionar Menú", "CCB"};
+        String[] buttonTexts = {"Gestionar", "Calcular"};
 
         for (int i = 0; i < options.length; i++) {
             buttonsPanel.add(createActionButtonPanel(options[i], buttonTexts[i]));
@@ -82,16 +82,6 @@ public class AdminDashboardView extends JFrame {
         RoundedButton ccbButton = actionButtons.get("CCB");
         if (ccbButton != null) {
             ccbButton.addActionListener(e -> new VentanaCCB());
-        }
-
-        // Listener para el botón Gestionar Reservas
-        RoundedButton reservasButton = actionButtons.get("Gestionar Reservas");
-        if (reservasButton != null) {
-            reservasButton.addActionListener(e -> {
-                com.ucv.views.admin.reservas.GestionarReservasView view = new com.ucv.views.admin.reservas.GestionarReservasView();
-                new com.ucv.controllers.admin.reservas.GestionarReservasController(view);
-                view.setVisible(true);
-            });
         }
     }
 

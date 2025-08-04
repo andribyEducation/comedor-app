@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 import com.ucv.models.Usuario;
 
@@ -37,5 +38,13 @@ public class AuthService {
 
     public void cerrarSesion() {
         Usuario.setUsuarioActual(null);
+    }
+
+    public static void saveComensalesData(JSONArray comensales) {
+        try {
+            Files.write(Paths.get(COMENSALES_DATA_PATH), comensales.toString(4).getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

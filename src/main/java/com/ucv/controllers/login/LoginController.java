@@ -101,10 +101,7 @@ public class LoginController {
                 registroView.dispose();
             }
         } else {
-            // Evita mostrar JOptionPane si no hay UI (por ejemplo, en tests)
-            if (view != null && javax.swing.SwingUtilities.getWindowAncestor(view) != null) {
-                JOptionPane.showMessageDialog(view, "Cédula o contraseña incorrectos.", "Error de inicio de sesión", JOptionPane.ERROR_MESSAGE);
-            }
+            JOptionPane.showMessageDialog(view, "Cédula o contraseña incorrectos.", "Error de inicio de sesión", JOptionPane.ERROR_MESSAGE);
         }
     }
 

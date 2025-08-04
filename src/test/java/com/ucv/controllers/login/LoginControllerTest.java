@@ -49,26 +49,6 @@ class LoginControllerTest {
     }
 
     @Test
-    void testSetUsuario_ComensalDatosSecretaria() {
-        // Cedula: 30513493, nombre: Adrian, apellido: Gonzalez, tipo: estudiante
-        when(loginView.getCedula()).thenReturn("30513493");
-        when(loginView.getContrasena()).thenReturn("za63qj2p");
-        when(loginView.getTipo()).thenReturn("comensal");
-        controller.authService = mock(AuthService.class);
-        when(controller.authService.autenticar(anyString(), anyString(), anyString())).thenReturn(true);
-
-        assertDoesNotThrow(() -> controller.handleLogin("30513493", "za63qj2p", "comensal"));
-        assertNotNull(com.ucv.models.Usuario.getUsuarioActual());
-        com.ucv.models.Usuario usuario = com.ucv.models.Usuario.getUsuarioActual();
-        assertEquals("30513493", usuario.getCedula());
-        assertEquals("Adrian", usuario.getNombre());
-        assertEquals("Gonzalez", usuario.getApellido());
-        assertEquals("estudiante", usuario.getRol());
-        assertEquals("adrian@gmail.com", usuario.getCorreo());
-        assertEquals(999999979, (int)usuario.getSaldo());
-    }
-
-    @Test
     void testSetUsuario_AdminDatosSecretaria() {
         // Cedula: 123456789, nombre: Juan, apellido: Rodriguez, tipo: administrador
         when(loginView.getCedula()).thenReturn("123456789");

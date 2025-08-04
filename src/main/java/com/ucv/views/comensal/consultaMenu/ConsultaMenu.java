@@ -8,6 +8,7 @@ import com.ucv.controllers.saldo.SaldoController;
 import com.ucv.views.comensal.menuDelDia.menuDelDia;
 import com.ucv.views.comensal.saldo.SaldoView;
 import com.ucv.views.login.LoginView;
+import com.ucv.services.AuthService;
 import java.awt.event.MouseEvent;
 
 import javax.swing.*;
@@ -17,6 +18,10 @@ import java.awt.event.MouseAdapter;
 
 public class ConsultaMenu extends JFrame {
     private HeaderPanel headerPanel;
+
+    public HeaderPanel getHeaderPanel() {
+        return headerPanel;
+    }
 
     public ConsultaMenu() {
         setTitle("Turnos disponibles");
@@ -28,6 +33,7 @@ public class ConsultaMenu extends JFrame {
         headerPanel = new HeaderPanel(false,"Turnos Disponibles", "Pedro",true);
         add(headerPanel, BorderLayout.NORTH);
 
+        // Listener para el botón de retroceso
          headerPanel.getBackButtonLabel().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -36,6 +42,13 @@ public class ConsultaMenu extends JFrame {
                 view.setVisible(true);
                 dispose(); 
             }
+        });
+
+        // Listener para el botón de cerrar sesión
+        headerPanel.getMenuItemCerrarSesion().addActionListener(e -> {
+            new AuthService().cerrarSesion();
+            new LoginView().setVisible(true);
+            dispose();
         });
 
         JPanel mainPanel = new JPanel(new GridBagLayout());

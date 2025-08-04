@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+import com.ucv.controllers.login.LoginController;
+import com.ucv.services.AuthService;
+import com.ucv.views.login.LoginView;
+
 public class UserMenu extends JPopupMenu {
 
     public UserMenu(JFrame parent, String userName) {
@@ -42,6 +46,14 @@ public class UserMenu extends JPopupMenu {
         add(reportarProblema);
 
         JMenuItem cerrarSesion = crearItem("Cerrar sesión");
+        cerrarSesion.addActionListener(e -> {
+            new AuthService().cerrarSesion();
+            LoginView loginView = new LoginView();
+            new LoginController(loginView);
+            loginView.setVisible(true);
+            // Dispose the parent frame to close the current view
+            parent.dispose();
+        });
         add(cerrarSesion);
     }
 

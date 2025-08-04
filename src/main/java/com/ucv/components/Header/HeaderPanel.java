@@ -10,6 +10,7 @@ public class HeaderPanel extends JPanel {
     private JPopupMenu menuUsuario;
     private JMenuItem cambiarContrasenaItem;
     private JMenuItem reportarProblemaItem;
+    private JMenuItem cerrarSesionItem;
     private JLabel backButtonLabel;
 
     public HeaderPanel(boolean bgDark, String titulo, String userName, boolean showBackButton) {
@@ -110,6 +111,10 @@ public class HeaderPanel extends JPanel {
         personalizarItem(reportarProblemaItem);
         menu.add(reportarProblemaItem);
 
+        cerrarSesionItem = new JMenuItem("Cerrar sesión");
+        personalizarItem(cerrarSesionItem);
+        menu.add(cerrarSesionItem);
+
         return menu;
     }
 
@@ -132,6 +137,10 @@ public class HeaderPanel extends JPanel {
 
     public JMenuItem getReportarProblemaItem() {
         return reportarProblemaItem;
+    }
+
+    public JMenuItem getMenuItemCerrarSesion() {
+        return cerrarSesionItem;
     }
 
     public JLabel getBackButtonLabel() {

@@ -4,15 +4,14 @@ public class Usuario {
     private String cedula;
     private String correo;
     private String tipo; 
-    private int saldo;
+    private int saldo = -1;
 
     private static Usuario usuarioActual; // Instancia global
 
-    public Usuario(String cedula, String correo, String tipo, int saldo) {
+    public Usuario(String cedula, String correo, String tipo) {
         this.cedula = cedula;
         this.correo = correo;
         this.tipo = tipo;
-        this.saldo = saldo;
     }
 
     // Getters
@@ -29,7 +28,11 @@ public class Usuario {
     }
 
     public int getSaldo() {
-        return saldo;
+        if(saldo != -1) {
+            return saldo;
+        } else {
+            return 0; // Retorna 0 si el saldo no está definido
+        }
     }
 
     public void setSaldo(int saldo) {

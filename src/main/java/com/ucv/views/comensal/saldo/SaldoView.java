@@ -62,6 +62,7 @@ public class SaldoView extends JFrame {
         saldoLabel = new JLabel("250 Bs", SwingConstants.LEFT);
         // Saldo al lado del título, más pequeño
         saldoLabel = new JLabel( Usuario.getUsuarioActual().getSaldo() + " Bs", SwingConstants.LEFT);
+        // System.out.println("Saldo actual: " + Usuario.getUsuarioActual().getSaldo());
         saldoLabel.setFont(new Font("Inter", Font.BOLD, 26));
         saldoLabel.setForeground(new Color(255, 255, 255));
         saldoPanel.add(saldoLabel);

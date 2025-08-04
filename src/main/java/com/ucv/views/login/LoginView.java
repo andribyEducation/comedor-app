@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import com.ucv.components.Button.RoundedButton;
 import com.ucv.components.TextInput.TextInput;
+import com.ucv.components.CheckBox.CheckBox;
 
 public class LoginView extends JFrame {
 
@@ -11,6 +12,8 @@ public class LoginView extends JFrame {
     private JLabel backLabel;
     private TextInput cedulaInput;
     private TextInput passwordInput;
+    private CheckBox comensalCheckBox;
+    private CheckBox adminCheckBox;
 
     public LoginView() {
 
@@ -84,6 +87,31 @@ public class LoginView extends JFrame {
         mainGbc.gridy++;
         mainPanel.add(passwordInput, mainGbc);
 
+        // Etiqueta de rol
+        JLabel rolLabel = new JLabel("Seleccione su rol dentro del comedor");
+        rolLabel.setFont(new Font("Inter", Font.BOLD, 18));
+        rolLabel.setForeground(Color.BLACK);
+        mainGbc.gridy++;
+        mainPanel.add(rolLabel, mainGbc);
+
+        // Checkboxes de tipo de usuario (estilo registro)
+        JPanel checkBoxPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
+        checkBoxPanel.setOpaque(false);
+        comensalCheckBox = new CheckBox("Comensal", new Color(0, 102, 204));
+        comensalCheckBox.setForeground(Color.BLACK);
+        adminCheckBox = new CheckBox("Administrador", new Color(0, 102, 204));
+        adminCheckBox.setForeground(Color.BLACK);
+
+        ButtonGroup group = new ButtonGroup();
+        group.add(comensalCheckBox);
+        group.add(adminCheckBox);
+
+        checkBoxPanel.add(comensalCheckBox);
+        checkBoxPanel.add(adminCheckBox);
+
+        mainGbc.gridy++;
+        mainPanel.add(checkBoxPanel, mainGbc);
+
         // Botón de ingreso
         loginButton = new RoundedButton("Ingreso");
         loginButton.setFont(new Font("Inter", Font.BOLD, 18));
@@ -124,5 +152,19 @@ public class LoginView extends JFrame {
 
     public JLabel getBackLabel() {
         return backLabel;
+    }
+
+    public boolean isComensalSelected() {
+        return comensalCheckBox.isSelected();
+    }
+
+    public boolean isAdminSelected() {
+        return adminCheckBox.isSelected();
+    }
+
+    public String getTipo() {
+        if (comensalCheckBox.isSelected()) return "comensal";
+        if (adminCheckBox.isSelected()) return "administrador";
+        return "";
     }
 }

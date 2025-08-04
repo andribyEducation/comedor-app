@@ -2,8 +2,8 @@ package com.ucv.views.comensal.consultaMenu;
 
 import com.ucv.components.Button.RoundedButton;
 import com.ucv.components.Header.HeaderPanel;
+import com.ucv.controllers.comensal.MenuDelDiaController;
 import com.ucv.controllers.login.LoginController;
-import com.ucv.components.UserMenu.UserMenu;
 import com.ucv.controllers.saldo.SaldoController;
 import com.ucv.views.comensal.menuDelDia.menuDelDia;
 import com.ucv.views.comensal.saldo.SaldoView;
@@ -83,7 +83,11 @@ public class ConsultaMenu extends JFrame {
         RoundedButton verMenu = new RoundedButton("Consultar");
         verMenu.setFont(new Font("Inter", Font.BOLD, 20));
         verMenu.setPreferredSize(new Dimension(300, 50));
-        verMenu.addActionListener(e -> new menuDelDia(dia).setVisible(true));
+        verMenu.addActionListener(e -> {
+            menuDelDia menuView = new menuDelDia(dia);
+            new MenuDelDiaController(menuView);
+            menuView.setVisible(true);
+        });
         
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.setOpaque(false);

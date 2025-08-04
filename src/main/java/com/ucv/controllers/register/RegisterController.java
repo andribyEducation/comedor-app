@@ -36,6 +36,17 @@ public class RegisterController {
             currentCedula = view.getCedula();
             currentTipo = view.getTipo();
 
+            // Validación de tipo de usuario según secretaria
+            String tipoPersona = obtenerTipoPersonaSecretaria(currentCedula);
+            if (tipoPersona == null) {
+                JOptionPane.showMessageDialog(view, "La cédula no está autorizada para el registro.");
+                return;
+            }
+            if (!validarTipoRegistro(tipoPersona, currentTipo)) {
+                JOptionPane.showMessageDialog(view, "Solo los administradores pueden registrarse como administradores. Estudiantes y profesores solo pueden registrarse como comensales.");
+                return;
+            }
+
             if (!validarCampos(currentCorreo, currentContrasena, currentCedula, currentTipo)) {
                 return;
             }
@@ -222,6 +233,33 @@ public class RegisterController {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    private String obtenerTipoPersonaSecretaria(String cedula) {
+        String dataPath = "data/secretaria.json";
+        try {
+            String content = new String(Files.readAllBytes(Paths.get(dataPath)));
+            JSONArray secretarias = new JSONArray(content);
+            for (int i = 0; i < secretarias.length(); i++) {
+                JSONObject persona = secretarias.getJSONObject(i);
+                if (cedula.equals(persona.optString("cedula"))) {
+                    return persona.optString("tipo", null);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private boolean validarTipoRegistro(String tipoPersona, String tipoRegistro) {
+        if ("administrador".equalsIgnoreCase(tipoPersona)) {
+            // Un administrador puede registrarse como comensal o administrador
+            return "comensal".equalsIgnoreCase(tipoRegistro) || "administrador".equalsIgnoreCase(tipoRegistro);
+        } else {
+            // Estudiantes y profesores solo pueden registrarse como comensal
+            return "comensal".equalsIgnoreCase(tipoRegistro);
         }
     }
 }

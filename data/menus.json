@@ -2,7 +2,7 @@
     "Miercoles": {
         "almuerzo": {
             "precio": 21.25,
-            "cupos": 999,
+            "cupos": 998,
             "platos": [
                 "Sopa de pollo y arroz",
                 "Asado Negro con puré de papas",
@@ -10,7 +10,7 @@
             ]
         },
         "desayuno": {
-            "precio": 0,
+            "precio": 10,
             "cupos": 198,
             "platos": [
                 "Arepas con jamón y queso",
@@ -20,8 +20,8 @@
     },
     "Martes": {
         "almuerzo": {
-            "precio": 0,
-            "cupos": 1000,
+            "precio": 15,
+            "cupos": 999,
             "platos": [
                 "Pabellón Criollo (Carne mechada, arroz, caraotas, tajadas)",
                 "Ensalada rallada",
@@ -29,7 +29,7 @@
             ]
         },
         "desayuno": {
-            "precio": 0,
+            "precio": 8,
             "cupos": 199,
             "platos": [
                 "Arepas con perico",
@@ -39,8 +39,8 @@
     },
     "Viernes": {
         "almuerzo": {
-            "precio": 0,
-            "cupos": 1000,
+            "precio": 18,
+            "cupos": 999,
             "platos": [
                 "Cachapa con queso de mano",
                 "Pollo en brasa con tostones",
@@ -48,8 +48,8 @@
             ]
         },
         "desayuno": {
-            "precio": 0,
-            "cupos": 200,
+            "precio": 9,
+            "cupos": 199,
             "platos": [
                 "Empanadas de carne molida",
                 "Jugo de parchita"
@@ -58,7 +58,7 @@
     },
     "Lunes": {
         "almuerzo": {
-            "precio": 0,
+            "precio": 20,
             "cupos": 998,
             "platos": [
                 "Sancocho de res",
@@ -67,7 +67,7 @@
             ]
         },
         "desayuno": {
-            "precio": 0,
+            "precio": 7,
             "cupos": 199,
             "platos": [
                 "Arepas con aguacate",
@@ -77,7 +77,7 @@
     },
     "Jueves": {
         "almuerzo": {
-            "precio": 0,
+            "precio": 17,
             "cupos": 1000,
             "platos": [
                 "Pastel de Chucho",
@@ -86,8 +86,8 @@
             ]
         },
         "desayuno": {
-            "precio": 500,
-            "cupos": 200,
+            "precio": 11,
+            "cupos": 199,
             "platos": [
                 "Tequeños",
                 "Chocolate frio"
